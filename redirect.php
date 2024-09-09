@@ -1,0 +1,1 @@
+<?php	header('location:https://portal.seds.sp.gov.br/coed/login'); ?>

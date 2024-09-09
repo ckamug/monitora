@@ -1,0 +1,1 @@
+<link rel="stylesheet" type="text/css" href="public/<?php echo($lnk) ?>/css/index.css" />

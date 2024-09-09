@@ -1,0 +1,272 @@
+.pg
+{
+	float:left;
+	width:100%;
+	height:650px;
+	position:relative;
+}
+
+.dvTitulo
+{
+	float:left;
+	width:100%;
+	height:auto;
+	text-align:left;
+	font-weight:bold;
+	font-family:Verdana, Geneva, sans-serif;
+	color:#cc3333;
+	position:relative;
+	margin-left:0px;
+	margin-top:20px;
+}
+
+.dvSubTitulo
+{
+	float:left;
+	width:98%;
+	height:auto;
+	text-align:left;
+	font-weight:bold;
+	font-family:Verdana, Geneva, sans-serif;
+	color:#cc3333;
+	position:relative;
+	margin-bottom:10px;
+}
+
+.dvAlign
+{
+	float:left;
+	width:100%;
+	height:auto;
+	position:relative;
+}
+
+.dvListaRelatorio
+{
+	float:left;
+	width:100%;
+	height:auto;
+	position:relative;
+	margin-top:10px;
+}
+
+.dvLinhaCinza
+{
+	float:left;
+	width:100%;
+	height:26px;
+	background-color:#CCC;
+	position:relative;
+}
+
+.dvLinhaBranca
+{
+	float:left;
+	width:100%;
+	height:26px;
+	background-color:#FFF;
+	position:relative;
+}
+
+.dvMenuHor
+{
+	float:left;
+	width:15%;
+	height:20px;
+	background-color:#FFF;
+	border-top:solid 1px #CCC;
+	border-bottom:solid 1px #CCC;
+	text-align:center;
+	color:#999;
+	font-size:12px;
+	font-weight:bold;
+	cursor:pointer;
+	position:relative;
+	padding-top:5px;
+	margin-top:10px;
+	margin-right:5px;
+}
+
+.dvMenuHor:hover
+{
+	background-color:#FBEAB7;
+}
+
+.dvQuadro
+{
+	float:left;
+	width:61%;
+	height:auto;
+	position:relative;
+	padding-top:10px;
+	padding-bottom:10px;
+	margin-top:10px;
+}
+
+.texto
+{
+	float:left;
+	width:auto;
+	height:auto;
+	text-align:left;
+	font-size:12px;
+	color:#000;
+	position:relative;
+}
+
+.dvLista
+{
+	float:left;
+	width:100%;
+	height:auto;
+	position:relative;
+	margin-top:10px;
+}
+
+.colunaNome
+{
+	float:left;
+	width:55%;
+	height:auto;
+	text-align:left;
+	font-weight:bold;
+	position:relative;
+	padding-top:6px;
+	padding-bottom:2px;
+	margin-left:5px;
+}
+
+.colunaDepartamento
+{
+	float:left;
+	width:35%;
+	height:auto;
+	text-align:left;
+	font-weight:bold;
+	position:relative;
+	padding-top:6px;
+	padding-bottom:2px;
+	margin-left:5px;
+}
+
+.dvExcluir
+{
+	float:left;
+	width:24px;
+	height:24px;
+	cursor:pointer;
+	position:relative;
+	margin-left:5px;
+	margin-top:2px;
+}
+
+.botao
+{
+	float:left;
+	width:auto;
+	height:auto;
+	background-color:#0099cc;
+	border:solid 1px #0099cc;
+	color:#FFF;
+	text-align:center;
+	font-weight:bold;
+	cursor:pointer;
+	position:relative;
+	padding-top:5px;
+	padding-bottom:5px;
+	padding-left:20px;
+	padding-right:20px;	
+}
+
+.botao:hover
+{
+	background-color:#0CF;
+	border:solid 1px #0099cc;
+}
+
+#btnCancelar
+{
+	margin-left:5px;
+}
+
+#agendas,#novaAgenda,#permissoes,.dvSelectAgendas,#chkVisualizacao,#chkAlteracao,#relatorios,#listaRelatorio
+{
+	display:none;
+}
+
+.dvInput
+{
+	border:solid 1px #CCC;
+}
+
+.dvSelect
+{
+	float:left;
+	width:300px;
+	height:auto;
+	position:relative;
+	margin-right:5px;
+}
+
+#selectUserAgenda,#selectUserPermissao,#selectAgd,#selectAgdRelatorio
+{
+	float:left;
+	width:300px;
+	height:auto;
+	border:solid 1px #CCC;
+	position:relative;
+	margin-top:3px;
+	margin-bottom:5px;
+}
+
+#tituloAgenda
+{
+	border-bottom:solid 1px #000;
+}
+
+.dvVisuAlter
+{
+	float:left;
+	width:44%;
+	height:auto;
+	position:relative;
+	padding-top:5px;
+	padding-bottom:5px;
+	margin-right::5px;
+}
+
+.dvCheckBox
+{
+	float:left;
+	width:auto;
+	height:auto;
+	position:relative;
+	margin-right:5px;
+	margin-top:1px;
+}
+
+.colunaNomeUsuario
+{
+	float:left;
+	width:50%;
+	height:auto;
+	text-align:left;
+	font-weight:bold;
+	position:relative;
+	padding-top:6px;
+	padding-bottom:2px;
+	margin-left:5px;
+}
+
+.colunaVisuAlter
+{
+	float:left;
+	width:20%;
+	height:auto;
+	text-align:center;
+	font-weight:bold;
+	position:relative;
+	padding-top:6px;
+	padding-bottom:2px;
+	margin-left:5px;
+}

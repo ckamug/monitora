@@ -1,0 +1,240 @@
+$(document).ready(function(){
+    $("#btnStep").click(function() {consultaCpf()});
+    $("#txtLogin").focus(function() {
+        if($("#txtLogin").val()==""){
+            $("#boxInicial").hide();
+            $("#boxSenha").hide();
+            $("#txtSenha").val('');
+            $("#txtCriaSenha").val('');
+            $("#txtRepeteSenha").val('');
+        }
+    });
+
+    $("#boxInicial").hide();
+    $("#boxSenha").hide();
+    $('#txtLogin').mask('000.000.000-00');
+
+    validator = $("#formLogin").validate({
+		
+        invalidHandler: function() {
+			alert("Login Inválido")
+		},
+		submitHandler: function(){
+            if($("#txtCriaSenha").val()!=''){
+                cadastraSenha();
+            }
+
+		},
+		rules:{
+		  txtLogin:{
+			required:true,
+		  },
+		  txtCriaSenha:{
+			required:true,
+            minlength:5
+		  },
+		  txtRepeteSenha:{
+			required:true,
+            minlength:5,
+            equalTo: "#txtCriaSenha"
+		  },
+		},
+        messages:{
+            txtCriaSenha:{
+                minlength: "Digite no mínimo 5 caracteres"
+            },
+            txtRepeteSenha:{
+                equalTo: "Nova senha e Confirmação de nova senha não são iguais",
+                minlength: "Digite no mínimo 5 caracteres"
+            }
+        }        
+  
+	  }
+
+	);
+
+
+});
+
+function validaCpf(){
+
+    myCPF = $('#txtLogin').val().replace('.', '').replace('.', '').replace('-', '');
+    var numeros, digitos, soma, i, resultado, digitos_iguais;
+    digitos_iguais = 1;
+
+    for (i = 0; i < myCPF.length - 1; i++)
+        if (myCPF.charAt(i) != myCPF.charAt(i + 1)) {
+            digitos_iguais = 0;
+            break;
+        }
+    if (!digitos_iguais) {
+        numeros = myCPF.substring(0, 9);
+        digitos = myCPF.substring(9);
+        soma = 0;
+        for (i = 10; i > 1; i--)
+            soma += numeros.charAt(10 - i) * i;
+        resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+        if (resultado != digitos.charAt(0))
+        {
+            return false;
+        }
+        numeros = myCPF.substring(0, 10);
+        soma = 0;
+        for (i = 11; i > 1; i--)
+            soma += numeros.charAt(11 - i) * i;
+        resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+        if (resultado != digitos.charAt(1))
+        {
+            return false;
+        }
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+
+}
+
+function consultaCpf(){
+
+    if(validaCpf()){
+        $("#formLogin").removeClass("was-validated");
+        var cpf = $("#txtLogin").val();
+
+        var form = new FormData();
+        form.append('cpf', cpf);
+
+        $.ajax({
+            url: "public/componentes/login/model/consultaCpf.php",
+            type: "POST",
+            data:  form,
+            contentType: false,
+            processData:false,
+            success: function(retorno){
+
+                if(retorno == 0){
+                    $("#boxInicial").show();
+                    $("#boxBotao").html('<button class="btn btn-success w-50 mt-3" type="submit" id="btnAcessar">Criar Senha <i class="bi bi-arrow-bar-right"></i></button>');
+                }
+                else{
+                    $("#boxSenha").show();
+                    $("#txtSenha").focus();
+                    $("#boxBotao").html('<button class="btn btn-success w-50 mt-3" type="submit" id="btnAcessar">Acessar <i class="bi bi-arrow-bar-right"></i></button>');
+                    $("#btnAcessar").click(function() {login()});
+                }
+
+            }
+
+        });
+    }
+    else{
+        alert("CPF Inválido");
+    }
+
+}
+
+function login(){
+	
+    var cpf = $("#txtLogin").val();
+    var senha = $("#txtSenha").val();
+
+    var form = new FormData();
+	form.append('cpf', cpf);
+    form.append('senha', senha);
+    
+    $.ajax({
+		url: "public/componentes/login/model/login.php",
+		type: "POST",
+		data:  form,
+		contentType: false,
+		processData:false,
+		success: function(retorno){
+            if(retorno==0){
+                alert('CPF ou Senha inválidos');
+            }
+            else if(retorno==1){
+                $("#boxLocais").removeClass("d-none");
+                $("#boxCamposLogin").addClass("d-none");
+                exibirVinculos();
+            }
+            else{
+                location.href=retorno;
+            }
+		}
+
+	});
+
+}
+
+function cadastraSenha(){
+	
+    var cpf = $("#txtLogin").val();
+    var senha = $("#txtCriaSenha").val();
+    var senha2 = $("#txtRepeteSenha").val();
+
+    if(senha != senha2){
+        $("#modalErroLabel").html("As senhas não coincidem");
+        $('#modalErro').modal('show');
+        setTimeout(function () {
+            $('#modalErro').modal('hide')
+        }, 3000);
+    }
+    else{
+
+        var form = new FormData();
+        form.append('cpf', cpf);
+        form.append('senha', senha);
+        
+        for (const value of form.values()) {
+            console.log(value);
+        }
+
+        $.ajax({
+            url: "public/componentes/login/model/cadastraUsuario.php",
+            type: "POST",
+            data:  form,
+            contentType: false,
+            processData:false,
+            success: function(retorno){
+                alert("Senha criada com sucesso");
+                $("#txtCriaSenha").val('');
+                $("#txtRepeteSenha").val('');
+                $("#boxInicial").hide();
+                $("#boxSenha").show();
+                $("#boxBotao").html('<button class="btn btn-success w-50 mt-3" type="submit" id="btnAcessar">Acessar <i class="bi bi-arrow-bar-right"></i></button>');
+                $("#btnAcessar").click(function() {login()});
+            }
+
+        });
+    }
+
+}
+
+function exibirVinculos(){
+    $.ajax({
+        url: "public/componentes/login/model/exibeVinculos.php",
+        success: function(retorno){
+
+            $("#boxLocais").html(retorno);
+
+        }
+
+    });
+
+
+}
+
+function direcionaUsuario(id){
+	
+    $.ajax({
+		url: "public/componentes/login/model/direcionaUsuario.php",
+		type: "POST",
+		data: {'id':id},
+		success: function(retorno){
+            location.href=retorno;
+		}
+
+	});
+
+}
