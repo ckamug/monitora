@@ -11,7 +11,7 @@ $innerJoin[] = 'left join osc b on a.aco_osc = b.id';
 
 //$where = "aco_dt_entrada BETWEEN '2024-04-01 00:00:00' AND '2024-06-31 23:59:59' and (b.id = 151)";
 
-$where = "aco_dt_entrada BETWEEN '2024-01-01 00:00:00' AND '2024-09-02 23:59:59'";
+$where = "aco_dt_entrada BETWEEN '2024-01-01 00:00:00' AND '2024-09-09 23:59:59'";
 $order = "b.osc_razao_social";
 
 $sistema->innerJoin($campos,$from,$innerJoin,$where,'',$order);
@@ -21,10 +21,10 @@ $StringJson = "[";
 if ( count($result) ) {
     
     $data_inicial = '2024-01-01';
-    $data_final = '2024-09-02';
+    $data_final = '2024-09-09';
     $diferenca = strtotime($data_final) - strtotime($data_inicial);
     $dias = floor($diferenca / (60 * 60 * 24));
-    $diaMesAno = ' 02/09/2024';
+    $diaMesAno = ' 09/09/2024';
 
     for($i=0;$i<=$dias;$i++){
         $diaMesAno = $diaMesAno . ";" . date('d/m/Y', strtotime('+'.$i.' days', strtotime($data_inicial)));
@@ -59,7 +59,6 @@ $escreve = fwrite($fp, "OSC;TIPO DE SERVICO;ACOLHIDO;NASCIMENTO;RG;CPF;ENTRADA;S
                 $status = "EVASAO";
             break;
         }
-
 
         $data_inicial_freq = substr($registro['aco_dt_entrada'],0,10);
 
