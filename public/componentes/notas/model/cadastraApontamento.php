@@ -2,8 +2,10 @@
 include "../../../../classes/sistema.php";
 session_start();
 
+    $apontamento = str_replace("* ","</strong>",str_replace(" *","<strong>",str_replace("'" , "" , $_POST["apontamento"])));
+
     $dados["nota_fiscal_id"] = $_POST["id"];
-    $dados["nota_apontamento_descricao"] = $_POST["apontamento"];
+    $dados["nota_apontamento_descricao"] = $apontamento;
     
     $dados["usuario_id"] = base64_decode($_SESSION["usr"]);
     $dados["data_cadastro"] = date("Y-m-d H:i:s");
