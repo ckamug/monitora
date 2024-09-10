@@ -2,7 +2,7 @@
 include "../../../../classes/sistema.php";
 session_start();
 
-    $apontamento = str_replace("* ","</strong>",str_replace(" *","<strong>",str_replace("'" , "" , $_POST["apontamento"])));
+    $apontamento = str_replace("* ","</strong> ",str_replace(" *"," <strong>",str_replace("'" , "" , $_POST["apontamento"])));
 
     $dados["nota_fiscal_id"] = $_POST["id"];
     $dados["nota_apontamento_descricao"] = $apontamento;
