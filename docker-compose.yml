@@ -28,6 +28,7 @@ services:
       - "3033:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+      - ./bd_monitora.sql:/docker-entrypoint-initdb.d/bd_monitora.sql
     networks:
       - monitora_network
 
