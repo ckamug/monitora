@@ -1,0 +1,4 @@
+data_hora;funcionalidade;arquivo;teste;status;duracao_ms;erro_locator;erro_locator_foco;screenshot;screenshot_focus;screenshot_elemento
+"2026-02-25T18:19:14.950Z";"cadastro-acolhido_02-primeiro-acolhimento";"C:\wamp64\www\coed\tests-e2e\tests\cadastro-acolhido\02-primeiro-acolhimento.spec.js";"[UI] alterna exibicao de ""Quantas vezes"" (Nao -> Sim)";"passed";"2623";"";"";"";"";""
+"2026-02-25T18:19:18.599Z";"cadastro-acolhido_02-primeiro-acolhimento";"C:\wamp64\www\coed\tests-e2e\tests\cadastro-acolhido\02-primeiro-acolhimento.spec.js";"caminho SIM (oculta quantas vezes)";"passed";"3516";"";"";"";"";""
+"2026-02-25T18:19:23.122Z";"cadastro-acolhido_02-primeiro-acolhimento";"C:\wamp64\www\coed\tests-e2e\tests\cadastro-acolhido\02-primeiro-acolhimento.spec.js";"caminho NAO (libera e persiste quantas vezes)";"passed";"4380";"";"";"";"";""

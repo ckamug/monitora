@@ -2,7 +2,7 @@
 include "../../../../classes/sistema.php";
 session_start();
 
-if($_POST["perfil"]==1 or $_POST["perfil"]==2 or $_POST["perfil"]==6){
+if($_POST["perfil"]==1 or $_POST["perfil"]==2 or $_POST["perfil"]==6 or $_POST["perfil"]==7 or $_POST["perfil"]==8){
     $subPerfil = 0;
 }
 else{

@@ -1,0 +1,59 @@
+Data da NF;Detalhes do Documento;Categoria;Subcategoria;Valor(R$);Data do Pagamento
+2026-01-05;2341;Custeio;Infraestrutura de imóvel;282,40;2026-01-06
+2026-01-05;2790;Terceiros;Assessoria Contábil;1.218,04;2026-01-06
+2026-01-05;12999;Custeio;Internet;300,00;2026-01-06
+2026-01-05;206820;Custeio;Gêneros alimentícios;968,83;2026-01-12
+2026-01-05;31;Terceiros;Outros;240,00;2026-01-06
+2026-01-06;62/63/64;Custeio;Aluguel de Imóvel;6.000,00;2026-01-07
+2026-01-06;202691029524;Custeio;IPTU;1.046,04;2026-01-07
+2026-01-06;47396;Custeio;Gêneros alimentícios;1.550,56;2026-01-12
+2026-01-06;2307373;Custeio;Gêneros alimentícios;851,03;2026-01-12
+2026-01-08;217754;Custeio;Infraestrutura de imóvel;881,49;2026-01-21
+2026-01-09;9531;Custeio;Locação de Impressoras;180,00;2026-01-12
+2026-01-12;124311;Custeio;Água e Esgoto;51,96;2026-01-12
+2026-01-12;770094;Custeio;Água e Esgoto;40,20;2026-01-12
+2026-01-12;43;Terceiros;Outros;2.000,00;2026-01-12
+2026-01-12;29290;Custeio;Infraestrutura de imóvel;220,00;2026-01-12
+2026-01-12;5396;Custeio;Aluguel de Imóvel;3.175,33;2026-01-26
+2026-01-13;217986;Custeio;Infraestrutura de imóvel;1.832,32;2026-01-16
+2026-01-14;4514;Terceiros;Outros;801,32;2026-01-15
+2026-01-14;4;Terceiros;Outros;541,94;2026-01-15
+2026-01-19;018717998;Custeio;Energia Elétrica;1.821,63;2026-01-21
+2026-01-19;31339;Terceiros;Outros;197,00;2026-01-21
+2026-01-19;114901;Custeio;Gás de Cozinha;460,00;2026-01-21
+2026-01-20;146627;Custeio;Gêneros alimentícios;574,00;2026-01-22
+2026-01-22;129;Custeio;Infraestrutura de imóvel;447,30;2026-01-22
+2026-01-22;143;Custeio;Infraestrutura de imóvel;1.250,00;2026-01-22
+2026-01-22;2272;Custeio;Higiene e Limpeza;1.431,06;2026-01-23
+2026-01-22;31465;Custeio;Copa e Cozinha;101,24;2026-01-26
+2026-01-22;47739;Custeio;Gêneros alimentícios;663,67;2026-01-26
+2026-01-22;019757110;Custeio;Energia Elétrica;92,33;2026-01-26
+2026-01-22;24324;Custeio;Materiais para Escritório;25,00;2026-01-22
+2026-01-23;19;Terceiros;Outros;12.200,00;2026-01-23
+2026-01-23;114989;Custeio;Gás de Cozinha;120,00;2026-01-28
+2026-01-23;336506;Recursos Humanos;Contribuição Assistencial;35,00;2026-02-02
+2026-01-23;336508;Recursos Humanos;Contribuição Assistencial;64,66;2026-02-02
+2026-01-24;207332;Custeio;Gêneros alimentícios;475,80;2026-01-28
+2026-01-24;36;Terceiros;Outros;120,00;2026-01-26
+2026-01-26;47805;Custeio;Gêneros alimentícios;2.267,28;2026-01-28
+2026-01-26;817732;Custeio;Materiais para Escritório;201,99;2026-02-04
+2026-01-27;265;Custeio;Combustível;2.788,98;2026-01-28
+2026-01-27;2317741;Custeio;Gêneros alimentícios;541,39;2026-01-28
+2026-01-28;3;Terceiros;Outros;3.320,00;2026-01-28
+2026-01-28;47870;Custeio;Gêneros alimentícios;256,94;2026-01-29
+2026-01-31;HOLERITE ANDREA;Recursos Humanos;Salários;2.313,35;2026-02-02
+2026-01-31;HOLERITE NATALIA;Recursos Humanos;Salários;3.623,55;2026-02-02
+2026-01-31;HOLERITE LUIZA;Recursos Humanos;Salários;3.097,05;2026-02-02
+2026-01-31;HOLERITE JOSUE;Recursos Humanos;Salários;2.001,72;2026-02-02
+2026-01-31;020026563;Custeio;Internet;108,13;2026-01-14
+2026-01-31;HOLERITE TATIANA;Recursos Humanos;Salários;2.001,72;2026-02-02
+2026-01-31;411030;Custeio;Internet;119,99;2026-01-06
+2026-01-31;INSS;Recursos Humanos;GPS-INSS;1.832,79;2026-02-02
+2026-01-31;388196;Custeio;Internet;149,90;2026-01-06
+2026-01-31;2182625;Recursos Humanos;Vale Transporte;140,00;2026-02-02
+2026-01-31;41482361;Recursos Humanos;Vale Alimentação;1.724,80;2026-02-02
+2026-01-31;FGTS;Recursos Humanos;GRF-FGTS;1.917,63;2026-02-02
+2026-01-31;148234;Custeio;Gêneros alimentícios;1.004,50;2026-02-04
+2026-01-31;PROVISÃO;Recursos Humanos;Provisão RH;8.781,68;2026-02-04
+2026-01-31;HOLERITE DANIEL;Recursos Humanos;Salários;1.891,75;2026-02-02
+2026-01-31;HOLERITE ALESSANDRO;Recursos Humanos;Salários;1.451,30;2026-02-02

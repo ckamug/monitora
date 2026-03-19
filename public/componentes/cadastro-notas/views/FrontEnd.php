@@ -154,7 +154,7 @@
                     </div>
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" id="chkServico6" name="chkServico[]" value="6">
-                      <label class="form-check-label" for="chkServico6">Serviço de apoio e suporte aos familiares e ex-acolhidos(as) da rede do Programa Recomeço</label>
+                      <label class="form-check-label" for="chkServico6">Serviços de Apoio e Suporte às famílias e Indivíduos Impactados pelo Uso de Drogas – Espaços Prevenir</label>
                     </div>
                     
                   </div>

@@ -13,6 +13,8 @@ $innerJoin[] = 'left join rec_prestacoes d on a.prestacao_id = d.prestacao_id';
 $sistema->innerJoin($campos,$from,$innerJoin,'a.nota_fiscal_id = ' . $_POST["id"],'','');
 $result = $sistema->getResult();
 
+echo '<h5 class="card-title ms-2" id="tituloApontamentos">Apontamentos e Justificativas</h5>';
+
 for($i=0;$i<count($result);$i++){
 
     if($result[$i]["nota_apontamento_id"]>0){
@@ -37,10 +39,6 @@ for($i=0;$i<count($result);$i++){
         
         $sistema->innerJoin($campos,$from,$innerJoinJus,'nota_apontamento_id='.$result[$i]["nota_apontamento_id"],'a.nota_apontamento_id','');
         $res_justificativa = $sistema->getResult();
-
-
-
-
 
         if(count($res_justificativa)>0){
 

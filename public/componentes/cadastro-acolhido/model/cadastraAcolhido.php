@@ -1,8 +1,16 @@
 <?php
 include "../../../../classes/sistema.php";
+include_once __DIR__ . "/contatoReferencia.php";
+include_once __DIR__ . "/nis.php";
 session_start();
 
 $sistema = new Sistema();
+$nis = normalizarNis(isset($_POST["txtNis"]) ? $_POST["txtNis"] : "");
+$contatoReferenciaTempId = resolverIdAcolhidoOuTemporario(isset($_POST["hidContatoReferenciaTempId"]) ? $_POST["hidContatoReferenciaTempId"] : "");
+
+if (!nisEhValido($nis)) {
+    abortarNisInvalidoTexto();
+}
 
 $dados["acolhido_nome_completo"] = $_POST["txtNomeCompleto"];
 $dados["acolhido_data_nascimento"] = $sistema->convertData($_POST["txtDataNascimento"]);
@@ -15,6 +23,7 @@ $dados["acolhido_filiacao2"] = $_POST["txtFiliacao2"];
 $dados["acolhido_filiacao3"] = $_POST["txtFiliacao3"];
 $dados["acolhido_estado_civil"] = $_POST["slcEstadoCivil"];
 $dados["acolhido_cpf"] = $_POST["txtCpf"];
+$dados["acolhido_nis"] = $nis;
 $dados["acolhido_rg"] = $_POST["txtRg"];
 
 $dados["acolhido_primeiro_acolhimento"] = $_POST["radAcolhimento"];
@@ -68,9 +77,19 @@ foreach($_POST["chkSubstanciaPreferencia"] as $preferencia)
 }
 
 $dados["acolhido_comorbidade"] = $comorbidades;
+if (isset($_POST["chkComorbidade"]) && in_array("Outra", $_POST["chkComorbidade"])) {
+    $dados["acolhido_outra_comorbidade"] = $_POST["txtOutraComorbidade"];
+} else {
+    $dados["acolhido_outra_comorbidade"] = "";
+}
 $dados["acolhido_deficiencia_fisica"] = $deficiencias . ' ';
 $dados["acolhido_deficiencia_cuidados"] = $cuidados . ' ';
 $dados["acolhido_substancia_preferencia"] = $susbtanciaPreferencia;
+if (isset($_POST["chkSubstanciaPreferencia"]) && in_array("Outra", $_POST["chkSubstanciaPreferencia"])) {
+    $dados["acolhido_outra_substancia_preferencia"] = $_POST["txtOutraSubstanciaPreferencia"];
+} else {
+    $dados["acolhido_outra_substancia_preferencia"] = "";
+}
 $dados["acolhido_tempo_utiliza_substancias"] = $_POST['slcTempoUtilizaSubstancia'];
 $dados["acolhido_historico"] = $_POST["txtHistorico"];
 
@@ -87,6 +106,10 @@ if($_POST["radUnidadeHospitalar"]=="SIM"){
     }
 
 }
+else{
+    $dados["acolhido_qual_unidade_hospitalar"] = "";
+    $dados["acolhido_outra_unidade_hospitalar"] = "";
+}
 
 $dados["usuario_id"] = base64_decode($_SESSION["usr"]);
 $dados["porta_entrada_id"] = intval($_SESSION["pfv"]);
@@ -97,7 +120,9 @@ $sistema = new Sistema();
 $sistema->insert('rec_acolhidos',$dados);
 
 $dadosUpdate['acolhido_id'] = $_SESSION["sessionForIdInserted"];
-$sistema->update("rec_acolhidos_referencias",$dadosUpdate,"acolhido_id = '" . $_SESSION['hs'] . "'");
+if ($contatoReferenciaTempId !== "") {
+    $sistema->update("rec_acolhidos_referencias",$dadosUpdate,"acolhido_id = '" . $contatoReferenciaTempId . "'");
+}
 
 
 echo base64_encode($_SESSION["sessionForIdInserted"]);

@@ -8,19 +8,19 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Municípios</h1>
+      <h1>Porta de Entrada</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="/coed/area-restrita">Início</a></li>
-          <li class="breadcrumb-item"><a href="/coed/municipio">Municípios</a></li>
-          <li class="breadcrumb-item active">Cadastro de Município</li>
+          <li class="breadcrumb-item"><a href="/coed/municipio">Porta de Entrada</a></li>
+          <li class="breadcrumb-item active">Cadastro de Porta de Entrada</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
     <div class="card col-md-10">
             <div class="card-body">
-              <h5 class="card-title">Formulário de Cadastro de Município</h5>
+              <h5 class="card-title">Formulário de Cadastro de Porta de Entrada</h5>
               <input type="hidden" name="hidIdMunicipio" id="hidIdMunicipio" value="<?php echo $url[3] ?>" >
               <!-- Floating Labels Form -->
               <form class="row g-3 needs-validation" id="formMunicipio" name="formMunicipio" method="POST" autocomplete="off">

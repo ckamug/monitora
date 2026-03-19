@@ -1,0 +1,2 @@
+data_hora;funcionalidade;arquivo;teste;status;duracao_ms;erro_locator;erro_locator_foco;screenshot;screenshot_focus;screenshot_elemento
+"2026-02-25T18:19:26.998Z";"cadastro-acolhido_03-dados-contato";"C:\wamp64\www\coed\tests-e2e\tests\cadastro-acolhido\03-dados-contato.spec.js";"persiste telefone pessoal e residencial";"passed";"3722";"";"";"";"";""

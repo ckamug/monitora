@@ -113,6 +113,7 @@
                 </div>
                 <div class="col-md-2 pt-3" id="boxAnaliseCoed"></div>
                 <div class="col-md-2">
+                  <input type="hidden" id="txtValorNotaEdicao" name="txtValorNotaEdicao" value="0"> <!-- CAMPO UTILIZADO PARA VALIDAÇÃO DA RUBRICA QUANDO NOTA EDITADA ( FUNÇÃO VALIDARUBRICA() ) -->
                   <div class="form-floating">
                     <input type="text" class="form-control" id="txtValorNotaFiscal" name="txtValorNotaFiscal" placeholder="Valor da Nota Fiscal">
                     <div class="invalid-feedback">Informe o Valor da Nota Fiscal</div>
@@ -158,23 +159,37 @@
                 </div>
 
               </div>
-              
-              <h5 class="card-title ms-2" id="tituloNf">Apontamentos</h5>
-              
-              <div id="boxTeste" class="mt-2 mb-5 ms-2 col-md-8"></div>
 
-                <div class="col-md-8 ms-2 mt-2 d-none" id="boxTextoMotivoGlosa1">
-
-                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <h4 class="alert-heading">Motivo da glosa</h4>
-                    <p id="textoMotivoGlosa"></p>
-                    <hr>
-                    <p class="mb-0" id="dataMotivoGlosa">data</p> 
+              <div class="col-md-8 mt-2 d-none" id="boxRessalva">
+                <h5 class="card-title ms-2" id="tituloRessalva">Ressalva</h5>    
+                <div class="col-md-8" id="boxCampoRessalva">
+                  <div class="form-floating mt-3">
+                    <textarea class="form-control" placeholder="Escreva a ressalva" id="txtRessalva" name="txtRessalva" style="height: 100px"></textarea>
+                    <label for="txtRessalva">Informe a ressalva</label>
                   </div>
-
+                </div>
+                <div class="col-md-8 ms-2 mt-2 d-none" id="boxTextoRessalva">
+                  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <p id="textoRessalva"></p>
+                    <hr>
+                  </div>
                 </div>
 
-                <div class="col-md-8 mt-2 d-none mt-2 ms-2" id="boxItensGlosa"></div>
+              </div>
+              <div id="boxTeste" class="mt-2 mb-5 ms-2 col-md-8"></div>
+
+              <div class="col-md-8 ms-2 mt-2 d-none" id="boxTextoMotivoGlosa1">
+
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  <h4 class="alert-heading">Motivo da glosa</h4>
+                  <p id="textoMotivoGlosa"></p>
+                  <hr>
+                  <p class="mb-0" id="dataMotivoGlosa">data</p> 
+                </div>
+
+              </div>
+
+              <div class="col-md-8 mt-2 d-none mt-2 ms-2" id="boxItensGlosa"></div>
           </div>  
 
 
@@ -241,7 +256,7 @@
     <div class="modal fade" id="confirmacaoModal" tabindex="-1">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-          <div class="modal-header bg-warning bg-gradient" id="tituloModal"></div>
+          <div class="modal-header bg-gradient" id="tituloModal"></div>
           <div class="modal-body" id="corpoModal"></div>
           <div class="modal-footer" id="boxBotoesModal"></div>
         </div>

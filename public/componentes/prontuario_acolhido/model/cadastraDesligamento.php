@@ -1,4 +1,5 @@
 <?php
+include_once "../../../../configuracoes.php";
 include "../../../../classes/sistema.php";
 session_start();
 
@@ -33,6 +34,18 @@ switch($_POST["slcTiposDesligamentos"]){
 
 $dados["desligamento_motivo"] = $motivos;
 $dados["desligamento_sintese"] = $_POST["txtSintese"];
+if (isset($_POST["tipo_encaminhamento_realizado_id"])) {
+    if (is_array($_POST["tipo_encaminhamento_realizado_id"])) {
+        $encaminhamentosRealizados = array_filter(array_map('trim', $_POST["tipo_encaminhamento_realizado_id"]), function ($id) {
+            return $id !== '';
+        });
+        $dados["tipo_encaminhamento_realizado_id"] = !empty($encaminhamentosRealizados) ? implode(", ", $encaminhamentosRealizados) : null;
+    } else {
+        $dados["tipo_encaminhamento_realizado_id"] = $_POST["tipo_encaminhamento_realizado_id"];
+    }
+} else {
+    $dados["tipo_encaminhamento_realizado_id"] = null;
+}
 
 foreach($_POST["chkImpactos"] as $impacto)
 {
@@ -42,7 +55,7 @@ foreach($_POST["chkImpactos"] as $impacto)
 $dados["desligamento_impactos"] = $impactos;
 
 $dados["usuario_id"] = base64_decode($_SESSION["usr"]);
-$dados["data_desligamento"] = date("Y-m-d h:i:s");
+$dados["data_desligamento"] = date("Y-m-d H:i:s");
 
 $sistema = new Sistema();
 //$sistema->debug=true;

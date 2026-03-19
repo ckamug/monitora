@@ -4,46 +4,98 @@ session_start();
 
 $sistema = new Sistema();
 
-$dados["negligencia"] = $_POST["radNegligencia"];
-$dados["violencia_fisica"] = $_POST["radViolenciaFisica"];
-$dados["violencia_sexual"] = $_POST["radViolenciaSexual"];
-$dados["violencia_sexual_idade"] = $_POST["txtQualIdade"];
-$dados["observacoes_violencia_sexual"] = $_POST["txtObservacoesViolenciaSexual"];
+function postValue($key){
+    return isset($_POST[$key]) ? $_POST[$key] : "";
+}
 
-foreach($_POST["chkAgressor"] as $agressor)
+function normalizaInteiro($valor)
 {
-    $agressores .= $agressor . ", ";
+    $valor = trim((string)$valor);
+    if ($valor === "") {
+        return "";
+    }
+
+    $somenteDigitos = preg_replace('/\D/', '', $valor);
+    if ($somenteDigitos === "") {
+        return "";
+    }
+
+    return intval($somenteDigitos);
+}
+
+$dados["negligencia"] = postValue("radNegligencia");
+// BLOCO ANTIGO (mantido como referencia):
+// $idadeNegligencia = trim(postValue("txtIdadeNegligencia"));
+// $dados["negligencia_idade"] = (strpos($dados["negligencia"], "Sim,") === 0) ? $idadeNegligencia : "";
+$idadeNegligencia = normalizaInteiro(postValue("txtIdadeNegligencia"));
+$dados["negligencia_idade"] = (strpos($dados["negligencia"], "Sim,") === 0 && $idadeNegligencia !== "") ? $idadeNegligencia : 0;
+$dados["violencia_fisica"] = postValue("radViolenciaFisica");
+// BLOCO ANTIGO (mantido como referencia):
+// $idadeViolenciaFisica = trim(postValue("txtIdadeViolenciaFisica"));
+// $dados["violencia_fisica_idade"] = (strpos($dados["violencia_fisica"], "Sim,") === 0) ? $idadeViolenciaFisica : "";
+$idadeViolenciaFisica = normalizaInteiro(postValue("txtIdadeViolenciaFisica"));
+$dados["violencia_fisica_idade"] = (strpos($dados["violencia_fisica"], "Sim,") === 0 && $idadeViolenciaFisica !== "") ? $idadeViolenciaFisica : 0;
+$dados["violencia_sexual"] = postValue("radViolenciaSexual");
+// BLOCO ANTIGO (mantido como referencia):
+// $dados["violencia_sexual_idade"] = postValue("txtQualIdade");
+$idadeViolenciaSexual = normalizaInteiro(postValue("txtQualIdade"));
+$dados["violencia_sexual_idade"] = ($dados["violencia_sexual"] == "Sim" && $idadeViolenciaSexual !== "") ? (string)$idadeViolenciaSexual : "";
+$dados["observacoes_violencia_sexual"] = postValue("txtObservacoesViolenciaSexual");
+
+$agressores = "";
+if(isset($_POST["chkAgressor"]) && is_array($_POST["chkAgressor"]))
+{
+    foreach($_POST["chkAgressor"] as $agressor)
+    {
+        $agressores .= $agressor . ", ";
+    }
 }
 $dados["agressor"] = $agressores;
 
-$dados["violencia_parceiros"] = $_POST["radViolenciaParceiros"];
+$dados["violencia_parceiros"] = postValue("radViolenciaParceiros");
+// BLOCO ANTIGO (mantido como referencia):
+// $idadeViolenciaParceiros = trim(postValue("txtIdadeViolenciaParceiros"));
+// $dados["violencia_parceiros_idade"] = ($dados["violencia_parceiros"] == "Sim") ? $idadeViolenciaParceiros : "";
+$idadeViolenciaParceiros = normalizaInteiro(postValue("txtIdadeViolenciaParceiros"));
+$dados["violencia_parceiros_idade"] = ($dados["violencia_parceiros"] == "Sim" && $idadeViolenciaParceiros !== "") ? $idadeViolenciaParceiros : 0;
 
-foreach($_POST["chkTipoViolenciaParceiro"] as $tipoViolencia)
+$tiposViolencia = "";
+if(isset($_POST["chkTipoViolenciaParceiro"]) && is_array($_POST["chkTipoViolenciaParceiro"]))
 {
-    $tiposViolencia .= $tipoViolencia . ", ";
+    foreach($_POST["chkTipoViolenciaParceiro"] as $tipoViolencia)
+    {
+        $tiposViolencia .= $tipoViolencia . ", ";
+    }
 }
 $dados["tipos_violencia_parceiros"] = $tiposViolencia;
 
-$dados["suporte_violencia_parceiros"] = $_POST["radSuporte"];
-$dados["tipo_suporte"] = $_POST["txtQualSuporte"];
-$dados["autor_violencia"] = $_POST["radAutorViolencia"];
+$dados["suporte_violencia_parceiros"] = postValue("radSuporte");
+$dados["tipo_suporte"] = postValue("txtQualSuporte");
+$dados["autor_violencia"] = postValue("radAutorViolencia");
 
-foreach($_POST["chkTipoViolencia"] as $tipoAutorViolencia)
+$tiposAutorViolencia = "";
+if(isset($_POST["chkTipoViolencia"]) && is_array($_POST["chkTipoViolencia"]))
 {
-    $tiposAutorViolencia .= $tipoAutorViolencia . ", ";
+    foreach($_POST["chkTipoViolencia"] as $tipoAutorViolencia)
+    {
+        $tiposAutorViolencia .= $tipoAutorViolencia . ", ";
+    }
 }
 $dados["tipo_autor_violencia"] = $tiposAutorViolencia;
 
-$dados["responsabilizado"] = $_POST["radResponsabilizado"];
-$dados["pena_aplicada"] = $_POST["radPenaAplicada"];
-$dados["tempo_pena_aplicada"] = $_POST["txtTempoPenaAplicada"];
-$dados["egresso_sistema_prisional"] = $_POST["radEgresso"];
-$dados["pena_egresso"] = $_POST["radEgressoPena"];
-$dados["tempo_pena_egresso"] = $_POST["txtTempoPenaEgresso"];
-$dados["cumpriu_pena"] = $_POST["radCumpriuPena"];
-$dados["foragido"] = $_POST["radForagido"];
-$dados["liberdade_provisoria"] = $_POST["radLiberdade"];
+$dados["responsabilizado"] = postValue("radResponsabilizado");
+$dados["pena_aplicada"] = postValue("radPenaAplicada");
+$dados["tempo_pena_aplicada"] = postValue("txtTempoPenaAplicada");
+$dados["egresso_sistema_prisional"] = postValue("radEgresso");
+$dados["pena_egresso"] = postValue("radEgressoPena");
+$dados["tempo_pena_egresso"] = postValue("txtTempoPenaEgresso");
+$dados["cumpriu_pena"] = postValue("radCumpriuPena");
+$dados["foragido"] = postValue("radForagido");
+$dados["liberdade_provisoria"] = postValue("radLiberdade");
+$dados["pendencia_judicial"] = postValue("radPendenciaJudicial");
+$dados["motivo_pendencia_judicial"] = ($dados["pendencia_judicial"] == "Sim") ? postValue("txtMotivoPendencia") : "";
 
 $sistema = new Sistema();
 //$sistema->debug=true;
-$sistema->update('rec_acolhidos_dados_sensiveis',$dados,"dados_sensiveis_id = " . $_POST["id"]);
+$id = (int) postValue("id");
+$sistema->update('rec_acolhidos_dados_sensiveis',$dados,"dados_sensiveis_id = " . $id);

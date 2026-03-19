@@ -91,6 +91,8 @@ function carregaExecutora(id){
 				$("#txtEmail").val(resultado.executora_email);
 				$("#txtTelefone").val(resultado.executora_telefone);
 				$("#txtVagas").val(resultado.executora_vagas);
+				$("#slcRede").val(resultado.tipo_responsavel);
+				$("#txtNContrato").val(resultado.executora_n_contrato);
 				$("#txtRh").val("R$ " + resultado.executora_valor_previsto_rh);
 				$("#txtCusteio").val("R$ " + resultado.executora_valor_previsto_custeio);
 				$("#txtServicosTerceiros").val("R$ " + resultado.executora_valor_previsto_terceiros);

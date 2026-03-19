@@ -1,5 +1,6 @@
 $(document).ready(function(){
 
+	carregaTiposRegistros(0);
 	carregaPerfis(0);
 	carregaUsuario($("#hidIdUsuario").val());
 
@@ -116,6 +117,8 @@ function carregaUsuario(id){
 				$("#txtNome").val(resultado.usuario_nome);
 				$("#txtCpf").val(resultado.usuario_cpf);
 				$("#txtEmail").val(resultado.usuario_email);
+				carregaTiposRegistros(resultado.tipo_registro_id);
+				$("#txtNumeroRegistro").val(resultado.numero_registro);
 				$("#boxBotoes").html('<button type="button" class="btn btn-success" id="btnEditar">Alterar Informações</button>');
 				$("#btnEditar").click(function() {editaUsuario(resultado.usuario_id)});
 				$('#boxVinculoUsuario').removeClass('d-none');
@@ -128,6 +131,17 @@ function carregaUsuario(id){
 		},
 		complete: function(){}
 	 });
+}
+
+function carregaTiposRegistros(id){
+	$.ajax({
+	  type: "POST",
+	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-usuario/model/carregaTipoRegistro.php",
+	  data: {'id':id},
+	  success: function (retorno) {
+		$("#boxTiposRegistros").html(retorno);
+	  }
+	});
 }
 
 function cadastraUsuario(){
@@ -177,7 +191,7 @@ function perfilVinculo(id,vinculo_id){
 		  $('#boxVinculo').removeClass('d-none');
 		  $('#btnVincular').removeClass('d-none');
 		  
-		  if(id==1 || id==5){
+		  if(id==1 || id==5 || id==7 || id==8){
 			$('#boxVinculo').addClass('d-none');
 		  }
 		  else if(id==0){
@@ -220,6 +234,7 @@ function cadastraVinculo(){
 				alert('Vinculo já efetuado para este usuário');
 			}
 			else{
+				alert('Usuário vinculado');
 				listaVinculos();
 			}
 		}
@@ -243,6 +258,33 @@ function listaVinculos(){
 			sortable: false,
 			perPageSelect: false
 		  })
+		}
+	});
+
+}
+
+function criaPergunta(id){
+	
+	var modalConfirmacao = new bootstrap.Modal(document.getElementById('confirmacaoModal'), {
+		keyboard: false
+	})
+
+	modalConfirmacao.show();
+	$("#tituloModal").html('<h5 class="modal-title" id="tituloModal">Desvincular usuário</h5>');
+	$("#corpoModal").html('<p>Deseja desvincular o usuário da OSC?</p>');
+	$("#boxBotoesModal").html('<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não Desvincular</button><button type="button" data-bs-dismiss="modal" class="btn btn-success" onclick="desvincularUsuario('+id+');">Desvincular</button>');	
+
+}
+
+function desvincularUsuario(id){
+	
+	$.ajax({
+		type: "POST",
+		url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-usuario/model/desvincularUsuario.php",
+		data:{id:id},
+		success: function(){
+			alert('Usuário desvinculado');
+			listaVinculos();
 		}
 	});
 

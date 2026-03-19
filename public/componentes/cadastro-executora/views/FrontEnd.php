@@ -95,7 +95,7 @@
                 <div class="col-md-3 p-2">
                   <div class="form-floating" id="boxRegiaoAdministrativa"></div>
                 </div>
-                <div class="col-md-4 p-2">
+                <div class="col-md-5 p-2">
                   <div class="form-floating" id="boxRegiaoMetropolitana"></div>
                 </div>
                 <div class="col-md-3 p-2">
@@ -113,6 +113,15 @@
                     <input type="text" class="form-control" id="txtTelefone" name="txtTelefone" placeholder="Telefone" required>
                     <div class="invalid-feedback">Informe o Telefone</div>
                     <label for="txtTelefone">Telefone</label>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-floating">
+                    <select class="form-select" id="slcRede" name="slcRede" aria-label="Rede Responsável">
+                      <option selected value="1">Rede Direta</option>
+                      <option value="2">Rede Indireta</option>
+                    </select>
+                    <label for="slcRede">Rede Responsável</label>
                   </div>
                 </div>
 
@@ -164,7 +173,7 @@
                     </div>
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" id="chkServico6" name="chkServico[]" value="6">
-                      <label class="form-check-label" for="chkServico6">Serviço de apoio e suporte aos familiares e ex-acolhidos(as) da rede do Programa Recomeço</label>
+                      <label class="form-check-label" for="chkServico6">Serviços de Apoio e Suporte às famílias e Indivíduos Impactados pelo Uso de Drogas – Espaços Prevenir</label>
                     </div>
                     
                   </div>
@@ -173,7 +182,7 @@
                 
                 <!-- CADASTRO DE VAGAS -->
 
-                <h5 class="card-title">Cadastro de Vagas Programa Recomeço</h5>
+                <h5 class="card-title">Cadastro de Vagas</h5>
                 <div class="col-md-2">
                   <div class="form-floating">
                     <input type="text" class="form-control" id="txtVagas" name="txtVagas" placeholder="Nº de vagas" required>
@@ -214,9 +223,19 @@
                   <div class="card-body" id="boxListaResponsaveis"></div>
                 </div>
 
+                <!-- CADASTRO DE Nº DE CONTRATO -->
+
+                <h5 class="card-title">Contrato</h5>
+                <div class="col-md-4">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="txtNContrato" name="txtNContrato" placeholder="Nº do Contrato">
+                    <div class="invalid-feedback">Informe o Número do Contrato</div>
+                    <label for="txtTelefone">Número do Contrato</label>
+                  </div>
+                </div>
 
                 <!-- CADASTRO DE CASAS -->
-
+                <?php if(base64_decode($_SESSION["usr"])==1){ ?>
                 <h5 class="card-title">Cadastro de "Casas" da Executora</h5>
                     
                 <div class="text-left col-md-3 mt-4">
@@ -228,10 +247,10 @@
                 <div class="card col-md-10 mt-2">
                   <div class="card-body mt-3" id="boxListaCasas"></div>
                 </div>
-
+                <?php } ?>
                 <!-- CADASTRO DE REPASSES DE RUBRICAS -->
 
-                <?php if(base64_decode($_SESSION["usr"])==1 OR base64_decode($_SESSION["usr"])==18 OR base64_decode($_SESSION["usr"])==22){ ?>
+                <?php if(base64_decode($_SESSION["usr"])==1 OR base64_decode($_SESSION["usr"])==18 OR base64_decode($_SESSION["usr"])==22 OR base64_decode($_SESSION["usr"])==189 OR base64_decode($_SESSION["usr"])==139 OR base64_decode($_SESSION["usr"])==217){ ?>
 
                 <h5 class="card-title">Cadastro de Repasse de Rubrica - Financeiro</h5>
                     

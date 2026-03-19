@@ -1,8 +1,14 @@
 <?php
 include "../../../../classes/sistema.php";
+include_once __DIR__ . "/nis.php";
 session_start();
 
 $sistema = new Sistema();
+$nis = normalizarNis(isset($_POST["txtNis"]) ? $_POST["txtNis"] : "");
+
+if (!nisEhValido($nis)) {
+    abortarNisInvalidoTexto();
+}
 
 $dados["acolhido_nome_completo"] = $_POST["txtNomeCompleto"];
 $dados["acolhido_data_nascimento"] = $sistema->convertData($_POST["txtDataNascimento"]);
@@ -15,6 +21,7 @@ $dados["acolhido_filiacao2"] = $_POST["txtFiliacao2"];
 $dados["acolhido_filiacao3"] = $_POST["txtFiliacao3"];
 $dados["acolhido_estado_civil"] = $_POST["slcEstadoCivil"];
 $dados["acolhido_cpf"] = $_POST["txtCpf"];
+$dados["acolhido_nis"] = $nis;
 $dados["acolhido_rg"] = $_POST["txtRg"];
 
 $dados["acolhido_primeiro_acolhimento"] = $_POST["radAcolhimento"];
@@ -42,35 +49,58 @@ else{
     $dados["acolhido_tempo_situacao_rua"] = $_POST["slcTempoSituacaoRua"];
 }
 
-foreach($_POST["chkComorbidade"] as $comorbidade)
-{
-    $comorbidades .= $comorbidade . ", ";
+$comorbidades = "";
+$deficiencias = "";
+$cuidados = "";
+$susbtanciaPreferencia = "";
+
+if(isset($_POST["chkComorbidade"]) && is_array($_POST["chkComorbidade"])){
+    foreach($_POST["chkComorbidade"] as $comorbidade)
+    {
+        $comorbidades .= $comorbidade . ", ";
+    }
 }
 
 $dados["acolhido_deficiencia"] = $_POST["radDeficiencia"];
 if($_POST["radDeficiencia"]=="SIM"){
     
-    foreach($_POST["chkDeficiencia"] as $deficiencia)
-    {
-        $deficiencias .= $deficiencia . ", ";
+    if(isset($_POST["chkDeficiencia"]) && is_array($_POST["chkDeficiencia"])){
+        foreach($_POST["chkDeficiencia"] as $deficiencia)
+        {
+            $deficiencias .= $deficiencia . ", ";
+        }
     }
 
 }
 
-foreach($_POST["chkCuidadosTerceiros"] as $cuidado)
-{
-    $cuidados .= $cuidado . ", ";
+if(isset($_POST["chkCuidadosTerceiros"]) && is_array($_POST["chkCuidadosTerceiros"])){
+    foreach($_POST["chkCuidadosTerceiros"] as $cuidado)
+    {
+        $cuidados .= $cuidado . ", ";
+    }
 }
 
-foreach($_POST["chkSubstanciaPreferencia"] as $preferencia)
-{
-    $susbtanciaPreferencia .= $preferencia . ", ";
+if(isset($_POST["chkSubstanciaPreferencia"]) && is_array($_POST["chkSubstanciaPreferencia"])){
+    foreach($_POST["chkSubstanciaPreferencia"] as $preferencia)
+    {
+        $susbtanciaPreferencia .= $preferencia . ", ";
+    }
 }
 
 $dados["acolhido_comorbidade"] = $comorbidades;
+if (isset($_POST["chkComorbidade"]) && in_array("Outra", $_POST["chkComorbidade"])) {
+    $dados["acolhido_outra_comorbidade"] = $_POST["txtOutraComorbidade"];
+} else {
+    $dados["acolhido_outra_comorbidade"] = "";
+}
 $dados["acolhido_deficiencia_fisica"] = $deficiencias . ' ';
 $dados["acolhido_deficiencia_cuidados"] = $cuidados . ' ';
 $dados["acolhido_substancia_preferencia"] = $susbtanciaPreferencia;
+if (isset($_POST["chkSubstanciaPreferencia"]) && in_array("Outra", $_POST["chkSubstanciaPreferencia"])) {
+    $dados["acolhido_outra_substancia_preferencia"] = $_POST["txtOutraSubstanciaPreferencia"];
+} else {
+    $dados["acolhido_outra_substancia_preferencia"] = "";
+}
 $dados["acolhido_tempo_utiliza_substancias"] = $_POST['slcTempoUtilizaSubstancia'];
 $dados["acolhido_historico"] = $_POST["txtHistorico"];
 
@@ -86,6 +116,10 @@ if($_POST["radUnidadeHospitalar"]=="SIM"){
         $dados["acolhido_outra_unidade_hospitalar"] = "";
     }
 
+}
+else{
+    $dados["acolhido_qual_unidade_hospitalar"] = "";
+    $dados["acolhido_outra_unidade_hospitalar"] = "";
 }
 
 $sistema = new Sistema();

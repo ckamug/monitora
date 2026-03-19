@@ -35,9 +35,23 @@ switch($result[0]["perfil"]){
         $_SESSION['pfv'] = $result[0]["executora_id"];
         $_SESSION['vnm'] = $result[0]["executora_nome_fantasia"];
     break;
+    case 7:
+        $_SESSION['pfv'] = 0;
+        $_SESSION['vnm'] = utf8_encode($result[0]["perfil_descricao"]);
+    break;
+    case 8:
+        $_SESSION['pfv'] = 0;
+        $_SESSION['vnm'] = utf8_encode($result[0]["perfil_descricao"]);
+    break;
     default:
+        $_SESSION['pfv'] = 0;
         $_SESSION['vnm'] = "-";
     break;
 }
 
-echo 'area-restrita';
+if(intval($result[0]["perfil"])==8){
+    echo 'prestacoes';
+}
+else{
+    echo 'area-restrita';
+}

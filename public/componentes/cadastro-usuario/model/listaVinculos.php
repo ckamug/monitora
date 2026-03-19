@@ -13,7 +13,7 @@ $innerJoin[] = 'left join rec_municipios e on a.municipio_id = e.municipio_id';
 $where = "a.usuario_id = " . base64_decode($_POST["id"]);
 
 //$sistema->debug=true;
-$sistema->innerJoin($campos,$from,$innerJoin,$where,'','');
+$sistema->innerJoin($campos,$from,$innerJoin,$where,'','usuario_vinculo_id DESC');
 $result = $sistema->getResult();
 
 if(count($result)>0){
@@ -24,6 +24,7 @@ if(count($result)>0){
     echo "        <th scope='col'>Perfil</th>";
     echo "        <th scope='col'>Vinculo</th>";
     echo "        <th scope='col'>Data</th>";
+    echo "        <th scope='col'></th>";
     echo "        </tr>";
     echo "    </thead>";
 
@@ -40,10 +41,14 @@ if(count($result)>0){
         elseif($result[$i]["perfil_id"]==3){
             echo "    <td>".utf8_encode($result[$i]["municipio_orgao_publico"])."</td>";
         }
+        elseif($result[$i]["perfil_id"]==7){
+            echo "    <td>".utf8_encode($result[$i]["perfil_descricao"])."</td>";
+        }
         else{
             echo "    <td> - </td>";
         }
         echo "    <td>".$sistema->convertData($result[$i]["data_cadastro"])."</td>";
+        echo "    <td><button class='btn btn-danger' onclick='criaPergunta(".$result[$i]["usuario_vinculo_id"].")'><i class='bi bi-link'></i></button></td>";
         
         echo "</tr>";
 

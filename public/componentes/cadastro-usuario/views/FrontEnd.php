@@ -46,6 +46,16 @@
             <label for="txtEmail">E-mail</label>
           </div>
         </div>
+        <div class="col-md-2">
+            <div class="form-floating" id="boxTiposRegistros"></div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-floating">
+            <input type="text" class="form-control" id="txtNumeroRegistro" name="txtNumeroRegistro" placeholder="Número do Registro">
+            <label for="txtNumeroRegistro">Nº do Registro</label>
+          </div>
+        </div>
+        <span> Somente para cadastro de psicólogo, médico, etc.</span>
         <div class="text-center mt-5 col-md-11" id="boxBotoes">
           <button type="submit" class="btn btn-primary">Cadastrar Usuário</button>
         </div>
@@ -76,6 +86,16 @@
       <div class="col-md-11 ms-2" id="boxListaVinculos"></div>
     </div>
 
+  </div>
+
+  <div class="modal fade" id="confirmacaoModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-warning bg-gradient" id="tituloModal"></div>
+        <div class="modal-body" id="corpoModal"></div>
+        <div class="modal-footer" id="boxBotoesModal"></div>
+      </div>
+    </div>
   </div>
 
 </main><!-- End #main -->

@@ -3,6 +3,7 @@ include "../../../../classes/sistema.php";
 session_start();
 
 $sistema = new Sistema();
+//$sistema->debug=true;
 $campos = 'a.* , b.usuario_vinculo_id , b.perfil_id as perfil , b.executora_id , b.celebrante_id , c.executora_nome_fantasia , d.celebrante_nome_fantasia , e.perfil_descricao , f.municipio_orgao_publico';
 $from = 'rec_usuarios a';
 $innerJoin[] = 'inner join rec_usuarios_vinculos b on a.usuario_id = b.usuario_id';
@@ -23,7 +24,7 @@ for($i=0;$i<count($result);$i++){
 
     switch($result[$i]["perfil"]){
         case 1:
-            $nomeLocal = "COED";
+            $nomeLocal = utf8_encode($result[$i]["perfil_descricao"]);
         break;
         case 2:
             $nomeLocal = utf8_encode($result[$i]["celebrante_nome_fantasia"]);
@@ -33,6 +34,12 @@ for($i=0;$i<count($result);$i++){
         break;
         case 4:
             $nomeLocal = utf8_encode($result[$i]["executora_nome_fantasia"]);
+        break;
+        case 7:
+            $nomeLocal = utf8_encode($result[$i]["perfil_descricao"]);
+        break;
+        case 8:
+            $nomeLocal = utf8_encode($result[$i]["perfil_descricao"]);
         break;
         default:
             $nomeLocal = "-";

@@ -53,22 +53,30 @@ function verificaLogin(){
 	  type: "POST",
 	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/prestacoes/model/verificaLogin.php",
 	  success: function (retorno) {
+		var perfil = parseInt($.trim(retorno),10);
 
-		switch(retorno){
-			case '1':
+		switch(perfil){
+			case 1:
 				$("#btnNovaPrestacao").addClass('d-none');
 				$("#boxSlcExecutoras").removeClass('d-none');
 				$("#boxCheckCelebrante").removeClass('d-none');
 				$("#boxOscsExecutoras").removeClass('d-none');
 				carregaExecutoras('todas');
 			break;
-			case '2':
+			case 2:
 				$("#boxSlcExecutoras").removeClass('d-none');
 				$("#btnNovaPrestacao").removeClass('d-none');
 				$("#boxOscsExecutoras").removeClass('d-none');
 				carregaExecutoras('todas');
 			break;
-			case '6':
+			case 6:
+				$("#btnNovaPrestacao").addClass('d-none');
+				$("#boxSlcExecutoras").removeClass('d-none');
+				$("#boxCheckCelebrante").removeClass('d-none');
+				$("#boxOscsExecutoras").removeClass('d-none');
+				carregaExecutoras('todas');
+			break;
+			case 8:
 				$("#btnNovaPrestacao").addClass('d-none');
 				$("#boxSlcExecutoras").removeClass('d-none');
 				$("#boxCheckCelebrante").removeClass('d-none');
@@ -156,7 +164,7 @@ function listaPrestacoes(id,tipo){
 		  $("#boxPrestacoes").slideDown('fast');
 
 		  if(id == 0 || tipo == 'celebrante'){
-			$("#txtTituloPrestacao").html(" - Celebrante");
+			//$("#txtTituloPrestacao").html(" - Celebrante");
 		  }
 		  else{
 		  	setTimeout('$("#txtTituloPrestacao").html(" - " + $("#slcExecutoras option:selected").text())',300);

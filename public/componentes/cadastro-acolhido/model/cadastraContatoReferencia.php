@@ -1,14 +1,14 @@
 <?php
 include "../../../../classes/sistema.php";
+include_once __DIR__ . "/contatoReferencia.php";
 session_start();
 
 $sistema = new Sistema();
+$id = resolverIdAcolhidoOuTemporario(isset($_POST['id']) ? $_POST['id'] : "");
 
-if($_POST['id']!=""){
-    $id = base64_decode($_POST['id']);
-}
-else{
-    $id = $_SESSION["hs"];
+if ($id === "") {
+    http_response_code(400);
+    exit;
 }
 
 $dados["acolhido_id"] = $id;
