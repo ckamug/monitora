@@ -4,7 +4,7 @@ session_start();
 
 $sistema = new Sistema();
 
-$sistema->select("rec_solicitacoes_vagas","solicitacao_vaga_id , municipio_id","acolhido_id = " . base64_decode($_POST['acolhido']) . " AND status_registro = 1");
+$sistema->select("rec_solicitacoes_vagas","solicitacao_vaga_id , municipio_id","acolhido_id = " . base64_decode($_POST['acolhido']) . " AND status_registro = 1 AND status_vaga_id IN (1,2,3)");
 $res = $sistema->getResult();
 
 foreach($_POST["docPossui"] as $docPossui)

@@ -35,7 +35,7 @@ if(count($resultCabecalho)>0){
     $fromC = 'rec_notas_motivos_glosa a';
     $innerJoinC[] = 'inner join rec_notas_fiscais b on a.nota_fiscal_id = b.nota_fiscal_id';
 
-    $whereC = 'b.prestacao_id = ' . $resultCabecalho[0]["prestacao_id"];
+    $whereC = 'b.nota_status <> 5 AND b.prestacao_id = ' . $resultCabecalho[0]["prestacao_id"];
 
     $sistema->innerJoin($camposC,$fromC,$innerJoinC,$whereC,'','');
     $result = $sistema->getResult();

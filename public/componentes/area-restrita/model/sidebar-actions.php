@@ -8,6 +8,7 @@ $nav_group_collapse_vagas = 'collapsed';
 $nav_group_collapse_prestacao = 'collapsed';
 $nav_group_collapse_relatorios = 'collapsed';
 $nav_group_collapse_sair = 'collapsed';
+$nav_group_collapse_encaminhamentos_oscs = 'collapsed';
 
 $nav = explode('/',$_GET['view']);
 
@@ -21,6 +22,11 @@ switch($nav[0]){
         $nav_group_collapse_cadastros = '';
         $nav_group_cadastros = 'show';
         $nav_item_acolhido = 'active';
+    break;
+    case 'lista-desligamentos':
+        $nav_group_collapse_cadastros = '';
+        $nav_group_cadastros = 'show';
+        $nav_item_desligamentos = 'active';
     break;
     case 'celebrante':
     case 'cadastro-celebrante':
@@ -55,5 +61,8 @@ switch($nav[0]){
         $nav_group_collapse_prestacoes = '';
         $nav_group_prestacoes = 'show';
         $nav_item_cabecalho = 'active';
+    break;
+    case 'encaminhamentos-oscs':
+        $nav_group_collapse_encaminhamentos_oscs = '';
     break;
  }

@@ -4,13 +4,14 @@ session_start();
 
 $sistema = new Sistema();
 
-$campos = 'a.* , a.acolhido_entrada_id as entrada_id , a.status as status_acolhimento , b.* , c.* , d.* , e.* , f.*';
+$campos = 'a.* , a.acolhido_entrada_id as entrada_id , a.status as status_acolhimento , b.* , c.* , d.* , e.* , f.* , g.tipo_desligamento_descricao';
 $from = 'rec_acolhidos_entradas a';
 $innerJoin[] = 'left join rec_solicitacoes_vagas b on a.solicitacao_vaga_id = b.solicitacao_vaga_id';
 $innerJoin[] = 'left join rec_municipios c on b.municipio_id = c.municipio_id';
 $innerJoin[] = 'left join rec_executoras d on a.executora_id = d.executora_id';
 $innerJoin[] = 'left join rec_acolhidos e on a.acolhido_id = e.acolhido_id';
 $innerJoin[] = 'left join rec_acolhidos_desligamentos f on a.acolhido_entrada_id = f.acolhido_entrada_id';
+$innerJoin[] = 'left join rec_tipos_desligamentos g on f.tipo_desligamento_id = g.tipo_desligamento_id';
         
 //$sistema->debug=true;
 
@@ -46,7 +47,8 @@ for($i=0;$i<count($result);$i++){
     echo "      </div>";
     echo "      <div class='card-footer' style='background: inherit; border-color: inherit;'>";
     if($result[$i]["status_acolhimento"]==2){
-        echo "      <div class='alert alert-danger' role='alert'>Desligado</div>";
+        $motivoDesligamento = trim($result[$i]["tipo_desligamento_descricao"]) == "" ? "Motivo nao informado" : utf8_encode($result[$i]["tipo_desligamento_descricao"]);
+        echo "      <div class='alert alert-secondary' role='alert'>".$motivoDesligamento."</div>";
     }
     else{
         echo "      <div class='alert alert-success' role='alert'>Em acolhimento</div>";

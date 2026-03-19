@@ -6,7 +6,7 @@ $sistema = new Sistema();
 
 //$sistema->debug=true;
 
-$sistema->select("ouvidoria" , 'cpf' , '' , '' , 'cpf LIMIT 0,100');
+$sistema->select("ouvidoria" , 'cpf' , '' , '' , 'cpf LIMIT 0,500');
 $result = $sistema->getResult();
 
 
@@ -35,6 +35,7 @@ for($i=0;$i<count($result);$i++){
 
 
 }
+
 
 /*
 

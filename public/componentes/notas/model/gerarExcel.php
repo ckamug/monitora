@@ -17,7 +17,6 @@ $where = "a.prestacao_id = " . base64_decode($_POST["prestacao"]) . " AND a.nota
 $sistema->innerJoin($campos,$from,$innerJoin,$where,'','a.data_nota_fiscal');
 $result = $sistema->getResult();
 
-
 //VALIDAÇÃO DE USUÁRIO
 if($_SESSION["pf"]==4){
     $sistema = new Sistema();
@@ -48,11 +47,11 @@ if ( count($result) ) {
     
     // Gera arquivo CSV
     $fp = fopen("planilhas/" . $entidade.".csv", "w"); // o "a" indica que o arquivo será sobrescrito sempre que esta função for executada.
-    $escreve = fwrite($fp, "Data da NF;Detalhes do Documento;Categoria;Subcategoria;Valor(R$)");
+    $escreve = fwrite($fp, "Data da NF;Detalhes do Documento;Categoria;Subcategoria;Valor(R$);Data do Pagamento");
     
     foreach($result as $registro) 
     { 		  			
-        $escreve = fwrite($fp, "\n$registro[data_nota_fiscal];$registro[numero_nota_fiscal];$registro[categoria_descricao];$registro[subcategoria_descricao];$registro[valor_nota]");			  
+        $escreve = fwrite($fp, "\n$registro[data_nota_fiscal];$registro[numero_nota_fiscal];$registro[categoria_descricao];$registro[subcategoria_descricao];$registro[valor_nota];$registro[data_pagamento]");
     }  
     
     fclose($fp);

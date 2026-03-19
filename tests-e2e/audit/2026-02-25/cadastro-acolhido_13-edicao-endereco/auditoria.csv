@@ -1,0 +1,4 @@
+data_hora;funcionalidade;arquivo;teste;status;duracao_ms;erro_locator;erro_locator_foco;screenshot;screenshot_focus;screenshot_elemento
+"2026-02-25T18:23:01.873Z";"cadastro-acolhido_13-edicao-endereco";"C:\wamp64\www\coed\tests-e2e\tests\cadastro-acolhido\13-edicao-endereco.spec.js";"[UI] alterna exibicao entre endereco fixo e situacao de rua em edicao";"passed";"4382";"";"";"";"";""
+"2026-02-25T18:23:27.147Z";"cadastro-acolhido_13-edicao-endereco";"C:\wamp64\www\coed\tests-e2e\tests\cadastro-acolhido\13-edicao-endereco.spec.js";"edita para endereco fixo (SIM) com CEP e persiste";"passed";"25134";"";"";"";"";""
+"2026-02-25T18:23:35.463Z";"cadastro-acolhido_13-edicao-endereco";"C:\wamp64\www\coed\tests-e2e\tests\cadastro-acolhido\13-edicao-endereco.spec.js";"edita para situacao de rua (NAO endereco fixo) e persiste tempo";"passed";"8181";"";"";"";"";""

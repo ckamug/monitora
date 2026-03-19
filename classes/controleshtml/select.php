@@ -93,8 +93,14 @@ class select extends crud
 			case "rec_tipos_atendimentos":
 				$this->html .= "<label for='slcSubcategorias'>Tipo de Atendimento</label>";
 			break;
+			case "rec_subtipos_atendimentos":
+				$this->html .= "<label for='slcSubcategorias'>Detalhes do Tipo</label>";
+			break;
 			case "rec_tipos_desligamentos":
 				$this->html .= "<label for='slcTiposDesligamentos'>Tipo de Desligamento</label>";
+			break;
+			case "rec_tipos_registro":
+				$this->html .= "<label for='slcTiposDesligamentos'>Tipo</label>";
 			break;
 			default:
 				$this->html .= "<label for='slcPerfil'></label>";

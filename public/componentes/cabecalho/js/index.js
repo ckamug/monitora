@@ -99,6 +99,16 @@ function cadastraCabecalho(){
 			alert("Cabeçalho registrado com sucesso");
 			listaCabecalhos(id,tipo);
 		}
+		else{
+			var modalConfirmacao = new bootstrap.Modal(document.getElementById('avisoModal'), {
+				
+			})
+			modalConfirmacao.show();
+			$("#tituloAvisoModal").html('<h5 class="modal-title"><i class="bi bi-exclamation-triangle text-danger"></i> Atenção</h5>');
+			$("#corpoAvisoModal").html('<p>Já existe Cabeçalho cadastrado para o mês informado</p>');
+			$("#boxBotoesAvisoModal").html('<button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>');
+		}
+		
 	  }
 	});
 }
@@ -271,19 +281,19 @@ function calculaRubrica(saldoRh , saldoCusteio , saldoTerceiros){
 		var terceiros = '0,00';
 	}
 
-	r_rh = rh.replace('.','');
-	r_custeio = custeio.replace('.','');
-	r_terceiros = terceiros.replace('.','');
-	r_saldoRh = saldoRh.replace('.','');
-	r_saldoCusteio = saldoCusteio.replace('.','');
-	r_saldoTerceiros = saldoTerceiros.replace('.','');
+	r_rh = rh.replace(/\./g, '').replace(',', '.');
+	r_custeio = custeio.replace(/\./g, '').replace(',', '.');
+	r_terceiros = terceiros.replace(/\./g, '').replace(',', '.');
+	r_saldoRh = saldoRh.replace(/\./g, '').replace(',', '.');
+	r_saldoCusteio = saldoCusteio.replace(/\./g, '').replace(',', '.');
+	r_saldoTerceiros = saldoTerceiros.replace(/\./g, '').replace(',', '.');
 
-	n_rh = parseFloat(r_rh.replace(',','.'));
-	n_custeio = parseFloat(r_custeio.replace(',','.'));
-	n_terceiros = parseFloat(r_terceiros.replace(',','.'));
-	n_saldoRh = parseFloat(r_saldoRh.replace(',','.'));
-	n_saldoCusteio = parseFloat(r_saldoCusteio.replace(',','.'));
-	n_saldoTerceiros = parseFloat(r_saldoTerceiros.replace(',','.'));
+	n_rh = parseFloat(r_rh);
+	n_custeio = parseFloat(r_custeio);
+	n_terceiros = parseFloat(r_terceiros);
+	n_saldoRh = parseFloat(r_saldoRh);
+	n_saldoCusteio = parseFloat(r_saldoCusteio);
+	n_saldoTerceiros = parseFloat(r_saldoTerceiros);
 
 	totalRh = n_rh + n_saldoRh;
 	totalCusteio = n_custeio + n_saldoCusteio;

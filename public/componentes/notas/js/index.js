@@ -131,18 +131,24 @@ function criaPergunta(id,prestacao,nota){
 	switch(id){
 		case 1:
 			modalConfirmacao.show();
+			$("#tituloModal").removeClass("bg-success");
+			$("#tituloModal").addClass("bg-warning");
 			$("#tituloModal").html('<h5 class="modal-title" id="tituloModal">Confirmação de Disponibilização</h5>');
 			$("#corpoModal").html('<p>Confirma a disponibilização dessa Prestação de Contas para análise?</p>');
 			$("#boxBotoesModal").html('<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não Confirmar</button><button type="button" data-bs-dismiss="modal" class="btn btn-success" onclick="disponibilizaPrestacao();">Confirmar</button>');	
 		break;
 		case 2:
 			modalConfirmacao.show();
+			$("#tituloModal").removeClass("bg-success");
+			$("#tituloModal").addClass("bg-warning");
 			$("#tituloModal").html('<h5 class="modal-title" id="tituloModal">Confirmação de Exclusão</h5>');
 			$("#corpoModal").html('<p>Deseja realmente excluir a Nota Fiscal?</p>');
 			$("#boxBotoesModal").html('<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button><button type="button" data-bs-dismiss="modal" class="btn btn-success" onclick="excluirNotaFiscal('+prestacao+','+nota+')">Confirmar Exclusão</button>');
 		break;
 		case 3:
 			modalConfirmacao.show();
+			$("#tituloModal").removeClass("bg-success");
+			$("#tituloModal").addClass("bg-warning");
 			$("#tituloModal").html('<h5 class="modal-title" id="tituloModal">Confirmação de Exclusão</h5>');
 			$("#corpoModal").html('<p>Deseja realmente excluir o arquivo?</p>');
 			if(nota==0){
@@ -154,12 +160,16 @@ function criaPergunta(id,prestacao,nota){
 		break;
 		case 4:
 			modalConfirmacao.show();
+			$("#tituloModal").removeClass("bg-success");
+			$("#tituloModal").addClass("bg-warning");
 			$("#tituloModal").html('<h5 class="modal-title" id="tituloModal">Confirmação de Encerramento</h5>');
 			$("#corpoModal").html('<p>Confirma o encerramento dessa Prestação de Contas e envio para análise?</p>');
 			$("#boxBotoesModal").html('<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não Confirmar</button><button type="button" data-bs-dismiss="modal" class="btn btn-success" onclick="encerraPrestacao()">Confirmar</button>');	
 		break;
 		case 5:
 			modalConfirmacao.show();
+			$("#tituloModal").removeClass("bg-success");
+			$("#tituloModal").addClass("bg-warning");
 			$("#tituloModal").html('<h5 class="modal-title" id="tituloModal">Confirmação de Finalização</h5>');
 			$("#corpoModal").html('<p>Confirma a finalização dessa Prestação de Contas?</p>');
 			$("#boxBotoesModal").html('<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não Confirmar</button><button type="button" data-bs-dismiss="modal" class="btn btn-success" onclick="finalizaPrestacao()">Confirmar</button>');	
@@ -170,10 +180,44 @@ function criaPergunta(id,prestacao,nota){
 }
 
 function validaRubrica(){
+	var prestacao = $("#hidIdPrestacao").val();
+	var rubrica = $("#slcCategorias").val();
+	var txtRubrica = $("#slcCategorias option:selected").text();
+	var valorOriginal = $('#txtValorNotaEdicao').val().replace('R$ ','');
+	var valor = $('#txtValorNotaFiscal').val().replace('R$ ','');
 
-	if($("#btnRegistrar").html()=="Registrar NF"){
+	$.ajax({
+		type: "POST",
+		url: "https://portal.seds.sp.gov.br/coed/public/componentes/notas/model/validaRubrica.php",
+		data: {'prestacao':prestacao,'rubrica':rubrica,'valor':valor,'valorOriginal':valorOriginal},
+		success: function (retorno) {
+			if(retorno==1){
+				var modalConfirmacao = new bootstrap.Modal(document.getElementById('confirmacaoModal'), {
+					keyboard: false
+				})
+			
+				modalConfirmacao.show();
+				$("#tituloModal").removeClass("bg-success");
+				$("#tituloModal").addClass("bg-warning");
+				$("#tituloModal").html('<h5 class="modal-title" id="tituloModal"><i class="fas fa-exclamation-triangle"></i> ATENÇÃO</h5>');
+				$("#corpoModal").html('<p>O valor total executado para '+txtRubrica+' ultrapassará o valor previsto.</p>');
+				$("#boxBotoesModal").html('<button type="button" data-bs-dismiss="modal" class="btn btn-warning">OK</button>');
+				$('#txtValorNotaFiscal').val('');
+			}
+		}
+	});
+}
 
-		var valor = parseFloat($('#txtValorNotaFiscal').val().replace('R$ ','').replace('.','').replace(',','.'));
+/*
+function validaRubrica_old(){
+
+	//if($("#btnRegistrar").html()=="Registrar NF"){
+
+	var valorOriginal = parseFloat($('#txtValorNotaEdicao').val().replace('R$ ','').replace('.','').replace(',','.'));
+	var valor = parseFloat($('#txtValorNotaFiscal').val().replace('R$ ','').replace('.','').replace(',','.'));
+
+	if(valor > valorOriginal || valorOriginal == 'NaN'){
+
 		var rubrica = $("#slcCategorias").val();
 		var total = 0;
 
@@ -197,10 +241,10 @@ function validaRubrica(){
 				break;
 			}
 
-			valorPrevisto = parseFloat(valorPrevisto.html().replace('R$ ','').replace('.','').replace(',','.'));
-			valorExecutado = parseFloat(valorExecutado.html().replace('R$ ','').replace('.','').replace(',','.'));
+			valorPrevisto = parseFloat(valorPrevisto.html().replace('R$ ','').replace('.','').replace('.','').replace(',','.'));
+			valorExecutado = parseFloat(valorExecutado.html().replace('R$ ','').replace('.','').replace('.','').replace(',','.'));
 
-			soma = valor+valorExecutado;
+			soma = valor + valorExecutado;
 
 			soma1 = (soma.toString().split('.'));
 
@@ -235,11 +279,16 @@ function validaRubrica(){
 
 	}
 
+	//}
+
 }
+
+*/
 
 function adicionarNotas(){
 	$('html, body').animate({ scrollTop: 100 }, 50);
 	$("#boxRegistrarNota").removeClass('d-none');
+	$('#txtValorNotaEdicao').val("0");
 	$('#formNotaFiscal').each (function(){
 		this.reset();
 	});
@@ -333,7 +382,17 @@ function cadastraNotaFiscal(){
 				$('#formNotaFiscal').each (function(){
 					this.reset();
 				});
-				alert("Nota Fiscal registrada com sucesso");
+				//alert("Nota Fiscal registrada com sucesso");
+				var modalConfirmacao = new bootstrap.Modal(document.getElementById('confirmacaoModal'), {
+					keyboard: false
+				})
+			
+				modalConfirmacao.show();
+				$("#tituloModal").removeClass("bg-warning");
+				$("#tituloModal").addClass("bg-success");
+				$("#tituloModal").html('<h5 class="modal-title text-white" id="tituloModal"><i class="fa-solid fa-circle-check" style="color: #ffffff;"></i> SUCESSO</h5>');
+				$("#corpoModal").html('<p>Nota Fiscal registrada com sucesso.</p>');
+				$("#boxBotoesModal").html('<button type="button" data-bs-dismiss="modal" class="btn btn-success">OK</button>');
 				$("#boxBotoes").show();
 			}
 			atualizaCabecalho(retorno,0,0);
@@ -349,6 +408,8 @@ function cancelaCadNota(pf){
 		$("#boxRegistrarNota").addClass('d-none');
 		$("#boxMotivoGlosa").addClass('d-none');
 		$("#txtMotivoGlosa").val('');
+		$("#boxRessalva").addClass('d-none');
+		$("#txtRessalva").val('');
 	}
 	else{
 		$("#boxRegistrarNota").addClass('d-none');
@@ -365,6 +426,8 @@ function cancelaCadNota(pf){
 		setTimeout('$("#slcSubcategorias").prop("disabled","disabled")','300');
 		$("#boxMotivoGlosa").addClass('d-none');
 		$("#txtMotivoGlosa").val('');
+		$("#boxRessalva").addClass('d-none');
+		$("#txtRessalva").val('');
 	}
 }
 
@@ -382,6 +445,7 @@ function detalhesNotaFiscal(id){
 		type: 'POST',
 		data: {'id':id},
 		success: function(resultado){
+			var rotuloAnalisePerfil = resultado.perfil_analise_descricao ? 'An&aacute;lise ' + resultado.perfil_analise_descricao : 'An&aacute;lise';
 
 			// SE EXISTIR A NOTA FISCAL
 			if(resultado.nota_fiscal_id>0){
@@ -393,6 +457,7 @@ function detalhesNotaFiscal(id){
 					$("#txtNumeroNotaFiscal").val(resultado.numero_nota_fiscal);
 					setTimeout('carregaCategorias('+resultado.categoria_id+')','300');
 					setTimeout('carregaSubcategorias('+resultado.subcategoria_id+','+resultado.categoria_id+')','300');
+					$("#txtValorNotaEdicao").val(resultado.valor_nota);
 					$("#txtValorNotaFiscal").val(resultado.valor_nota);
 					$("#txtDataPagamento").val(resultado.data_pagamento);
 					if(resultado.nota_status!=3 && resultado.perfil_logado_id!=4){
@@ -429,10 +494,10 @@ function detalhesNotaFiscal(id){
 					if(resultado.perfil_logado_id==1 || resultado.perfil_logado_id==2){
 
 						if(resultado.nota_status==3){
-							$("#boxAnaliseCoed").html('<div class="form-check form-switch"><input class="form-check-input" type="checkbox" role="switch" id="chkAnaliseCoed'+resultado.nota_fiscal_id+'" name="chkAnaliseCoed'+resultado.nota_fiscal_id+'" disabled><label class="form-check-label" for="chkAnaliseCoed'+resultado.nota_fiscal_id+'">Análise COED</label></div>');
+							$("#boxAnaliseCoed").html('<div class="form-check form-switch"><input class="form-check-input" type="checkbox" role="switch" id="chkAnaliseCoed'+resultado.nota_fiscal_id+'" name="chkAnaliseCoed'+resultado.nota_fiscal_id+'" disabled><label class="form-check-label" for="chkAnaliseCoed'+resultado.nota_fiscal_id+'">'+rotuloAnalisePerfil+'</label></div>');
 						}
 						else{
-							$("#boxAnaliseCoed").html('<div class="form-check form-switch"><input class="form-check-input" type="checkbox" role="switch" id="chkAnaliseCoed'+resultado.nota_fiscal_id+'" name="chkAnaliseCoed'+resultado.nota_fiscal_id+'"><label class="form-check-label" for="chkAnaliseCoed'+resultado.nota_fiscal_id+'">Análise COED</label></div>');
+							$("#boxAnaliseCoed").html('<div class="form-check form-switch"><input class="form-check-input" type="checkbox" role="switch" id="chkAnaliseCoed'+resultado.nota_fiscal_id+'" name="chkAnaliseCoed'+resultado.nota_fiscal_id+'"><label class="form-check-label" for="chkAnaliseCoed'+resultado.nota_fiscal_id+'">'+rotuloAnalisePerfil+'</label></div>');
 							$("#chkAnaliseCoed"+resultado.nota_fiscal_id).change(function() {marcaAnaliseCoed(resultado.nota_fiscal_id)});
 						}
 						
@@ -465,7 +530,7 @@ function detalhesNotaFiscal(id){
 
 						
 						// SE O STATUS DA NOTA FOR DIFERENTE DE APROVADO, PRÉ-APROVADO E GLOSADO (STATUS É IGUAL A AGUARDANDO APROVAÇÃO, EDITAR, EXCLUÍDO OU GLOSADO PARCIALMENTE)
-						if(resultado.nota_status!=3 && resultado.nota_status!=6 && resultado.nota_status!=4){
+						if(resultado.nota_status!=3 && resultado.nota_status!=6 && resultado.nota_status!=4 && resultado.nota_status!=8){
 							
 							if(resultado.celebrante_id>0){ //SE A NOTA FOR DA CELEBRANTE
 
@@ -568,6 +633,21 @@ function detalhesNotaFiscal(id){
 						}
 						else if(resultado.nota_status==3){ //SE STATUS É IGUAL A APROVADO
 							$("#boxStatusNotas").html('<p class="p-2">Status da nota: ' + resultado.nota_status_descricao + '</p>');
+						}
+						else if(resultado.nota_status==8){ //SE STATUS É IGUAL A APROVADO COM RESSALVA, ABRE BOX DE RESSALVA
+							setTimeout('listaRessalvas('+resultado.nota_fiscal_id+','+resultado.nota_status+')','300');
+							$("#boxStatusNotas").html('<p class="p-2">Status da nota: ' + resultado.nota_status_descricao + '</p>');
+							$("#boxRessalva").removeClass('d-none');
+
+							$("#boxCampoRessalva").addClass('d-none');
+							$('#boxTextoRessalva').html('<span class="text-body">Ressalva:</span> ' + resultado.ressalva_descricao);
+							//************* */
+							$("#boxTextoRessalva").removeClass('d-none');
+							$('#textoMotivoGlosa').html(resultado.ressalva_descricao);
+							$('#dataMotivoGlosa').html(resultado.data_ressalva);
+							//************ */
+
+							$("#boxBotoes").html('<button type="button" class="btn btn-secondary" onclick="cancelaCadNota('+resultado.perfil_logado_id+')">Cancelar</button>');
 						}
 						else{ // SE STATUS É IGUAL A AGUARDANDO APROVAÇÃO OU EDITAR, MOSTRA STATUS DA NOTA
 							$("#boxStatusNotas").html('<p class="p-2">Status da nota: ' + resultado.nota_status_descricao + '</p>');
@@ -744,7 +824,20 @@ function editaNotaFiscal(tipo,id){
 				
 				$("#boxApontamentos").addClass('d-none');
 				$("#boxBotoes").html('<button type="submit" class="btn btn-primary" id="btnRegistrar">Registrar NF</button>');
-				alert('Informações alteradas com sucesso');
+				
+				
+				var modalConfirmacao = new bootstrap.Modal(document.getElementById('confirmacaoModal'), {
+					keyboard: false
+				})
+			
+				modalConfirmacao.show();
+				$("#tituloModal").removeClass("bg-warning");
+				$("#tituloModal").addClass("bg-success");
+				$("#tituloModal").html('<h5 class="modal-title text-white" id="tituloModal"><i class="fa-solid fa-circle-check" style="color: #ffffff;"></i> SUCESSO</h5>');
+				$("#corpoModal").html('<p>Informações alteradas com sucesso.</p>');
+				$("#boxBotoesModal").html('<button type="button" data-bs-dismiss="modal" class="btn btn-success">OK</button>');
+				
+				
 				$("#boxEnvio").html('<input class="form-control p-3" type="file" id="uplNf" name="uplNf"></input>');
 				$('#formNotaFiscal').each (function(){
 					this.reset();
@@ -818,10 +911,23 @@ function listaApontamentos(id,status){
 
 }
 
+function listaRessalvas(id,status){
+	$.ajax({
+		type: "POST",
+		url: "https://portal.seds.sp.gov.br/coed/public/componentes/notas/model/listaRessalvas.php",
+		data: {'id':id,'status':status},
+		success: function (retorno) {
+			$("#boxRessalva").removeClass('d-none');
+			$("#boxRessalva").html(retorno);
+		}
+	});
+}
+
 function registraStatus(id){
 	var status = $("#slcNotasStatus").val();
 	var motivo = "";
 	var valorGlosa = "";//VALOR DA GLOSA PARCIAL
+	var ressalva = "";
 
 	if(status==0){
 		alert('Selecione um status para esse lançamento');
@@ -835,6 +941,9 @@ function registraStatus(id){
 			motivo = $("#txtMotivoGlosa").val();
 			valorGlosa = $("#txtValorGlosa").val();
 		}
+		if(status==8){
+			ressalva = $("#txtRessalva").val();
+		}
 		else{
 		}
 
@@ -846,7 +955,7 @@ function registraStatus(id){
 			$.ajax({
 				type: "POST",
 				url: "https://portal.seds.sp.gov.br/coed/public/componentes/notas/model/registraStatus.php",
-				data: {'id':id,'status':status,'motivo':motivo,'valorGlosa':valorGlosa},
+				data: {'id':id,'status':status,'motivo':motivo,'valorGlosa':valorGlosa,'ressalva':ressalva},
 				success: function (retorno) {
 					atualizaCabecalho(id,status,valorGlosa);
 					cancelaCadNota(0);
@@ -943,6 +1052,8 @@ function atualizaCabecalho(id,retorno,valorGlosa){
 
 	var arrayRetorno = $.parseJSON(retorno);
 
+	console.log("Retorno: " + retorno + " - ");
+	
 	console.log(arrayRetorno[0] + ' - ' + arrayRetorno[1] + ' - ' + arrayRetorno[2]);
 
 	if(arrayRetorno.length>=2) {
@@ -1046,7 +1157,9 @@ function montaCabecalho(id){
 				$("#uplDoc").addClass("d-none");
 			}
 
-			if(resultado.logado==1 || resultado.logado==18 || resultado.logado==22){
+			if(resultado.logado==1 || resultado.logado==189 || resultado.logado==139 || resultado.logado==217){
+				$("#tituloModal").removeClass("bg-success");
+				$("#tituloModal").addClass("bg-warning");
 				$("#boxAlteraPrevisto").html('<p class="text-end"><button type="button" class="btn btn-warning" onclick="abreCamposRubrica()"><i class="fas fa-random"></i> Alterar Valor Previsto</button></p>');
 				$("#tituloModal").html('<h5 class="modal-title" id="tituloModal"><i class="fas fa-random"></i> Alteração de Valores Previsto</h5>');
 				$("#corpoModal").html('<div class="col-md-12">	<div class="form-floating">	  <input type="text" class="form-control" id="txtValorPrevistoRh" name="txtValorPrevistoRh" value="R$ '+resultado.recursos_humanos_previsto+'" placeholder="Valor Previsto Recursos Humanos">	  <label for="txtValorPrevistoRh">Valor Previsto RH</label>	</div>  </div>  <div class="col-md-12 mt-3">	<div class="form-floating">	  <input type="text" class="form-control" id="txtValorPrevistoCusteio" name="txtValorPrevistoCusteio" value="R$ '+resultado.custeio_previsto+'" placeholder="Valor Previsto Custeio">	  <label for="txtValorPrevistoCusteio">Valor Previsto Custeio</label>	</div>  </div>  <div class="col-md-12 mt-3">	<div class="form-floating">	  <input type="text" class="form-control" id="txtValorPrevistoTerceiros" name="txtValorPrevistoTerceiros" value="R$ '+resultado.servicos_terceiros_previsto+'" placeholder="Valor Previsto Seriços Terceiros">	  <label for="txtValorPrevistoTerceiros">Valor Previsto Terceiros</label>	</div>  </div>');
@@ -1058,6 +1171,7 @@ function montaCabecalho(id){
 					thousands: "."
 				});
 			}
+
 		},
 		complete: function(){}
 	 });
@@ -1181,16 +1295,26 @@ function trataStatus(id){
 		$("#boxMotivoGlosa").removeClass('d-none');
 		$("#boxValorGlosa").addClass('d-none');
 		$("#boxCampoApontamento").addClass('d-none');
+		
+		$("#boxRessalva").addClass('d-none');
 	}
 	else if(id==7){
 		$("#boxMotivoGlosa").removeClass('d-none');
 		$("#boxValorGlosa").removeClass('d-none');
+		$("#boxCampoApontamento").addClass('d-none');
+		$("#boxRessalva").addClass('d-none');
+	}
+	else if(id==8){
+		$("#boxRessalva").removeClass('d-none');
+		$("#boxMotivoGlosa").addClass('d-none');
+		$("#boxValorGlosa").addClass('d-none');
 		$("#boxCampoApontamento").addClass('d-none');
 	}
 	else{
 		$("#boxMotivoGlosa").addClass('d-none');
 		$("#txtMotivoGlosa").val('');
 		$("#boxCampoApontamento").removeClass('d-none');
+		$("#boxRessalva").addClass('d-none');
 	}
 }
 

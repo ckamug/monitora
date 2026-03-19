@@ -1,3 +1,5 @@
+var NIS_TAMANHO = 11;
+
 $(document).ready(function(){
 
 	carregaMunicipios(0);
@@ -6,7 +8,24 @@ $(document).ready(function(){
 
 	$("#txtCep").blur(function() {consultaCep()});
 	$('#txtDataNascimento').mask('00/00/0000');
+	$('#txtNis').mask('00000000000');
 	$('#txtCpf').mask('000.000.000-00');
+	normalizaCampoNis("#txtNis");
+
+	//linha que chama a função de consulta do cpf ao sair do campo
+	$(document).on("blur", "#txtCpf", function() {consultaCpfAcolhido()});
+	$(document).on("input", "#txtNis", function() {
+		normalizaCampoNis(this);
+		if(nisValidoOuVazio($(this).val())){
+			limpaErroNis(this);
+		}
+	});
+	$(document).on("blur", "#txtNis", function() {
+		if(validarCampoNis(this)){
+			consultaCpfAcolhido();
+		}
+	});
+
 	$('#txtTelefonePessoal').mask('(00)00000-0000');
 	$('#txtTelefoneResidencial').mask('(00)0000-0000');
 	$('#txtTelefoneReferencia').mask('(00)00000-0000');
@@ -23,6 +42,17 @@ $(document).ready(function(){
 			alert('Preencha todos os campos obrigatórios');
 		},
 		submitHandler: function(){
+			if(!validarCampoNis("#txtNis", true)){
+				return;
+			}
+
+			var idAcolhidoAtual = getIdAcolhidoAtual();
+
+			if(idAcolhidoAtual !== null){
+				editaAcolhido(idAcolhidoAtual);
+				return;
+			}
+
 			alert("Informações registradas com sucesso");
 			cadastraAcolhido();
 		},
@@ -301,6 +331,7 @@ $(document).ready(function(){
 			$("#chkTipoBeneficio4").prop("checked",false);
 			$("#chkTipoBeneficio5").prop("checked",false);
 			$("#chkTipoBeneficio6").prop("checked",false);
+			$("#chkTipoBeneficio7").prop("checked",false);
 		}
 
 	});
@@ -383,7 +414,77 @@ $(document).ready(function(){
 
 	});
 
+	$('#chkComorbidade11').on('click', function(){
+		if(this.checked){
+			$("#boxTipoAcompanhamento").show();
+		}
+		else{
+			$("#boxTipoAcompanhamento").hide();
+			$("#txtOutraComorbidade").val("");
+		}
+	});
+
+	$('#chkSubstanciaPreferencia12').on('click', function(){
+		if(this.checked){
+			$("#boxOutraSubstanciaPreferencia").show();
+		}
+		else{
+			$("#boxOutraSubstanciaPreferencia").hide();
+			$("#txtOutraSubstanciaPreferencia").val("");
+		}
+	});
+
 })
+
+function normalizarNis(valor){
+	return String(valor || "").replace(/\D/g, "");
+}
+
+function nisValidoOuVazio(valor){
+	var nis = normalizarNis(valor);
+	return !nis || nis.length === NIS_TAMANHO;
+}
+
+function normalizaCampoNis(campo){
+	var $campo = $(campo);
+	var nis = normalizarNis($campo.val());
+
+	$campo.val(nis);
+
+	return nis;
+}
+
+function limpaErroNis(campo){
+	var $campo = $(campo);
+
+	$campo.removeClass("is-invalid");
+
+	if($campo.length && $campo[0].setCustomValidity){
+		$campo[0].setCustomValidity("");
+	}
+}
+
+function validarCampoNis(campo, exibirAlerta){
+	var $campo = $(campo);
+	var nis = normalizaCampoNis($campo);
+
+	if(nisValidoOuVazio(nis)){
+		limpaErroNis($campo);
+		return true;
+	}
+
+	$campo.addClass("is-invalid");
+
+	if($campo.length && $campo[0].setCustomValidity){
+		$campo[0].setCustomValidity("Informe o NIS com 11 digitos");
+	}
+
+	if(exibirAlerta){
+		alert("Informe o NIS com 11 digitos");
+	}
+
+	return false;
+}
 
 function listaArquivos(id){
 	$.ajax({
@@ -412,6 +513,95 @@ function listaSolicitacoesVagas(id){
 	});
 }
 
+
+function consultaCpfAcolhido(){
+	// var cpf = $("#txtCpf").val();
+
+	// if(!cpf){
+	// 	return;
+	// }
+	var cpf = $("#txtCpf").val().trim();
+
+	if(!validarCampoNis("#txtNis")){
+		return;
+	}
+
+	var nis = normalizaCampoNis("#txtNis");
+
+	if(!cpf && !nis){
+	return;
+	}
+
+
+	$.ajax({
+		url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-acolhido/model/consultaCpf.php",
+		type: "POST",
+		dataType: "JSON",
+		//data: {'cpf':cpf},
+		data: {
+			cpf: cpf,
+			nis: nis,
+			id: ($("#hidIdAcolhido").val() || "").trim(),
+			id_atual: getIdAcolhidoAtual()
+		},
+		success: function(retorno){
+			if(retorno.usuario_existe && retorno.acolhido && retorno.acolhido.acolhido_id){
+				var idAtual = getIdAcolhidoAtual();
+				var idEncontrado = parseInt(retorno.acolhido.acolhido_id, 10);
+
+				// Em edicao: se o CPF/NIS encontrado for do proprio registro, nao redireciona.
+				if(idAtual !== null && idEncontrado === idAtual){
+					return;
+				}
+
+				alert("Pessoa ja cadastrada");
+				var acolhidoIdB64 = btoa(retorno.acolhido.acolhido_id.toString());
+				location.href = "/coed/cadastro-acolhido/" + acolhidoIdB64;
+			}
+		}
+	});
+
+}
+
+function getIdAcolhidoAtual(){
+	var idRaw = ($("#hidIdAcolhido").val() || "").trim();
+
+	if(!idRaw){
+		return null;
+	}
+
+	try{
+		idRaw = decodeURIComponent(idRaw);
+	}
+	catch(e){}
+
+	if(/^\d+$/.test(idRaw)){
+		return parseInt(idRaw, 10);
+	}
+
+	try{
+		var decodificado = atob(idRaw);
+		if(/^\d+$/.test(decodificado)){
+			return parseInt(decodificado, 10);
+		}
+	}
+	catch(e){
+		return null;
+	}
+
+	return null;
+}
+
+function getIdContatoReferenciaAtual(){
+	var idAcolhido = ($("#hidIdAcolhido").val() || "").trim();
+
+	if(idAcolhido){
+		return idAcolhido;
+	}
+
+	return ($("#hidContatoReferenciaTempId").val() || "").trim();
+}
+
 function carregaAcolhido(id){
 	carregaAcolhimento(id);
 	listaArquivos(id);
@@ -427,33 +617,49 @@ function carregaAcolhido(id){
 
 				$("#abaDocumentos").removeClass("d-none");
 
-				if(resultado.perfil_logado==1 || resultado.local_logado == resultado.executora_id){
-					$("#abaAcolhimento").removeClass("d-none");
+				var statusVagaAtual = parseInt(resultado.id_status_vaga, 10);
+				var podeExibirAcolhimento = (statusVagaAtual === 2) || (statusVagaAtual === 3 && resultado.tem_entrada_ativa === true);
+				
+				if((resultado.perfil_logado==1 || resultado.local_logado == resultado.executora_id) && podeExibirAcolhimento){
+				    $("#abaAcolhimento").removeClass("d-none");
+				}
+				else{
+				    $("#abaAcolhimento").addClass("d-none");
 				}
 				
-				if(resultado.perfil_logado==1 || (resultado.perfil_logado==4 && resultado.local_logado == resultado.executora_id)){
-					$("#acolhimento-tab").removeClass("d-none");
-					$("#hTipoServico").html(resultado.servico);
+				if((resultado.perfil_logado==1 || (resultado.perfil_logado==4 && resultado.local_logado == resultado.executora_id)) && podeExibirAcolhimento){
+				    $("#tabAcolhimento").removeClass("d-none");
+				    $("#hTipoServico").html(resultado.servico);
+				}
+				else{
+				    $("#tabAcolhimento").addClass("d-none");
+				}
+				if(resultado.solicitacao_vaga_id > 0){
+					$("#status-tab").removeClass("d-none");
+					$("#abaStatus").removeClass("d-none");
 				}
 
-				if(resultado.solicitacao_vaga_id > 0 && resultado.id_status_vaga != 3){
+				if(resultado.solicitacao_ativa === true){
 					$("#boxSolicitarVaga").html("");
-					$("#status-tab").removeClass("d-none");
-					$("#abaStatus").removeClass("d-none");
 				}
-				else if((resultado.solicitacao_vaga_id > 0 && resultado.id_status_vaga == 3)){
-					$("#boxSolicitarVaga").html("");
-					$("#status-tab").removeClass("d-none");
-					$("#abaStatus").removeClass("d-none");
-					$("#boxSolicitarVaga").html('<button type="button" class="btn btn-success btn-lg mb-3" id="btnSolicitarVaga" data-bs-toggle="modal" data-bs-target="#mdlSolicitarVaga" onclick="carregaDetalhesOsc(0)"><i class="bi bi-house"></i> Solicitar Vaga</button>');
-					$("#btnSolicitarVaga").click(function() {carregaServicos()});
-					$("#btnConfirmaSolicitacaoVaga").click(function() {solicitarVaga(resultado.acolhido)});
+				else if(resultado.id_status_vaga == 3){
+					if(resultado.tem_entrada_ativa === true){
+						$("#boxSolicitarVaga").html("");
+					}
+					else{
+						if(resultado.perfil_logado==1 || resultado.perfil_logado == 3){
+							$("#boxSolicitarVaga").html('<button type="button" class="btn btn-success btn-lg mb-3" id="btnSolicitarVaga" data-bs-toggle="modal" data-bs-target="#mdlSolicitarVaga"><i class="bi bi-house"></i> Solicitar Vaga</button>');
+							$("#btnSolicitarVaga").click(function() {carregaServicos()});
+							$("#btnConfirmaSolicitacaoVaga").click(function() {solicitarVaga(resultado.acolhido)});
+						}
+					}
 				}
-				else
-				{
-					$("#boxSolicitarVaga").html('<button type="button" class="btn btn-success btn-lg mb-3" id="btnSolicitarVaga" data-bs-toggle="modal" data-bs-target="#mdlSolicitarVaga" onclick="carregaDetalhesOsc(0)"><i class="bi bi-house"></i> Solicitar Vaga</button>');
-					$("#btnSolicitarVaga").click(function() {carregaServicos()});
-					$("#btnConfirmaSolicitacaoVaga").click(function() {solicitarVaga(resultado.acolhido)});
+				else{
+					if(resultado.perfil_logado==1 || resultado.perfil_logado == 3){
+						$("#boxSolicitarVaga").html('<button type="button" class="btn btn-success btn-lg mb-3" id="btnSolicitarVaga" data-bs-toggle="modal" data-bs-target="#mdlSolicitarVaga"><i class="bi bi-house"></i> Solicitar Vaga</button>');
+						$("#btnSolicitarVaga").click(function() {carregaServicos()});
+						$("#btnConfirmaSolicitacaoVaga").click(function() {solicitarVaga(resultado.acolhido)});
+					}
 				}
 
 				$("#txtNomeCompleto").val(resultado.acolhido_nome_completo);
@@ -466,12 +672,15 @@ function carregaAcolhido(id){
 				$("#txtFiliacao2").val(resultado.acolhido_filiacao2);
 				$("#txtFiliacao3").val(resultado.acolhido_filiacao3);
 				$("#slcEstadoCivil").val(resultado.acolhido_estado_civil);
+				$("#txtNis").val(normalizarNis(resultado.acolhido_nis));
 				$("#txtCpf").val(resultado.acolhido_cpf);
 				$("#txtRg").val(resultado.acolhido_rg);
 				$("#txtTelefonePessoal").val(resultado.acolhido_telefone_pessoal);
 				$("#txtTelefoneResidencial").val(resultado.acolhido_telefone_residencial);
 				
 				if(resultado.acolhido_primeiro_acolhimento=="SIM"){
+					$("#boxQuantasVezes").hide();
+					$("#txtReincidencia").val("");
 					$("#radAcolhimento1").prop('checked',true);
 				}
 				else{
@@ -531,6 +740,12 @@ function carregaAcolhido(id){
 				}
 				if (resultado.acolhido_comorbidade.includes('Outra')){
 					$("#chkComorbidade11").prop('checked',true);
+					$("#boxTipoAcompanhamento").show();
+					$("#txtOutraComorbidade").val(resultado.acolhido_outra_comorbidade);
+				}
+				else{
+					$("#boxTipoAcompanhamento").hide();
+					$("#txtOutraComorbidade").val("");
 				}
 				if (resultado.acolhido_comorbidade.includes('Não')){
 					$("#chkComorbidade12").prop('checked',true);
@@ -615,7 +830,7 @@ function carregaAcolhido(id){
 				if (resultado.acolhido_substancia_preferencia.includes('LSD')){
 					$("#chkSubstanciaPreferencia7").prop('checked',true);
 				}
-				if (resultado.acolhido_substancia_preferencia.includes('Substâncias KSubstâncias K;Spice')){
+				if (resultado.acolhido_substancia_preferencia.includes('K;Spice')){
 					$("#chkSubstanciaPreferencia8").prop('checked',true);
 				}
 				if (resultado.acolhido_substancia_preferencia.includes('Heroína')){
@@ -627,6 +842,15 @@ function carregaAcolhido(id){
 				if (resultado.acolhido_substancia_preferencia.includes('Medicação Psicotrópica')){
 					$("#chkSubstanciaPreferencia11").prop('checked',true);
 				}
+				if (resultado.acolhido_substancia_preferencia.includes('Outra')){
+					$("#chkSubstanciaPreferencia12").prop('checked',true);
+					$("#boxOutraSubstanciaPreferencia").show();
+					$("#txtOutraSubstanciaPreferencia").val(resultado.acolhido_outra_substancia_preferencia);
+				}
+				else{
+					$("#boxOutraSubstanciaPreferencia").hide();
+					$("#txtOutraSubstanciaPreferencia").val("");
+				}
 
 				$("#slcTempoUtilizaSubstancia").val(resultado.acolhido_tempo_utiliza_substancias);
 
@@ -634,7 +858,30 @@ function carregaAcolhido(id){
 					$("#radUnidadeHospitalar1").prop('checked',true);
 					$("#radUnidadeHospitalar2").prop('checked',false);
 					$("#boxUnidadeHospitalar").show();
-					$("#slcUnidadeHospitalar").val(resultado.acolhido_qual_unidade_hospitalar);
+					var unidadeHospitalar = (resultado.acolhido_qual_unidade_hospitalar || "").trim();
+					switch(unidadeHospitalar){
+						case "Bairral":
+							unidadeHospitalar = "Instituto Bairral de Psiquiatria";
+						break;
+						case "Bezerra":
+						case ">Bezerra":
+							unidadeHospitalar = "Intituto Bezerra de Menezes";
+						break;
+						case "Helvetia":
+							unidadeHospitalar = "Unidade Recomeço Helvétia";
+						break;
+						case "IPer":
+							unidadeHospitalar = "Instituto Perdizes HCFMUSP";
+						break;
+						case "Lacan":
+							unidadeHospitalar = "Hospital Lacan";
+						break;
+						case "Pinel":
+						case "Pinel ":
+							unidadeHospitalar = "CAISM Philippe Pinel";
+						break;
+					}
+					$("#slcUnidadeHospitalar").val(unidadeHospitalar);
 
 					if(resultado.acolhido_qual_unidade_hospitalar=="Outra"){
 						$("#boxOutraUnidadeHospitalar").removeClass('d-none');
@@ -649,7 +896,7 @@ function carregaAcolhido(id){
 					$("#radUnidadeHospitalar1").prop('checked',false);
 					$("#radUnidadeHospitalar2").prop('checked',true);
 					$("#boxUnidadeHospitalar").hide();
-					$("#slcUnidadeHospitalar").val("");
+					$("#slcUnidadeHospitalar").val("0");
 					$("#boxOutraUnidadeHospitalar").addClass('d-none');
 					$("#txtOutraUnidadeHospitalar").val("");
 				}
@@ -672,6 +919,10 @@ function carregaAcolhido(id){
 }
 
 function cadastraAcolhido(){
+	if(!validarCampoNis("#txtNis", true)){
+		return;
+	}
+
 	var form = $("#formAcolhido").serialize();
 	$.ajax({
 	  type: "POST",
@@ -679,11 +930,23 @@ function cadastraAcolhido(){
 	  data: form,
 	  success: function (retorno) {
 		location.href = "cadastro-acolhido/" + retorno;
+	  },
+	  error: function (xhr) {
+		alert(xhr.responseText || "Nao foi possivel salvar o cadastro");
 	  }
 	});
 }
 
 function editaAcolhido(id){
+	if(!$("#formAcolhido").valid()){
+		alert('Preencha todos os campos obrigatórios');
+		return;
+	}
+
+	if(!validarCampoNis("#txtNis", true)){
+		return;
+	}
+
 	var form = $("#formAcolhido").serialize();
 	form += "&id="+id;
 	$.ajax({
@@ -693,6 +956,9 @@ function editaAcolhido(id){
 	  success: function (retorno) {
 		alert('Informações alteradas com sucesso');
 		carregaAcolhido(id);
+	  },
+	  error: function (xhr) {
+		alert(xhr.responseText || "Nao foi possivel salvar as alteracoes");
 	  }
 	});
 }
@@ -804,6 +1070,9 @@ function carregaAcolhimento(id){
 					if(resultado.acolhido_tipo_beneficio.includes('PETI')){
 						$("#chkTipoBeneficio6").prop('checked',true);
 					}
+					if(resultado.acolhido_tipo_beneficio.includes('POT - Programa Operação Trabalho')){
+						$("#chkTipoBeneficio7").prop('checked',true);
+					}
 
 				}
 				else{
@@ -818,7 +1087,7 @@ function carregaAcolhimento(id){
 
 			}
 			else{
-				$("#boxBotoes").html('<button type="submit" class="btn btn-success" id="btnRegistrar">Cadastrar Usuário</button>');
+				$("#boxBotaoAcolhimento").html('<button class="btn btn-success mt-5 mb-3 mx-0" onclick="cadastraAcolhimento()">Confirmar Acolhimento</button>');
 			}
 		},
 		complete: function(){}
@@ -922,6 +1191,7 @@ function abreBox(box,acao){
 	else if(box=='boxQuantasVezes'){
 		if(acao==0){
 			$("#boxQuantasVezes").hide();
+			$("#txtReincidencia").val("");
 		}
 		else{
 			$("#boxQuantasVezes").show();
@@ -931,6 +1201,11 @@ function abreBox(box,acao){
 
 		if(acao==0){
 			$("#"+box).hide();
+			if(box=='boxUnidadeHospitalar'){
+				$("#slcUnidadeHospitalar").val("0");
+				$("#boxOutraUnidadeHospitalar").addClass('d-none');
+				$("#txtOutraUnidadeHospitalar").val("");
+			}
 		}
 		else{
 			$("#"+box).show();
@@ -946,65 +1221,34 @@ function carregaServicos(){
 	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-acolhido/model/carregaServicos.php",
 	  success: function (retorno) {
 		$("#boxServicos").html(retorno);
+		$("#boxGenero").addClass('d-none');
+		$("#slcGenero").val('0');
 	  }
 	});
 }
 
 function carregaOscsExecutoras(){
-	
-	$('#boxGenero').removeClass('d-none');
-	
-	id = $("#slcServicos").val();
-	genero = $("#slcGenero").val();
-
-	$.ajax({
-	  type: "POST",
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-acolhido/model/carregaOscsExecutoras.php",
-	  data: {'id':id,'genero':genero},
-	  success: function (retorno) {
-		$("#boxOscsExecutoras").html(retorno);
-		$("#boxDetalhesOsc").html('');
-
-		let opts = $("#slcOscsExecutoras option");
-
-		if(opts.length==1){
-			$("#boxOscsExecutoras").html('<select class="form-select" id="slcOscsExecutoras" name="slcOscsExecutoras" aria-label="Municipio" disabled="disabled"><option value="0">Sem OSC disponível</option></select><label for="slcPerfil">OSC Executora</label>');
-		}
-
-	  }
-	});
+	$("#boxGenero").removeClass('d-none');
 }
 
 function carregaDetalhesOsc(id){
-	$.ajax({
-		type: "POST",
-		url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-acolhido/model/carregaDetalhesOsc.php",
-		data: {'id':id},
-		success: function (retorno) {
-			if(id==0){
-				$("#boxDetalhesOsc").html('');
-			}
-			else{
-				$("#boxDetalhesOsc").html(retorno);
-			}
-
-		}
-	  });
+	return;
 }
 
 function solicitarVaga(){
 	var acolhido = $("#hidIdAcolhido").val();
-	var executora = $("#slcOscsExecutoras").val();
+	var servico = $("#slcServicos").val();
+	var genero = $("#slcGenero").val();
 
-	if(executora==0){
-		alert('Selecione a OSC Executora');
+	if(servico==0 || genero==0 || servico==null || genero==null){
+		alert('Selecione o referenciamento do servico e o genero');
 	}
 	else{
 
 		$.ajax({
 			type: "POST",
 			url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-acolhido/model/solicitarVaga.php",
-			data: {'acolhido':acolhido,'executora':executora},
+			data: {'acolhido':acolhido,'servico_id':servico,'genero_solicitado':genero},
 			success: function () {
 				alert('Vaga Solicitada');
 				$("#mdlSolicitarVaga").modal('hide');
@@ -1017,7 +1261,7 @@ function solicitarVaga(){
 
 function cadastraContatoReferencia(){
 
-	var id = $("#hidIdAcolhido").val();
+	var id = getIdContatoReferenciaAtual();
 	var nomeContato = $("#txtNomeReferencia").val();
 	var telefoneReferencia = $("#txtTelefoneReferencia").val();
 	var parentesco = $("#slcGrauParentesco").val();
@@ -1043,7 +1287,7 @@ function cadastraContatoReferencia(){
 }
 
 function listaContatosReferencia(){
-	var id = $("#hidIdAcolhido").val();
+	var id = getIdContatoReferenciaAtual();
 	$.ajax({
 		type: "POST",
 		url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-acolhido/model/listaContatosReferencia.php",
@@ -1074,3 +1318,6 @@ function trataUnidadeHospitalar(unidade){
 		$("#txtOutraUnidadeHospitalar").val("");
 	}
 }
+
+
+

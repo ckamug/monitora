@@ -95,7 +95,7 @@ session_start();
                   </div>
                 </div>
 
-                <?php if($_SESSION["pf"]==1 OR $_SESSION["pf"]==2){ ?>
+                <?php if($_SESSION["pf"]==1 OR $_SESSION["pf"]==2 OR $_SESSION["pf"]==8){ ?>
                 <div class="row col-md-6 ms-3 d-none" style="margin-top: -80px;" id="boxSaldoPrestacao">
                   <h3 class="card-title" style="font-size:18px;margin-top:-10px;margin-bottom:-10px;">Cálculo da Rubrica Prevista para o mês de referência</h3>
                   <div class="col-md-3">
@@ -161,5 +161,15 @@ session_start();
         </div>
       </div>
     </section>
+
+    <div class="modal fade" id="avisoModal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header" id="tituloAvisoModal"></div>
+          <div class="modal-body" id="corpoAvisoModal"></div>
+          <div class="modal-footer" id="boxBotoesAvisoModal"></div>
+        </div>
+      </div>
+    </div>
 
   </main>

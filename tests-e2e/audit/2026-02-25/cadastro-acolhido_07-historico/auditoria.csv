@@ -1,0 +1,2 @@
+data_hora;funcionalidade;arquivo;teste;status;duracao_ms;erro_locator;erro_locator_foco;screenshot;screenshot_focus;screenshot_elemento
+"2026-02-25T18:21:28.120Z";"cadastro-acolhido_07-historico";"C:\wamp64\www\coed\tests-e2e\tests\cadastro-acolhido\07-historico.spec.js";"persiste texto do historico";"passed";"3261";"";"";"";"";""

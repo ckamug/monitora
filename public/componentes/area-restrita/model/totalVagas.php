@@ -4,7 +4,7 @@ session_start();
 
 $sistema = new Sistema();
 
-if($_SESSION['pf']==1 or $_SESSION['pf']==2){
+if($_SESSION['pf']==1 or $_SESSION['pf']==2 or $_SESSION['pf']==7){
     $sistema->select("rec_executoras","SUM(executora_vagas) as vagas","executora_status = 1","","");
     $result = $sistema->getResult();
 

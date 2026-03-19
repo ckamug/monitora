@@ -11,19 +11,11 @@ if($_POST["id"]>0){
 else{
     $id = $_SESSION["consultaPrestacaoId"];
     $tipo = $_SESSION["consultaPrestacaoTipo"];
-
-    if($tipo=='celebrante'){
-        echo '<script>$("#txtTituloPrestacao").html(" - Celebrante");</script>';
-    }
-    else{
-        echo '<script>setTimeout(\'$("#txtTituloPrestacao").html(" - " + $("#slcExecutoras option:selected").text())\',100);</script>';
-    }
-
 }
 
 $sistema = new Sistema();
 
-if($_SESSION["pf"]==1 or $_SESSION["pf"]==6){
+if($_SESSION["pf"]==1 or $_SESSION["pf"]==6 or $_SESSION["pf"]==8){
     
     if($tipo=="executora"){
          $where = 'executora_id = ' . $id;
@@ -59,9 +51,16 @@ $cabecalhos = $sistema->getResult();
 
 if(count($cabecalhos)>0){
 
+    if($cabecalhos[0]["celebrante_id"]>0){
+        echo '<script>$("#txtTituloPrestacao").html(" - Celebrante");</script>';
+    }
+    //else{
+    //    echo '<script>setTimeout(\'$("#txtTituloPrestacao").html(" - " + $("#slcExecutoras option:selected").text())\',100);</script>';
+    //}
+
     for($i=0;$i<count($cabecalhos);$i++){
 
-        if($_SESSION["pf"]==1 or $_SESSION["pf"]==6){
+        if($_SESSION["pf"]==1 or $_SESSION["pf"]==6 or $_SESSION["pf"]==8){
     
             if($tipo=="executora"){
                  $where = 'executora_id = ' . $id . " AND prestacao_mes_referencia = '" . $cabecalhos[$i]["cabecalho_mes_referencia"] . "' AND a.tipo_prestacao_id = " . $cabecalhos[$i]["tipo_repasse_id"];
@@ -106,6 +105,10 @@ if(count($cabecalhos)>0){
                 if($result[0]["prestacao_mes_referencia"] == $cabecalhos[$i]["cabecalho_mes_referencia"]){
         
                     if($cabecalhos[$i]["cabecalho_id"]>0){
+
+                        $sistema->select("rec_notas_fiscais","nota_fiscal_id","prestacao_id = ".$result[0]["prestacao_id"]." and nota_status = 8");
+                        $ressalva = $sistema->getResult();
+
                         if($result[0]["prestacao_status"]==0){
                             
                             if($result[0]["prestacao_disponibilizada"]==0){
@@ -127,6 +130,10 @@ if(count($cabecalhos)>0){
                             $statusPrestacao = "Finalizada";
                             $class = "success";
                             echo "<div class='card border-success mb-3 ms-3' style='max-width: 20rem; cursor:pointer;' data-bs-toggle='modal' data-bs-target='#encaminhamentoModal' onclick=abrePrestacao('".base64_encode($result[0]["prestacao_id"])."')>";
+                        }
+
+                        if(count($ressalva)>0){
+                            $statusPrestacao = $statusPrestacao . " (com ressalvas)";
                         }
         
                     }

@@ -46,6 +46,9 @@ $dados->{'data_apontamento'} = $sistema->convertData($dados->{'data_apontamento'
 $dados->{'data_justificativa'} = $sistema->convertData($dados->{'data_justificativa'}) . " às " . substr($dados->{'data_justificativa'},11,5) . ' por ' . utf8_encode($dados->{'nome_justificativa'});
 $dados->{'data_motivo_glosa'} = $sistema->convertData($dados->{'data_motivo_glosa'}) . " às " . substr($dados->{'data_motivo_glosa'},11,5) . ' por ' . utf8_encode($dados->{'nome_glosa'});
 
+$sistema->select("rec_perfis","perfil_descricao","perfil_id = 1");
+$perfilAnalise = $sistema->getResult();
+$dados->{'perfil_analise_descricao'} = count($perfilAnalise) > 0 ? utf8_encode($perfilAnalise[0]["perfil_descricao"]) : "";
 $dados->{'perfil_logado_id'} = $_SESSION["pf"];
 $dados->{'usuario_logado_id'} = base64_decode($_SESSION["usr"]);
 

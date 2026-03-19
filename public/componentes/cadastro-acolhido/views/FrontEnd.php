@@ -3,6 +3,7 @@
   include_once 'header.php';
   include_once 'sidebar.php';
   $url = explode('/' , $_SERVER["REQUEST_URI"]);
+  $contatoReferenciaTempId = empty($url[3]) ? '-' . random_int(100000000, 2147483647) : '';
 ?>
 
 <main id="main" class="main">
@@ -24,6 +25,7 @@
             <div class="card-body">
               <h5 class="card-title">Formulário de Cadastro do Acolhido</h5>
               <input type="hidden" name="hidIdAcolhido" id="hidIdAcolhido" value="<?php echo $url[3] ?>" >
+              <input type="hidden" name="hidContatoReferenciaTempId" id="hidContatoReferenciaTempId" value="<?php echo $contatoReferenciaTempId ?>" >
 
               <div class="tab">
               
@@ -70,7 +72,7 @@
                     <div class="col-md-3">
                       <div class="form-floating">
                         <select class="form-select" id="slcSexo" name="slcSexo" aria-label="Sexo conforme registro">
-                          <option selected disabled value="">Escolha</option>
+                          <option selected value="0">Escolha</option>
                           <option value="Masculino">Masculino</option>
                           <option value="Feminino">Feminino</option>
                         </select>
@@ -87,7 +89,7 @@
                     <div class="col-md-2">
                       <div class="form-floating">
                         <select class="form-select" id="slcIdentidadeGenero" name="slcIdentidadeGenero" aria-label="Identidade de Gênero">
-                          <option selected disabled value="">Escolha</option>
+                          <option selected value="0">Escolha</option>
                           <option value="Masculino">Masculino</option>
                           <option value="Feminino">Feminino</option>
                           <option value="Travesti">Travesti</option>
@@ -103,7 +105,7 @@
                     <div class="col-md-3">
                       <div class="form-floating">
                         <select class="form-select" id="slcOrientacaoSexual" name="slcOrientacaoSexual" aria-label="Orientação Sexual">
-                          <option selected disabled value="">Escolha</option>
+                          <option selected value="0">Escolha</option>
                           <option value="Assexual">Assexual</option>
                           <option value="Bissexual">Bissexual</option>
                           <option value="Gay">Gay</option>
@@ -137,7 +139,7 @@
                     <div class="col-md-3">
                       <div class="form-floating">
                         <select class="form-select" id="slcEstadoCivil" name="slcEstadoCivil" aria-label="Estado Civil">
-                          <option selected disabled value="">Escolha</option>
+                          <option selected value="0">Escolha</option>
                           <option value="Solteiro">Solteiro</option>
                           <option value="Casado">Casado</option>
                           <option value="Divorciado">Divorciado</option>
@@ -145,6 +147,13 @@
                           <option value="Viúvo">Viúvo</option>
                         </select>
                         <label for="slcEstadoCivil">Estado Civil</label>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="form-floating">
+                        <input type="text" class="form-control" id="txtNis" name="txtNis" placeholder="NIS" inputmode="numeric" minlength="11" maxlength="11" pattern="[0-9]{11}">
+                        <div class="invalid-feedback">Informe o NIS com 11 digitos</div>
+                        <label for="txtNumero">NIS</label>
                       </div>
                     </div>
                     <div class="col-md-3">
@@ -227,7 +236,7 @@
                     <div class="col-md-3">
                       <div class="form-floating">
                       <select class="form-select" id="slcGrauParentesco" name="slcGrauParentesco" aria-label="Grau de Parentesco">
-                          <option selected disabled value="">Escolha</option>
+                          <option selected value="0">Escolha</option>
                           <option value="Pai">Pai</option>
                           <option value="Mãe">Mãe</option>
                           <option value="Irmãos">Irmãos</option>
@@ -243,7 +252,7 @@
                     <div class="col-md-3">
                       <div class="form-floating">
                       <select class="form-select" id="slcTipoServico" name="slcTipoServico" aria-label="Tipo de Serviço Público">
-                          <option selected disabled value="">Escolha</option>
+                          <option selected value="0">Escolha</option>
                           <option value="Centro POP">Centro POP</option>
                           <option value="Consultório na rua">Consultório na rua</option>
                           <option value="Serviço de acolhimento institucional">Serviço de acolhimento institucional</option>
@@ -331,7 +340,7 @@
                       <div class="col-md-3">
                         <div class="form-floating">
                           <select class="form-select" id="slcTempoSituacaoRua" name="slcTempoSituacaoRua" aria-label="Tempo em situação de rua">
-                            <option selected disabled value="">Escolha</option>
+                            <option selected value="0">Escolha</option>
                             <option value="Até 6 meses">Até 6 meses</option>
                             <option value="De 6 meses a 1 ano">Entre 6 meses e 1 ano</option>
                             <option value="De 1 ano a 2 anos">Entre 1 e 2 anos</option>
@@ -599,6 +608,16 @@
                             <input class="form-check-input" type="checkbox" id="chkSubstanciaPreferencia11" name="chkSubstanciaPreferencia[]" value="Medicação Psicotrópica">
                             <label class="form-check-label" for="chkSubstanciaPreferencia11">Medicação Psicotrópica</label>
                           </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="chkSubstanciaPreferencia12" name="chkSubstanciaPreferencia[]" value="Outra">
+                            <label class="form-check-label" for="chkSubstanciaPreferencia12">Outra</label>
+                          </div>
+                          <div class="col-md-8 mt-2" id="boxOutraSubstanciaPreferencia" style="display:none;">
+                            <div class="form-floating">
+                              <input type="text" class="form-control" id="txtOutraSubstanciaPreferencia" name="txtOutraSubstanciaPreferencia" placeholder="Qual?">
+                              <label for="txtOutraSubstanciaPreferencia">Qual?</label>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -606,7 +625,7 @@
                     <div class="col-md-3">
                       <div class="form-floating">
                         <select class="form-select" id="slcTempoUtilizaSubstancia" name="slcTempoUtilizaSubstancia" aria-label="A quanto tempo utiliza alguma substância">
-                          <option selected disabled value="">Escolha</option>
+                          <option selected value="0">Escolha</option>
                           <option value="Até 6 meses">Até 6 meses</option>
                           <option value="De 6 meses a 1 ano">De 6 meses a 1 ano</option>
                           <option value="De 1 ano a 2 anos">De 1 ano a 2 anos</option>
@@ -639,13 +658,17 @@
                         <div class="col-md-3 mt-3" id="boxUnidadeHospitalar" style="display:none;">
                           <div class="form-floating">
                             <select class="form-select" id="slcUnidadeHospitalar" name="slcUnidadeHospitalar" onchange="trataUnidadeHospitalar(this.value)" aria-label="Qual unidade hospitalar">
-                              <option selected disabled value="">Escolha</option>
-                              <option value="Bairral">Bairral</option>
-                              <option value="Lacan">Lacan</option>
-                              <option value="IPer">IPer</option>
-                              <option value=">Bezerra">Bezerra</option>
-                              <option value="Pinel ">Pinel</option>
-                              <option value="Helvetia">Helvetia</option>
+                              <option selected value="0">Escolha</option>
+                              <option value="Instituto Bairral de Psiquiatria">Instituto Bairral de Psiquiatria</option>
+                              <option value="Hospital Lacan">Hospital Lacan</option>
+                              <option value="Instituto Perdizes HCFMUSP">Instituto Perdizes HCFMUSP</option>
+                              <option value="Intituto Bezerra de Menezes">Intituto Bezerra de Menezes</option>
+                              <option value="CAISM Philippe Pinel">CAISM Philippe Pinel</option>
+                              <option value="Unidade Recomeço Helvétia">Unidade Recomeço Helvétia</option>
+                              <option value="Centro de Reabilitação de Casa Branca">Centro de Reabilitação de Casa Branca</option>
+                              <option value="CAISM Água Funda">CAISM Água Funda</option>
+                              <option value="Hospital Estadual Santa Rita do Passa Quatro">Hospital Estadual Santa Rita do Passa Quatro</option>
+                              <option value="Hospital Dr. Adolfo Bezerra de Menezes (SJRP)">Hospital Dr. Adolfo Bezerra de Menezes (SJRP)</option>
                               <option value="Outra">Outra</option>
                             </select>
                             <label for="slcUnidadeHospitalar">Qual unidade hospitalar?</label>
@@ -675,7 +698,9 @@
                     
 
                     <div class="text-center mt-5 col-md-11" id="boxBotoes">
+                      <?php if(empty($url[3])){ ?>
                       <button type="submit" class="btn btn-primary">Cadastrar Acolhido</button>
+                      <?php } ?>
                     </div>
                   </form>
                 </div>
@@ -910,7 +935,7 @@
                       <div class="col-md-3 mt-3">
                         <div class="form-floating">
                           <select class="form-select" id="slcEscolaridade" name="slcEscolaridade" aria-label="Escolaridade">
-                            <option selected disabled value="">Escolha</option>
+                            <option selected value="0">Escolha</option>
                             <option value="Sem escolaridade">Sem escolaridade</option>
                             <option value="Ensino Fundamental Completo">Ensino Fundamental Completo</option>
                             <option value="Ensino Fundamental Incompleto">Ensino Fundamental Incompleto</option>
@@ -965,6 +990,10 @@
                                 <label class="form-check-label" for="chkTipoBeneficio6">PETI</label>
                               </div>
                               <div class="form-check form-check-inline mt-2">
+                                <input class="form-check-input" type="checkbox" id="chkTipoBeneficio7" name="chkTipoBeneficio" value="POT - Programa Operação Trabalho">
+                                <label class="form-check-label" for="chkTipoBeneficio7">POT - Programa Operação Trabalho</label>
+                              </div>
+                              <div class="form-check form-check-inline mt-2">
                                 <input class="form-check-input" type="checkbox" id="chkTipoBeneficio4" name="chkTipoBeneficio" value="Outros">
                                 <label class="form-check-label" for="chkTipoBeneficio4">Outros</label>
                               </div>
@@ -1016,7 +1045,7 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header" style="background-color: #dbebfb;">
-        <h5 class="modal-title" id="exampleModalLabel"><i class="bi bi-house"></i> Selecionar OSC Executora</h5>
+        <h5 class="modal-title" id="exampleModalLabel"><i class="bi bi-house"></i> Solicitar Vaga</h5>
       </div>
       <div class="modal-body">
         
@@ -1025,20 +1054,13 @@
         </div>
         <div class="col-md-12 mt-2">
           <div class="form-floating d-none" id="boxGenero">
-            <select class="form-select" id="slcGenero" name="slcGenero" aria-label="Gênero" onchange="carregaOscsExecutoras()">
-              <option selected="" disabled="" value="">Escolha</option>
+            <select class="form-select" id="slcGenero" name="slcGenero" aria-label="Gênero">
+              <option selected="" disabled="" value="0">Escolha</option>
               <option value="Masculino">Masculino</option>
               <option value="Feminino">Feminino</option>
             </select>
             <label for='slcGenero'>Gênero</label>
           </div>
-        </div>
-        <div class="col-md-12 mt-2">
-          <div class="form-floating" id="boxOscsExecutoras"></div>
-        </div>
-      
-        <div class="col-md-12 mt-3 ms-1">
-          <div class="form-floating" id="boxDetalhesOsc"></div>
         </div>
 
       </div>

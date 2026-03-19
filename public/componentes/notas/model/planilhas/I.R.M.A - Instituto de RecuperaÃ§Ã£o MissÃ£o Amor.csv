@@ -1,0 +1,136 @@
+Data da NF;Detalhes do Documento;Categoria;Subcategoria;Valor(R$);Data do Pagamento
+2025-12-01;VR BENEF.SERV;Recursos Humanos;Vale Refeição;630,00;2025-12-03
+2025-12-01;HORIZONTES CONTABILIDADE;Terceiros;Assessoria Contábil;9.060,00;2025-12-09
+2025-12-01;HORIZONTES CONTABILIDADE;Terceiros;Assessoria Contábil;4.530,00;2025-12-09
+2025-12-01;VT VIVIANE;Recursos Humanos;Vale Transporte;466,20;2025-12-01
+2025-12-01;BERTTO ALIMENTOS-NF 073;Custeio;Gêneros alimentícios;13.760,95;2025-12-12
+2025-12-01;VIVO ;Custeio;Internet;102,91;2025-12-12
+2025-12-01;MOVED LOCAÇÃO-NF 2;Custeio;Locação de Veículos;18.750,00;2025-12-01
+2025-12-01;DW5 - NF 27;Custeio;Infraestrutura de imóvel;16.500,00;2025-12-01
+2025-12-01;RITA  BORGES ADVOGADOS-NF 0337;Terceiros;Outros;4.554,00;2025-12-03
+2025-12-02;VIVO;Custeio;Internet;102,91;2025-12-12
+2025-12-02;HAVAN-178604;Custeio;Cama, mesa e banho;1.619,32;2025-12-02
+2025-12-02;HAVAN-  NF178605;Custeio;Cama, mesa e banho;1.049,55;2025-12-03
+2025-12-03;ATACADÃO SUPERMERCADO-NF 73.666;Custeio;Gêneros alimentícios;7.498,32;2025-12-03
+2025-12-03;ATACADÃO SUPERMERCADOS;Custeio;Gêneros alimentícios;1.842,15;2025-12-03
+2025-12-03;UNIVERSO AMBIENTAL;Custeio;Infraestrutura de imóvel;3.859,00;2025-12-04
+2025-12-03;ATACADÃO SUPERMERCADO-NF73.650;Custeio;Gêneros alimentícios;5.884,27;2025-12-03
+2025-12-03;POSTO DE GASOLINA;Custeio;Combustível;150,00;2025-12-03
+2025-12-03;ATACADÃO-NF 073.671;Custeio;Copa e Cozinha;150,64;2025-12-03
+2025-12-03;ATACADÃO-SUPERMERCADO-NF 73.669;Custeio;Gêneros alimentícios;1.633,95;2025-12-03
+2025-12-04;ENGEMED;Terceiros;Outros;356,00;2025-12-04
+2025-12-04;POSTO DE GASOLINA;Custeio;Combustível;250,37;2025-12-04
+2025-12-04;VIEL NF 424.000;Custeio;Gêneros alimentícios;1.942,92;2025-12-04
+2025-12-04;USETAXI ;Custeio;Locação de Veículos;649,10;2025-12-04
+2025-12-05;DARF;Recursos Humanos;Imposto de Renda;5.331,04;2025-12-05
+2025-12-05;DARF;Recursos Humanos;Imposto de Renda;8.400,11;2025-12-05
+2025-12-05;HORTIFRUTTI -0746;Custeio;Gêneros alimentícios;885,91;2025-12-05
+2025-12-05;FGTS;Recursos Humanos;GRF-FGTS;4.354,92;2025-12-05
+2025-12-05;FGTS;Recursos Humanos;GRF-FGTS;9.963,88;2025-12-05
+2025-12-05;HORTI FRUTTI ;Custeio;Gêneros alimentícios;878,22;2025-12-05
+2025-12-05;COMBUSTIVEL;Custeio;Combustível;1.000,00;2025-12-05
+2025-12-09;ALUGUEL - BUTANTA;Custeio;Aluguel de Imóvel;8.959,00;2025-12-09
+2025-12-09;ALUGUEL - BUTANTA;Custeio;Aluguel de Imóvel;8.432,00;2025-12-09
+2025-12-09;ALUGUEL - BUTANTA;Custeio;Aluguel de Imóvel;11.594,00;2025-12-09
+2025-12-09;CHAVEIRO-NF 1898;Custeio;Infraestrutura de imóvel;141,00;2025-12-09
+2025-12-09;ALUGUEL - BUTANTA;Custeio;Aluguel de Imóvel;11.594,00;2025-12-09
+2025-12-09;VIVO;Custeio;Internet;250,15;2025-12-09
+2025-12-09;VIVO;Custeio;Internet;108,77;2025-12-09
+2025-12-09;VIVO;Custeio;Internet;119,65;2025-12-09
+2025-12-09;VIVO;Custeio;Internet;189,08;2025-12-09
+2025-12-09;ALUGUEL - OSASCO;Custeio;Aluguel de Imóvel;9.265,93;2025-12-09
+2025-12-09;ALUGUEL - OSASCO;Custeio;Aluguel de Imóvel;12.648,00;2025-12-09
+2025-12-09;IMÓVEIS;Custeio;Aluguel de Imóvel;9.265,93;2025-12-09
+2025-12-09;SUPERMERCADO SOROCABA;Custeio;Gêneros alimentícios;840,03;2025-12-19
+2025-12-10;IMÓVEIS;Custeio;Aluguel de Imóvel;9.265,93;2025-12-10
+2025-12-11;SABESP;Custeio;Água e Esgoto;396,05;2025-12-22
+2025-12-11;SABESP;Custeio;Água e Esgoto;76,30;2025-12-22
+2025-12-12;CHAVEIRO-1904;Custeio;Infraestrutura de imóvel;120,00;2025-12-12
+2025-12-12;NATHY GÁS- NF 542;Custeio;Gás de Cozinha;1.240,00;2025-12-15
+2025-12-15;HORTIFRUTI - NF 748;Custeio;Gêneros alimentícios;793,09;2025-12-12
+2025-12-15;HORTIFRUTI - NF 749;Custeio;Gêneros alimentícios;47,94;2025-11-12
+2025-12-15;ENEL;Custeio;Energia Elétrica;311,21;2025-12-15
+2025-12-15;ENEL;Custeio;Energia Elétrica;366,10;2025-12-15
+2025-12-15;ENEL;Custeio;Energia Elétrica;506,18;2025-12-15
+2025-12-15;ENEL;Custeio;Energia Elétrica;445,17;2025-12-15
+2025-12-15;NATHY GÁS - NF 545;Custeio;Gás de Cozinha;620,00;2025-12-15
+2025-12-15;HORTIFRUTI-NF751;Custeio;Gêneros alimentícios;716,71;2025-12-11
+2025-12-15;ENEL;Custeio;Energia Elétrica;215,23;2025-12-15
+2025-12-15;HORTIFRUTI-NF 0750;Custeio;Gêneros alimentícios;17,94;2025-12-12
+2025-12-15;ENEL;Custeio;Energia Elétrica;573,63;2025-12-15
+2025-12-15;ENEL;Custeio;Energia Elétrica;36,49;2025-12-15
+2025-12-15;ENEL;Custeio;Energia Elétrica;346,74;2025-12-15
+2025-12-15;ENEL;Custeio;Energia Elétrica;461,42;2025-12-15
+2025-12-15;INTERNET VIVO;Custeio;Internet;87,02;2025-12-12
+2025-12-15;VIVO;Custeio;Internet;147,96;2025-12-12
+2025-12-17;SABESP;Custeio;Água e Esgoto;708,96;2025-12-17
+2025-12-17;SABESP;Custeio;Água e Esgoto;76,30;2025-12-17
+2025-12-18;CAVALCANTI - NF 171;Custeio;Infraestrutura de imóvel;1.972,00;2025-12-18
+2025-12-18;CAVALCANTI - NF 169;Custeio;Infraestrutura de imóvel;3.770,00;2025-12-05
+2025-12-18;CAVALCANTI - NF 170;Custeio;Infraestrutura de imóvel;2.555,00;2025-12-05
+2025-12-18;MADEIRAS OSASCO ;Custeio;Infraestrutura de imóvel;276,60;2025-12-18
+2025-12-18;MADEIRAS OSASCO;Custeio;Infraestrutura de imóvel;1.189,50;2025-12-18
+2025-12-19;HORTIFRUTI - NF 754;Custeio;Gêneros alimentícios;699,99;2025-12-17
+2025-12-22;LOCAÇÃO - IMPRESSORA ;Custeio;Locação de Impressoras;290,32;2025-12-22
+2025-12-22;SABESP;Custeio;Água e Esgoto;1.266,21;2025-12-22
+2025-12-22;SABESP;Custeio;Água e Esgoto;678,85;2025-12-22
+2025-12-22;LOCAÇÃO NOTEBOOKS ;Custeio;Locação e Seguro de Computadores/Notebooks;3.486,00;2025-12-22
+2025-12-23;PADARIA - NF 154;Custeio;Gêneros alimentícios;2.107,66;2025-12-26
+2025-12-26;VT - MICHELE;Recursos Humanos;Vale Transporte;204,00;2025-12-26
+2025-12-26;VT - JUSSILENE;Recursos Humanos;Vale Transporte;499,80;2025-12-26
+2025-12-26;VT - PAULA ;Recursos Humanos;Vale Transporte;250,00;2025-12-26
+2025-12-26;VT - JAERGENTON;Recursos Humanos;Vale Transporte;285,60;2025-12-26
+2025-12-26;VT - THELMA;Recursos Humanos;Vale Transporte;296,55;2025-12-26
+2025-12-26;VT - ALEXANDRA;Recursos Humanos;Vale Transporte;310,00;2025-12-26
+2025-12-26;VT EBNER OSASCO;Recursos Humanos;Vale Transporte;166,40;2025-12-26
+2025-12-26;VT ALEXANDRE OSASCO;Recursos Humanos;Vale Transporte;321,00;2025-12-26
+2025-12-26;VT ALESSANDRO OSASCO;Recursos Humanos;Vale Transporte;330,00;2025-12-26
+2025-12-26;VT - RENATO;Recursos Humanos;Vale Transporte;220,50;2025-12-26
+2025-12-26;VT HOSANA BUTANTÃ;Recursos Humanos;Vale Transporte;558,60;2025-12-26
+2025-12-26;VT - ELIZIANE;Recursos Humanos;Vale Transporte;428,40;2025-12-26
+2025-12-26;VT INGRID OSASCO;Recursos Humanos;Vale Transporte;342,08;2025-12-26
+2025-12-26;VT - ELTON;Recursos Humanos;Vale Transporte;160,00;2025-12-26
+2025-12-26;VT - AGLENO;Recursos Humanos;Vale Transporte;408,00;2025-12-26
+2025-12-26;VT - FERNANDA;Recursos Humanos;Vale Transporte;441,00;2025-12-26
+2025-12-26;VT - VIVIANE;Recursos Humanos;Vale Transporte;466,20;2025-12-26
+2025-12-26;VT - ANDERSON;Recursos Humanos;Vale Transporte;961,80;2025-12-26
+2025-12-26; VT - ANDREA ;Recursos Humanos;Vale Transporte;546,00;2025-12-26
+2025-12-26;VT - ANA MARIA;Recursos Humanos;Vale Transporte;651,00;2025-12-26
+2025-12-26;VT - DENISE;Recursos Humanos;Vale Transporte;678,00;2025-12-26
+2025-12-26;VT - LARISSA;Recursos Humanos;Vale Transporte;120,00;2025-12-26
+2025-12-26;VT - CARLOS;Recursos Humanos;Vale Transporte;395,20;2025-12-26
+2025-12-26;VT - JOSIAS;Recursos Humanos;Vale Transporte;343,50;2025-12-30
+2025-12-26;VT - JOSE ANTONIO;Recursos Humanos;Vale Transporte;462,00;2025-12-26
+2025-12-29;SALARIO - ALEXANDRA;Recursos Humanos;Salários;13.317,12;2025-12-29
+2025-12-29;SALARIO - ALESSANDRO ;Recursos Humanos;Salários;2.574,11;2025-12-29
+2025-12-29;SALARIO - EBNER;Recursos Humanos;Salários;2.024,85;2025-12-29
+2025-12-29;SALARIO - JOSE ANTONIO ;Recursos Humanos;Salários;2.026,35;2025-12-29
+2025-12-29;SALARIO - INGRID ;Recursos Humanos;Salários;1.586,48;2025-12-29
+2025-12-29;HORTIFRUTI - NF 758;Custeio;Gêneros alimentícios;791,01;2025-12-19
+2025-12-29;SALARIO - ROBSON ;Recursos Humanos;Salários;1.758,10;2025-12-29
+2025-12-29;SALARIO - MICHELE;Recursos Humanos;Salários;3.045,52;2025-12-29
+2025-12-29;SALARIO - JAERGENTON;Recursos Humanos;Salários;1.692,61;2025-12-29
+2025-12-29;HORTI FRUTI-0756;Custeio;Gêneros alimentícios;85,44;2025-12-26
+2025-12-29;HORTIFRUTI-0755;Custeio;Gêneros alimentícios;638,34;2025-12-26
+2025-12-29;SALARIO - PAULA;Recursos Humanos;Salários;2.563,88;2025-12-29
+2025-12-29;SALARIO - DENISE;Recursos Humanos;Salários;4.345,68;2025-12-29
+2025-12-29;SALARIO - THELMA;Recursos Humanos;Salários;2.241,29;2025-12-29
+2025-12-29;SALARIO ALEXANDRE OSASCO;Recursos Humanos;Salários;2.213,37;2025-12-29
+2025-12-29;SALÁRIO JUSSILENE OSASCO;Recursos Humanos;Salários;3.130,93;2025-12-29
+2025-12-29;VR - ALIMENTAÇÃO ;Recursos Humanos;Vale Refeição;13.890,00;2025-12-29
+2025-12-29;MENTORIA - NF 30;Terceiros;Outros;3.345,36;2025-12-29
+2025-12-29;SALARIO - ADRIANA;Recursos Humanos;Salários;3.392,97;2025-12-29
+2025-12-30;SALARIO - ANDERSON;Recursos Humanos;Salários;2.015,85;2025-12-30
+2025-12-30;SALARIO - JOSIAS;Recursos Humanos;Salários;2.537,36;2025-12-30
+2025-12-30;SALARIO - HOSANA ;Recursos Humanos;Salários;3.130,93;2025-12-30
+2025-12-30;SALARIO - ANDREA;Recursos Humanos;Salários;1.565,14;2025-12-30
+2025-12-30;SALARIO - ELTON;Recursos Humanos;Salários;2.271,49;2025-12-30
+2025-12-30;SALARIO - ELIZIANE;Recursos Humanos;Salários;3.130,93;2025-12-30
+2025-12-30;SALARIO - LARISSA;Recursos Humanos;Salários;1.889,90;2025-12-30
+2025-12-30;SALARIO - ANA MARIA;Recursos Humanos;Salários;4.688,79;2025-12-30
+2025-12-30;SALARIO - VIVIANE;Recursos Humanos;Salários;1.631,25;2025-12-30
+2025-12-30;SALARIO - CARLOS;Recursos Humanos;Salários;2.026,35;2025-12-30
+2025-12-30;SALARIO - RENATO;Recursos Humanos;Salários;2.024,85;2025-12-30
+2025-12-30;SALARIO - FERNANDA;Recursos Humanos;Salários;3.367,30;2025-12-30
+2025-12-30;SALARIO - AGLENO;Recursos Humanos;Salários;3.367,30;2025-12-30
+2025-12-30;PRESIDENTE ALTINO NF 633;Custeio;Infraestrutura de imóvel;58,00;2025-12-29

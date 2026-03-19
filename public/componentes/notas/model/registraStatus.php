@@ -32,3 +32,15 @@ if($_POST["status"]==4 OR $_POST["status"]==7){
     //$sistema->debug=true;
     $sistema->insert('rec_notas_motivos_glosa',$dados);
 }
+
+if($_POST["status"]==8){
+    $dados["nota_fiscal_id"] = intval($_POST["id"]);
+    $dados["ressalva_descricao"] = $_POST["ressalva"];
+            
+    $dados["usuario_id"] = base64_decode($_SESSION["usr"]);
+    $dados["data_cadastro"] = date("Y-m-d H:i:s");
+        
+    $sistema = new Sistema();
+    //$sistema->debug=true;
+    $sistema->insert('rec_notas_ressalvas',$dados);
+}

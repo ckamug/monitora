@@ -1,4 +1,11 @@
 $(document).ready(function(){
+	var perfil = $("#hidPerfilLogado").val();
+	if(perfil=='8'){
+		exibirVinculos();
+		$("#boxTabelaSolicitacoesVagas").addClass('d-none');
+		return;
+	}
+
 	carregaTotalVagas();
 	carregaTotalAcolhidos();
 	carregaTotalOscs();
@@ -152,6 +159,67 @@ function controlaVaga(param , solicitacao_id){
 		});
 
 	}
+}
+
+function abreEncaminhamento(solicitacaoId, municipioId, servicoId, genero){
+	var modalEncaminhamento = new bootstrap.Modal(document.getElementById('encaminhamentoModal'), {
+		keyboard: false
+	});
+
+	$("#hidSolicitacaoEncaminhamento").val(solicitacaoId);
+	$("#boxOscsEncaminhamento").html("");
+	$("#boxDetalhesOscEncaminhamento").html("");
+
+	$.ajax({
+		type: "POST",
+		url: "public/componentes/area-restrita/model/carregaOscsEncaminhamento.php",
+		data: {'municipio_id':municipioId,'servico_id':servicoId,'genero':genero},
+		success: function (retorno) {
+			$("#boxOscsEncaminhamento").html(retorno);
+			modalEncaminhamento.show();
+		}
+	});
+
+	$("#btnConfirmaEncaminhamento").off("click").on("click", function(){
+		encaminharSolicitacao();
+	});
+}
+
+function carregaDetalhesOscEncaminhamento(id){
+	if(id==0 || id==null || id==undefined){
+		$("#boxDetalhesOscEncaminhamento").html("");
+		return;
+	}
+
+	$.ajax({
+		type: "POST",
+		url: "public/componentes/area-restrita/model/carregaDetalhesOscEncaminhamento.php",
+		data: {'id':id},
+		success: function (retorno) {
+			$("#boxDetalhesOscEncaminhamento").html(retorno);
+		}
+	});
+}
+
+function encaminharSolicitacao(){
+	var solicitacaoId = $("#hidSolicitacaoEncaminhamento").val();
+	var executoraId = $("#slcOscsEncaminhamento").val();
+
+	if(executoraId==0 || executoraId==null || executoraId==undefined){
+		alert("Selecione uma OSC para encaminhar.");
+		return;
+	}
+
+	$.ajax({
+		type: "POST",
+		url: "public/componentes/area-restrita/model/encaminharSolicitacaoVaga.php",
+		data: {'solicitacao_id':solicitacaoId,'executora_id':executoraId},
+		success: function (retorno) {
+			alert(retorno);
+			$("#encaminhamentoModal").modal('hide');
+			carregaSolicitacoesVagas();
+		}
+	});
 }
 
 function exibirVinculos(){

@@ -1,0 +1,316 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link [ref=e4] [cursor=pointer]:
+        - /url: area-restrita
+      - generic [ref=e5] [cursor=pointer]: 
+    - navigation [ref=e6]:
+      - list [ref=e7]:
+        - text:     
+        - listitem [ref=e8]:
+          - link "teste e2e" [ref=e9] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=e10]: teste e2e
+          - text: 
+  - complementary [ref=e11]:
+    - list [ref=e12]:
+      - listitem [ref=e13]:
+        - link " Dashboard" [ref=e14] [cursor=pointer]:
+          - /url: http://localhost/coed/area-restrita
+          - generic [ref=e15]: 
+          - generic [ref=e16]: Dashboard
+      - text: 
+      - listitem [ref=e17]:
+        - link " Cadastros " [ref=e18] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=e19]: 
+          - generic [ref=e20]: Cadastros
+          - generic [ref=e21]: 
+        - text:      
+      - text:               
+      - listitem [ref=e22]:
+        - link " Sair" [ref=e23] [cursor=pointer]:
+          - /url: http://localhost/coed/login
+          - generic [ref=e24]: 
+          - generic [ref=e25]: Sair
+  - main [ref=e26]:
+    - generic [ref=e27]:
+      - heading "Dados do Acolhido" [level=1] [ref=e28]
+      - navigation [ref=e29]:
+        - list [ref=e30]:
+          - listitem [ref=e31]:
+            - link "Início" [ref=e32] [cursor=pointer]:
+              - /url: /coed/area-restrita
+          - listitem [ref=e33]:
+            - text: /
+            - link "Acolhidos" [ref=e34] [cursor=pointer]:
+              - /url: /coed/acolhidos
+          - listitem [ref=e35]: / Dados do Acolhido
+    - generic [ref=e38]:
+      - heading "Formulário de Cadastro do Acolhido" [level=5] [ref=e39]
+      - generic [ref=e40]:
+        - tablist [ref=e41]:
+          - tab "Dados e Informações do Acolhido" [selected] [ref=e42] [cursor=pointer]
+          - tab "Documentos, Avaliações e Exames" [selected] [ref=e43] [cursor=pointer]
+        - generic [ref=e44]:
+          - tabpanel [ref=e45]:
+            - generic [ref=e46]:
+              - button " Solicitar Vaga" [ref=e48] [cursor=pointer]:
+                - generic [ref=e49]: 
+                - text: Solicitar Vaga
+              - generic [ref=e51]:
+                - textbox "Nome Completo" [ref=e52]: E2E EDICAO ACOLHIMENTO SIM 1772043720154473
+                - generic: Nome Completo
+              - generic [ref=e54]:
+                - textbox "Data de Nascimento" [ref=e55]: 01/01/2000
+                - generic: Data de Nascimento
+              - generic [ref=e57]:
+                - combobox "Sexo conforme registro" [ref=e58]:
+                  - option "Escolha"
+                  - option "Masculino" [selected]
+                  - option "Feminino"
+                - generic: Sexo conforme registro
+              - generic [ref=e60]:
+                - textbox "Nome Social" [ref=e61]: E2E EDICAO ACOLHIMENTO SIM 1772043720154473 SOCIAL
+                - generic: Nome Social
+              - generic [ref=e63]:
+                - combobox "Identidade de Gênero" [ref=e64]:
+                  - option "Escolha"
+                  - option "Masculino" [selected]
+                  - option "Feminino"
+                  - option "Travesti"
+                  - option "Transgênero"
+                  - option "Gênero neutro"
+                  - option "Não-binário"
+                  - option "Agênero"
+                  - option "Pangênero"
+                - generic: Identidade de Gênero
+              - generic [ref=e66]:
+                - combobox "Orientação Sexual" [ref=e67]:
+                  - option "Escolha"
+                  - option "Assexual"
+                  - option "Bissexual"
+                  - option "Gay"
+                  - option "Heterossexual" [selected]
+                  - option "Lésbica"
+                  - option "Pansexual"
+                  - option "Queer"
+                  - option "Nenhuma das anteriores"
+                - generic: Orientação Sexual
+              - generic [ref=e69]:
+                - textbox "Filiação" [ref=e70]: FILIACAO 1 E2E
+                - generic: Filiação (1)
+              - generic [ref=e72]:
+                - textbox "Filiação" [ref=e73]: FILIACAO 2 E2E
+                - generic: Filiação (2)
+              - generic [ref=e75]:
+                - textbox "Filiação" [ref=e76]: FILIACAO 3 E2E
+                - generic: Filiação (3)
+              - generic [ref=e78]:
+                - combobox "Estado Civil" [ref=e79]:
+                  - option "Escolha"
+                  - option "Solteiro" [selected]
+                  - option "Casado"
+                  - option "Divorciado"
+                  - option "União Estável"
+                  - option "Viúvo"
+                - generic: Estado Civil
+              - generic [ref=e81]:
+                - textbox "NIS" [ref=e82]: "73711787649"
+                - generic: NIS
+              - generic [ref=e84]:
+                - textbox "CPF" [ref=e85]: 531.014.774-84
+                - generic: CPF
+              - generic [ref=e87]:
+                - textbox "RG" [ref=e88]: "73677235"
+                - generic: RG
+              - group "É a primeira vez em serviço de acolhimento terapêutico?" [ref=e90]:
+                - generic [ref=e91]: É a primeira vez em serviço de acolhimento terapêutico?
+                - generic [ref=e92]:
+                  - generic [ref=e93]:
+                    - radio "Sim" [checked] [ref=e94]
+                    - generic [ref=e95]: Sim
+                  - generic [ref=e96]:
+                    - radio "Não" [ref=e97]
+                    - generic [ref=e98]: Não
+              - generic [ref=e99]: DADOS DE CONTATO
+              - separator [ref=e100]
+              - generic [ref=e102]:
+                - textbox "Contato Telefônico Pessoal" [ref=e103]: (11)98765-4321
+                - generic: Contato Telefônico Pessoal
+              - generic [ref=e105]:
+                - textbox "Contato Telefônico Residencial" [ref=e106]: (11)3456-7890
+                - generic: Contato Telefônico Residencial
+              - generic [ref=e108]: CONTATOS DE REFERÊNCIA
+              - separator [ref=e109]
+              - generic [ref=e111]:
+                - textbox "Nome do Contato de Referência" [ref=e112]
+                - generic: Nome do Contato de Referência
+              - generic [ref=e114]:
+                - textbox "Contato Telefônico" [ref=e115]:
+                  - /placeholder: Contato Telefônico de Referência
+                - generic: Contato Telefônico
+              - generic [ref=e117]:
+                - combobox "Grau de Parentesco" [ref=e118]:
+                  - option "Escolha" [selected]
+                  - option "Pai"
+                  - option "Mãe"
+                  - option "Irmãos"
+                  - option "Tio e/ou Tia"
+                  - option "Primo e/ou Prima"
+                  - option "Vizinhos"
+                  - option "Conhecidos"
+                  - option "Algum serviço público de Referência"
+                - generic: Tipo de Vínculo
+              - generic [ref=e120]:
+                - combobox "Tipo de Serviço Público" [ref=e121]:
+                  - option "Escolha" [selected]
+                  - option "Centro POP"
+                  - option "Consultório na rua"
+                  - option "Serviço de acolhimento institucional"
+                  - option "Outro"
+                - generic: Tipo de Serviço
+              - button "Adicionar contato de referência" [ref=e124] [cursor=pointer]:
+                - generic [ref=e125]: 
+              - generic [ref=e126]: ENDEREÇO
+              - separator [ref=e127]
+              - group "Tem endereço fixo?" [ref=e129]:
+                - generic [ref=e130]: Tem endereço fixo?
+                - generic [ref=e131]:
+                  - generic [ref=e132]:
+                    - radio "Sim" [ref=e133]
+                    - generic [ref=e134]: Sim
+                  - generic [ref=e135]:
+                    - radio "Não, estou em situação de rua" [checked] [ref=e136]
+                    - generic [ref=e137]: Não, estou em situação de rua
+              - generic [ref=e140]:
+                - combobox "Tempo em situação de rua" [ref=e141]:
+                  - option "Escolha"
+                  - option "Até 6 meses" [selected]
+                  - option "Entre 6 meses e 1 ano"
+                  - option "Entre 1 e 2 anos"
+                  - option "Entre 2 e 5 anos"
+                  - option "Entre 5 e 10 anos"
+                - generic: Há quanto tempo?
+              - generic [ref=e142]: SAÚDE
+              - separator [ref=e143]
+              - group "Tem alguma das seguintes comorbidades?" [ref=e145]:
+                - generic [ref=e146]: Tem alguma das seguintes comorbidades?
+                - generic [ref=e147]:
+                  - generic [ref=e148]:
+                    - checkbox "Pressão Alta" [ref=e149]
+                    - generic [ref=e150]: Pressão Alta
+                  - generic [ref=e151]:
+                    - checkbox "Colesterol" [ref=e152]
+                    - generic [ref=e153]: Colesterol
+                  - generic [ref=e154]:
+                    - checkbox "Tuberculose" [ref=e155]
+                    - generic [ref=e156]: Tuberculose
+                  - generic [ref=e157]:
+                    - checkbox "Sífilis" [ref=e158]
+                    - generic [ref=e159]: Sífilis
+                  - generic [ref=e160]:
+                    - checkbox "Doenças Cardiovasculares" [ref=e161]
+                    - generic [ref=e162]: Doenças Cardiovasculares
+                  - generic [ref=e163]:
+                    - checkbox "Epilepsia" [ref=e164]
+                    - generic [ref=e165]: Epilepsia
+                  - generic [ref=e166]:
+                    - checkbox "Diabetes" [ref=e167]
+                    - generic [ref=e168]: Diabetes
+                  - generic [ref=e169]:
+                    - checkbox "Hepatite (B/C)" [ref=e170]
+                    - generic [ref=e171]: Hepatite (B/C)
+                  - generic [ref=e172]:
+                    - checkbox "HIV" [ref=e173]
+                    - generic [ref=e174]: HIV
+                  - generic [ref=e175]:
+                    - checkbox "Cirrose" [ref=e176]
+                    - generic [ref=e177]: Cirrose
+                  - generic [ref=e178]:
+                    - checkbox "Outra" [ref=e179]
+                    - generic [ref=e180]: Outra
+                  - generic [ref=e181]:
+                    - checkbox "Não" [checked] [ref=e182]
+                    - generic [ref=e183]: Não
+              - group "Possui alguma deficiência que limite as habilidades habituais? (Trabalhar, estudos, etc.)" [ref=e185]:
+                - generic [ref=e186]: Possui alguma deficiência que limite as habilidades habituais? (Trabalhar, estudos, etc.)
+                - generic [ref=e187]:
+                  - generic [ref=e188]:
+                    - radio "Sim" [ref=e189]
+                    - generic [ref=e190]: Sim
+                  - generic [ref=e191]:
+                    - radio "Não" [checked] [ref=e192]
+                    - generic [ref=e193]: Não
+              - generic [ref=e194]:
+                - generic [ref=e195]: Qual o tipo de substancia da sua preferência?
+                - generic [ref=e197]:
+                  - generic [ref=e198]:
+                    - checkbox "Álcool" [ref=e199]
+                    - generic [ref=e200]: Álcool
+                  - generic [ref=e201]:
+                    - checkbox "Maconha" [ref=e202]
+                    - generic [ref=e203]: Maconha
+                  - generic [ref=e204]:
+                    - checkbox "Cocaína" [ref=e205]
+                    - generic [ref=e206]: Cocaína
+                  - generic [ref=e207]:
+                    - checkbox "Crack" [checked] [ref=e208]
+                    - generic [ref=e209]: Crack
+                  - generic [ref=e210]:
+                    - checkbox "Êxtase" [ref=e211]
+                    - generic [ref=e212]: Êxtase
+                  - generic [ref=e213]:
+                    - checkbox "Anfetaminas" [ref=e214]
+                    - generic [ref=e215]: Anfetaminas
+                - generic [ref=e217]:
+                  - generic [ref=e218]:
+                    - checkbox "LSD" [ref=e219]
+                    - generic [ref=e220]: LSD
+                  - generic [ref=e221]:
+                    - checkbox "Substâncias K, Spice" [ref=e222]
+                    - generic [ref=e223]: Substâncias K, Spice
+                  - generic [ref=e224]:
+                    - checkbox "Heroína" [ref=e225]
+                    - generic [ref=e226]: Heroína
+                  - generic [ref=e227]:
+                    - checkbox "Metanfetamina" [ref=e228]
+                    - generic [ref=e229]: Metanfetamina
+                  - generic [ref=e230]:
+                    - checkbox "Medicação Psicotrópica" [ref=e231]
+                    - generic [ref=e232]: Medicação Psicotrópica
+                  - generic [ref=e233]:
+                    - checkbox "Outra" [ref=e234]
+                    - generic [ref=e235]: Outra
+              - generic [ref=e237]:
+                - combobox "A quanto tempo utiliza alguma substância" [ref=e238]:
+                  - option "Escolha"
+                  - option "Até 6 meses"
+                  - option "De 6 meses a 1 ano" [selected]
+                  - option "De 1 ano a 2 anos"
+                  - option "De 2 anos a 4 anos"
+                  - option "Acima de 5 anos"
+                - generic: Há quanto tempo utiliza substâncias?
+              - group "Estava em alguma unidade hospitalar para desintoxicação?" [ref=e240]:
+                - generic [ref=e241]: Estava em alguma unidade hospitalar para desintoxicação?
+                - generic [ref=e242]:
+                  - generic [ref=e243]:
+                    - radio "Sim" [ref=e244]
+                    - generic [ref=e245]: Sim
+                  - generic [ref=e246]:
+                    - radio "Não" [checked] [ref=e247]
+                    - generic [ref=e248]: Não
+              - generic [ref=e249]: HISTÓRICO
+              - separator [ref=e250]
+              - generic [ref=e252]:
+                - textbox "Breve relato do histórico da pessoa a ser acolhida" [ref=e253]:
+                  - /placeholder: Breve histórico
+                - generic: Breve relato do histórico da pessoa a ser acolhida
+              - button "Alterar Informações" [ref=e255] [cursor=pointer]
+          - text: 
+  - text: 
+  - img
+```

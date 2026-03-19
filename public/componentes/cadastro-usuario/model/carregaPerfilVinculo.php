@@ -6,6 +6,7 @@ montaCombo($_POST['id'] , $_POST['vinculo_id']);
 
 function montaCombo($id,$vinculo_id)
 {
+	$select = '';
 
 	switch($id){	
 		case 1:
@@ -21,6 +22,9 @@ function montaCombo($id,$vinculo_id)
 			$select = new select('recomeco','rec_executoras','slcPerfilVinculo','executora_id','executora_nome_fantasia','executora_nome_fantasia',$vinculo_id,'carregaCasas(this.value)','');
 		break;
 		case 5:
+			
+		break;
+		case 7:
 			
 		break;
 	}

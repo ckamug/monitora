@@ -36,4 +36,14 @@
       </div>
     </section>
 
+    <div class="modal fade" id="confirmacaoModal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header bg-warning bg-gradient" id="tituloModal"></div>
+          <div class="modal-body" id="corpoModal"></div>
+          <div class="modal-footer" id="boxBotoesModal"></div>
+        </div>
+      </div>
+    </div>
+
   </main><!-- End #main -->

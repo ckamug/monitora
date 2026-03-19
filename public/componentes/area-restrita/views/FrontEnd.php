@@ -6,6 +6,7 @@
 ?>	
 
 <main id="main" class="main">
+  <input type="hidden" id="hidPerfilLogado" value="<?php echo $_SESSION["pf"] ?>">
 
   <div class="pagetitle">
     <h1>Dashboard | <span class="fs-6" id="boxVinculoAtivo"></span></h1>
@@ -242,6 +243,25 @@
     </div>
   </div>
 
+
+  <div class="modal fade" id="encaminhamentoModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"><i class="bi bi-send"></i> Encaminhar para OSC</h5>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="hidSolicitacaoEncaminhamento">
+          <div class="form-floating" id="boxOscsEncaminhamento"></div>
+          <div class="form-floating mt-3 ms-1" id="boxDetalhesOscEncaminhamento"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" id="btnConfirmaEncaminhamento">Encaminhar Solicitacao</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- MODAL JUSTIFICATIVA -->
   <div class="modal fade" id="justificativaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">

@@ -11,7 +11,7 @@ class crud
     private $db_user = 'dbrecomeco';
     private $db_pass = 'Rec0mec02022!';
     private $db_name = 'recomeco';
-    private $db_port = '32769';
+    private $db_port = '32771';
     public $Xform;
     private $result = array();
 	public $newID;

@@ -12,15 +12,24 @@ echo "        <tr>";
 echo "        <th scope='col'>Nome</th>";
 echo "        <th scope='col'>CPF</th>";
 echo "        <th scope='col'>E-mail</th>";
+echo "        <th scope='col'></th>";
 echo "        </tr>";
 echo "    </thead>";
 
 for($i=0;$i<count($result);$i++){
 
-    echo "<tr onclick=usuario('".base64_encode($result[$i]["usuario_id"])."')>";
-    echo "    <td>".utf8_encode($result[$i]["usuario_nome"])."</td>";
-    echo "    <td>".$result[$i]["usuario_cpf"]."</td>";
-    echo "    <td>".$result[$i]["usuario_email"]."</td>";
+    if($result[$i]["senha_alterada"]==1){
+        $icone = "<button class='btn btn-warning' onclick='criaPergunta(".$result[$i]["usuario_id"].")'><i class='bi bi-key'></i></button>";
+    }
+    else{
+        $icone = "";
+    }
+
+    echo "<tr>";
+    echo "    <td onclick=usuario('".base64_encode($result[$i]["usuario_id"])."')>".utf8_encode($result[$i]["usuario_nome"])."</td>";
+    echo "    <td onclick=usuario('".base64_encode($result[$i]["usuario_id"])."')>".$result[$i]["usuario_cpf"]."</td>";
+    echo "    <td onclick=usuario('".base64_encode($result[$i]["usuario_id"])."')>".$result[$i]["usuario_email"]."</td>";
+    echo "    <td style='text-align:right;'>".$icone."</td>";
     echo "</tr>";
 
 }

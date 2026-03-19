@@ -30,7 +30,7 @@ $innerJoin[] = 'left join rec_usuarios i on e.usuario_id_finalizou = i.usuario_i
 
 $where = "a.prestacao_id = " . base64_decode($_POST["prestacao"]) . " AND a.nota_status != 5";
 
-$sistema->innerJoin($campos,$from,$innerJoin,$where,'','a.nota_status ASC');
+$sistema->innerJoin($campos,$from,$innerJoin,$where,'a.nota_fiscal_id','a.nota_status ASC');
 $result = $sistema->getResult();
 
 if($tipoPrestacao[0]["prestacao_disponibilizada"]==0){
@@ -144,9 +144,9 @@ for($i=0;$i<count($result);$i++){
 
 echo "</table>";
 echo '<div class="col-12 text-end"><a href="https://portal.seds.sp.gov.br/coed/public/componentes/notas/model/gerarPdf.php?p='.base64_encode($result[0]["prestacao_id"]).'" target="_blank"><img src="https://portal.seds.sp.gov.br/coed/images/pdf.gif" border="0"></a>';
-if($_SESSION["pf"]==1){
+//if($_SESSION["pf"]==1){
     echo '<img src="https://portal.seds.sp.gov.br/coed/images/csv.gif" border="0" style="cursor:pointer" onclick=gerarCsv("'.base64_encode($result[0]["prestacao_id"]).'")></div>';
-}
+//}
 
 if($result[0]["prestacao_disponibilizada"]==1){
     $finalizacao = "<strong>Disponibilizada por:</strong> " . utf8_encode($result[0]["usuario_disponibilizou"]);
@@ -186,7 +186,7 @@ if($result[0]["prestacao_status"]==1){
 }
 
 if($result[0]["prestacao_disponibilizada"]==1){
-    if($_SESSION['pf']==1 and (base64_decode($_SESSION['usr'])==1 or base64_decode($_SESSION['usr'])==18 or base64_decode($_SESSION['usr'])==22)){
+    if($_SESSION['pf']==1 and (base64_decode($_SESSION['usr'])==1 or base64_decode($_SESSION['usr'])==139 or base64_decode($_SESSION['usr'])==189 or base64_decode($_SESSION['usr'])==217)){
         echo '<script>mostraFerramentasCoed()</script>';
     }
 }

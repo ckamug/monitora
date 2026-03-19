@@ -2,6 +2,7 @@ $(document).ready(function(){
 
 	carregaMunicipios(0);
 	carregaMunicipio($("#hidIdMunicipio").val());
+	$("#boxBotoes button[type='submit']").text("Cadastrar Porta de Entrada");
 
 	$('#txtCnpj').mask('00.000.000/0000-00');
 	$('#txtCep').mask('00000-000');
@@ -114,7 +115,7 @@ function carregaMunicipio(id){
 
 			}
 			else{
-				$("#boxBotoes").html('<button type="submit" class="btn btn-success" id="btnRegistrar">Cadastrar Municipio</button>');
+				$("#boxBotoes").html('<button type="submit" class="btn btn-success" id="btnRegistrar">Cadastrar Porta de Entrada</button>');
 			}
 		},
 		complete: function(){}

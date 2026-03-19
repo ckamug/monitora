@@ -17,7 +17,7 @@
         </ol>
       </nav>
     </div><!-- End Page Title -->
-    <input type="hidden" name="hidIdOrigem" id="hidIdOrigem" value="<?php echo $url[3] ?>" >
+    <input type="hidden" name="hidIdOrigem" id="hidIdOrigem" value="<?php echo $url[3] ?>">
     <section class="section">
       <div class="row">
         <div class="col-lg-12">
@@ -29,7 +29,7 @@
             <div class="card d-none" id="boxOscsExecutoras">
               <div class="card-body">
                 <h5 class="card-title">Relação de OSCs Executoras</h5>
-                <?php if($_SESSION["pf"]==1 or $_SESSION["pf"]==2){ ?>
+                <?php if($_SESSION["pf"]==1 or $_SESSION["pf"]==2 or $_SESSION["pf"]==8){ ?>
                   <div class="row mt-2 mb-1">
                     <div class="col-md-2">
                       <div class="form-check form-check-inline">
@@ -43,7 +43,7 @@
                         <label class="form-check-label" for="radExecutoras2">Disponibilizadas (pelas OSCs)</label>
                       </div>
                     </div>
-                    <?php if($_SESSION["pf"]==1){ ?>
+                    <?php if($_SESSION["pf"]==1 or $_SESSION["pf"]==8){ ?>
                     <div class="col-md-3">
                       <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="radExecutoras" id="radExecutoras4" value="Encerradas" onclick="carregaExecutoras(this.value)">
@@ -108,7 +108,7 @@
             </div>
           </div>
 
-          <?php if(base64_decode($_SESSION['usr'])==1 or base64_decode($_SESSION['usr'])==18 or base64_decode($_SESSION['usr'])==22 or base64_decode($_SESSION['usr'])==117){ ?>
+          <?php if(base64_decode($_SESSION['usr'])==1 or base64_decode($_SESSION['usr'])==139 or base64_decode($_SESSION['usr'])==189 or base64_decode($_SESSION['usr'])==217){ ?>
           <div class="card mt-1" id="boxFerramentasAdministrativas">
             <div class="card-body">
               <h5 class="card-title" style="margin-bottom:-13px;">Ferramentas administrativas</h5>

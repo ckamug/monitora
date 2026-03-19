@@ -1,0 +1,10 @@
+.dvPrincipal 
+{
+	position:relative;
+	float:left;
+	width:97%;
+	margin-top:20px;
+	margin-left:3px;
+	padding:1%;
+	border:1px solid #ccc;
+}

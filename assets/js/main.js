@@ -169,7 +169,10 @@ function carregaHeader(){
         $(".vwNome").html(data.usuario_nome);
         $(".vwPerfil").html(data.perfil_descricao);
         if(data.perfil==1){
-          $("#boxVinculoAtivo").html("COED");
+          $("#boxVinculoAtivo").html(data.perfil_descricao);
+        }
+        else if(data.perfil==8){
+          $("#boxVinculoAtivo").html(data.perfil_descricao);
         }
         else if(data.perfil==2){
           $(".vwLocal").html(data.celebrante_nome_fantasia);
@@ -182,6 +185,10 @@ function carregaHeader(){
         else if(data.perfil==4){
           $(".vwLocal").html(data.executora_nome_fantasia);
           $("#boxVinculoAtivo").html(data.executora_nome_fantasia);
+        }
+        else if(data.perfil==7){
+          $(".vwLocal").html(data.perfil_descricao);
+          $("#boxVinculoAtivo").html(data.perfil_descricao);
         }
         else{}
 
@@ -197,10 +204,10 @@ function carregaHeader(){
 
 function carregaMenu(perfil){
 
-  switch(perfil){
+  switch(String(perfil)){
     case '1':
-      $("#titDashboard , #titCadastros , #titPrestacao").removeClass('d-none');
-      $("#mnuCadAcolhidos , #mnuCadCelebrante , #mnuCadMunicipio , #mnuCadExecutora , #mnuCadUsuario , #mnuPrestPrestacoes , #mnuPrestCabecalhos").removeClass('d-none');
+      $("#titDashboard , #titCadastros , #titPrestacao , #titEncaminhamentosOscs").removeClass('d-none');
+      $("#mnuCadAcolhidos , #mnuCadCelebrante , #mnuCadMunicipio , #mnuCadDesligamentos , #mnuCadExecutora , #mnuCadUsuario , #mnuPrestPrestacoes , #mnuPrestCabecalhos").removeClass('d-none');
     break;
     case '2':
       $("#titDashboard , #titCadastros , #titPrestacao").removeClass('d-none');
@@ -212,11 +219,18 @@ function carregaMenu(perfil){
     break;
     case '4':
       $("#titDashboard , #titCadastros , #titPrestacao").removeClass('d-none');
-      $("#mnuCadAcolhidos , #mnuPrestPrestacoes").removeClass('d-none');
+      $("#mnuCadAcolhidos , #mnuCadDesligamentos , #mnuPrestPrestacoes").removeClass('d-none');
     break;
     case '6':
       $("#titDashboard , #titPrestacao").removeClass('d-none');
       $("#mnuPrestPrestacoes").removeClass('d-none');
+    break;
+    case '7':
+      $("#titDashboard , #titEncaminhamentosOscs").removeClass('d-none');
+    break;
+    case '8':
+      $("#titDashboard , #titPrestacao").removeClass('d-none');
+      $("#mnuPrestPrestacoes , #mnuPrestCabecalhos").removeClass('d-none');
     break;
     default:
       $("#titDashboard , #titPrestacao").removeClass('d-none');

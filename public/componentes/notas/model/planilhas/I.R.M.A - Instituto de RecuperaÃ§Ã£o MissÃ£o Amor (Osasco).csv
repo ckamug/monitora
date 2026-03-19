@@ -1,0 +1,79 @@
+Data da NF;Detalhes do Documento;Categoria;Subcategoria;Valor(R$);Data do Pagamento
+2026-02-02;CONTABILIDADE - NF 013;Terceiros;Assessoria Contábil;4.530,00;2026-02-18
+2026-02-02;BRTRTTO - NF 070;Custeio;Gêneros alimentícios;6.203,56;2026-02-13
+2026-02-02;DRA RITA ;Terceiros;Assessoria Jurídica;2.277,00;2026-02-03
+2026-02-02;MOVED - LOCAÇÃO ;Custeio;Locação de Veículos;9.375,00;2026-02-03
+2026-02-02;DW5 SERVIÇO - NF 31;Custeio;Infraestrutura de imóvel;8.250,00;2026-02-03
+2026-02-03;VR - COMBUSTIVEL ;Custeio;Combustível;500,00;2026-02-03
+2026-02-03;SUPERMERCADO - NF 2140;Custeio;Gêneros alimentícios;1.199,45;2026-02-06
+2026-02-05;ATACADÃO - NF 083290;Custeio;Gêneros alimentícios;3.863,18;2026-02-05
+2026-02-05;ATACADÃO - NF 083293;Custeio;Higiene e Limpeza;1.375,79;2026-02-05
+2026-02-06;ENEL - CASA CUIDAR ;Custeio;Energia Elétrica;41,37;2026-02-18
+2026-02-06;ENEL - CASA DESPERTAR ;Custeio;Energia Elétrica;501,15;2026-02-18
+2026-02-06;ENEL - CASA CUIDAR ;Custeio;Energia Elétrica;243,68;2026-02-18
+2026-02-06;ALUGUEL - CASA DESPERTAR ;Custeio;Aluguel de Imóvel;12.648,00;2026-02-06
+2026-02-06;HORTIFRUTI - NF 775;Custeio;Gêneros alimentícios;858,38;2026-02-06
+2026-02-07;ENEL - CASA ACOLHER;Custeio;Energia Elétrica;298,29;2026-02-18
+2026-02-07;ENEL - CASA TRANSFORMAR ;Custeio;Energia Elétrica;379,27;2026-02-18
+2026-02-08;INTERNET - CASA TRANSFORMAR;Custeio;Internet;119,65;2026-02-10
+2026-02-08;INTERNET - CASA CUIDAR ;Custeio;Internet;249,98;2026-02-10
+2026-02-08;INTERNET - CASA ACOLHER ;Custeio;Internet;189,08;2026-02-10
+2026-02-08;INTERNET - CASA DESPERTAR ;Custeio;Internet;108,77;2026-02-10
+2026-02-10;SABESP - CASA TRANSFORMAR ;Custeio;Água e Esgoto;1.652,92;2026-02-20
+2026-02-10;SABESP - CASA CUIDAR;Custeio;Água e Esgoto;81,25;2026-02-18
+2026-02-10;SABESP - CASA ACOLHER ;Custeio;Água e Esgoto;466,35;2026-02-18
+2026-02-10;ALUGUEL - CASA TRANSFORMAR ;Custeio;Aluguel de Imóvel;9.265,93;2026-02-10
+2026-02-10;ALUGUEL - CASA ACOLHER;Custeio;Aluguel de Imóvel;9.674,79;2026-02-10
+2026-02-10;ALUGUEL - CASA CUIDAR;Custeio;Aluguel de Imóvel;9.265,93;2026-02-10
+2026-02-11;FGTS - OSASCO;Recursos Humanos;GRF-FGTS;9.048,20;2026-02-18
+2026-02-11;DARF - OSASCO ;Recursos Humanos;Imposto de Renda;8.728,66;2026-02-18
+2026-02-11;MERCADO LIVRE - NF 120345;Custeio;Materiais para Escritório;64,00;2026-02-11
+2026-02-12;NATHY GÁS - NF 594;Custeio;Gás de Cozinha;440,00;2026-02-13
+2026-02-12;ARMARINHO FERNANDES - NF 036350;Custeio;Copa e Cozinha;327,73;2026-02-12
+2026-02-13;ATACADÃO - NF 084633;Custeio;Gêneros alimentícios;240,48;2026-02-13
+2026-02-15;INTERNET - CASA CUIDAR;Custeio;Internet;87,02;2026-02-10
+2026-02-18;VR - COMBUSTIVEL ;Custeio;Combustível;100,00;2026-02-18
+2026-02-19;LOWCOST - IMPRESSORA;Custeio;Locação de Impressoras;256,54;2026-02-20
+2026-02-19;LOWCOST - NOTEBOOKS;Custeio;Locação e Seguro de Computadores/Notebooks;3.486,00;2026-02-20
+2026-02-20;USETAXI  ;Custeio;Locação de Veículos;330,52;2026-02-20
+2026-02-21;DSAAS TECNOLOGIA ;Terceiros;Outros;112,25;2026-02-23
+2026-02-23;HORTIFRUTI - NF 779;Custeio;Gêneros alimentícios;864,43;2026-02-13
+2026-02-23;HORTIFRUTI - NF 781;Custeio;Gêneros alimentícios;670,34;2026-02-24
+2026-02-24;CAVALCANTI EMPREENDIMENTOS - NF 174;Custeio;Infraestrutura de imóvel;7.000,00;2026-02-13
+2026-02-24;NATHY GÁS - NF 606;Custeio;Gás de Cozinha;570,00;2026-02-24
+2026-02-24;CHAVEIRO - NF 112;Terceiros;Outros;90,00;2026-02-24
+2026-02-25;VR - ALIMENTAÇÃO ;Recursos Humanos;Vale Alimentação;8.400,00;2026-02-25
+2026-02-25;HAVAN - NF 187190;Custeio;Cama, mesa e banho;1.399,51;2026-02-25
+2026-02-26;VT - THELMA;Recursos Humanos;Vale Transporte;832,70;2026-02-26
+2026-02-26;VT - PAULA;Recursos Humanos;Vale Transporte;283,80;2026-02-26
+2026-02-26;VT -MICHELE;Recursos Humanos;Vale Transporte;470,80;2026-02-26
+2026-02-26;VT - JULIANA;Recursos Humanos;Vale Transporte;536,80;2026-02-26
+2026-02-26;VT - JOSE ANTONIO;Recursos Humanos;Vale Transporte;502,40;2026-02-26
+2026-02-26;VT - JAERGENTON ;Recursos Humanos;Vale Transporte;470,80;2026-02-26
+2026-02-26;VT - EBNER;Recursos Humanos;Vale Transporte;321,00;2026-02-26
+2026-02-26;VT - DENISE;Recursos Humanos;Vale Transporte;704,00;2026-02-26
+2026-02-26;VT - JUSSILENE;Recursos Humanos;Vale Transporte;602,80;2026-02-26
+2026-02-26;VT - ALEXANDRE;Recursos Humanos;Vale Transporte;368,00;2026-02-26
+2026-02-26;VT - ALEXANDRA;Recursos Humanos;Vale Transporte;785,00;2026-02-26
+2026-02-26;VT - ALESSANDRO;Recursos Humanos;Vale Transporte;368,00;2026-02-26
+2026-02-26;VT - INGRID;Recursos Humanos;Vale Transporte;400,50;2026-02-26
+2026-02-27;MENTORIA - NF 37;Terceiros;Outros;3.345,36;2026-02-27
+2026-02-27;SALARIO - JUSSILENE;Recursos Humanos;Salários;3.224,51;2026-02-27
+2026-02-27;SALARIO - DENISE ;Recursos Humanos;Salários;1.486,75;2026-02-27
+2026-02-27;SALARIO - ADRIANA;Recursos Humanos;Salários;3.943,50;2026-02-27
+2026-02-27;SALARIO - JAERGENTON;Recursos Humanos;Salários;1.874,95;2026-02-27
+2026-02-27;SALARIO - THELMA;Recursos Humanos;Salários;2.791,52;2026-02-27
+2026-02-27;SALARIO - INGRID;Recursos Humanos;Salários;1.247,08;2026-02-27
+2026-02-27;SALARIO - JULIANA;Recursos Humanos;Salários;1.538,32;2026-02-27
+2026-02-27;SALARIO - MICHELE ;Recursos Humanos;Salários;3.150,31;2026-02-27
+2026-02-27;SALARIO - ROBSON;Recursos Humanos;Salários;2.930,29;2026-02-27
+2026-02-27;SALARIO - ALESSANDRO;Recursos Humanos;Salários;2.498,78;2026-02-27
+2026-02-27;SALARIO - ALEXANDRE;Recursos Humanos;Salários;2.026,40;2026-02-27
+2026-02-27;SALARIO - EBNER ;Recursos Humanos;Salários;2.027,90;2026-02-27
+2026-02-27;SALARIO - ALEXANDRA;Recursos Humanos;Salários;4.919,86;2026-02-27
+2026-02-27;SALARIO - PAULA;Recursos Humanos;Salários;2.782,62;2026-02-27
+2026-02-27;SALARIO - JOSE ANTONIO ;Recursos Humanos;Salários;2.026,40;2026-02-27
+2026-02-27;FERIAS - ADRIANA;Recursos Humanos;Férias;2.351,92;2026-02-27
+2026-02-27;HORTIFRUTI - NF 784;Custeio;Gêneros alimentícios;831,44;2026-02-27
+2026-02-27;EDWYRGES - NF 16211;Custeio;Infraestrutura de imóvel;380,46;2026-02-27
+2026-02-27;VR - COMBUSTIVEL ;Custeio;Combustível;200,00;2026-02-27

@@ -10,13 +10,13 @@ function montaCombo()
 {
 
 	if($_SESSION['pf']==2){
-		$where = 'nota_status_id <> 5 AND nota_status_id <> 3 AND nota_status_id <> 2';
+		$where = 'nota_status_id <> 5 AND nota_status_id <> 3 AND nota_status_id <> 2 AND nota_status_id <> 8';
 	}
 	else if($_SESSION['pf']==1){
 		$where = 'nota_status_id <> 5 AND nota_status_id <> 2';
 	}
 	else{
-		$where = 'nota_status_id <> 5 AND nota_status_id <> 1 AND nota_status_id <> 6';
+		$where = 'nota_status_id <> 5 AND nota_status_id <> 1 AND nota_status_id <> 6 AND nota_status_id <> 8';
 	}
 
 	if($_POST['id']>0){

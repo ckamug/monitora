@@ -14,9 +14,11 @@ $dados["executora_bairro"] = $_POST["txtBairro"];
 $dados["cidade_id"] = intval($_POST["slcMunicipios"]);
 $dados["executora_email"] = $_POST["txtEmail"];
 $dados["executora_telefone"] = $_POST["txtTelefone"];
+$dados["tipo_responsavel"] = $_POST["slcRede"];
 $dados["executora_vagas"] = $_POST["txtVagas"];
+$dados["executora_n_contrato"] = $_POST["txtNContrato"];
 
-if(base64_decode($_SESSION["usr"])==1 OR base64_decode($_SESSION["usr"])==18 OR base64_decode($_SESSION["usr"])==22){
+if(base64_decode($_SESSION["usr"])==1 OR base64_decode($_SESSION["usr"])==189 OR base64_decode($_SESSION["usr"])==139 OR base64_decode($_SESSION["usr"])==217){
     $dados["executora_valor_previsto_rh"] = str_replace("R$ ","",$_POST["txtRh"]);
     $dados["executora_valor_previsto_custeio"] = str_replace("R$ ","",$_POST["txtCusteio"]);
     $dados["executora_valor_previsto_terceiros"] = str_replace("R$ ","",$_POST["txtServicosTerceiros"]);

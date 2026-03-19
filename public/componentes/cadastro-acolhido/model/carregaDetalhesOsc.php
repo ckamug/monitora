@@ -13,7 +13,37 @@ $sistema->innerJoin($campos,$from,$innerJoin,$where,'','');
 $result = $sistema->getResult();
 
 //$sistema->debug=true;
-$sistema->select("rec_solicitacoes_vagas","count(solicitacao_vaga_id) as total","status_vaga_id <> 4 and status_registro = 1 and executora_id = " . $result[0]["executora_id"],"executora_id");
+$camposSolicitacoes = 'count(a.solicitacao_vaga_id) as total';
+$fromSolicitacoes = 'rec_solicitacoes_vagas a';
+$innerJoinSolicitacoes = array();
+$innerJoinSolicitacoes[] = 'left join (
+    select
+        x.acolhido_id,
+        y.data_desligamento
+    from rec_acolhidos_entradas x
+    inner join rec_acolhidos_desligamentos y on y.acolhido_entrada_id = x.acolhido_entrada_id
+    where y.acolhido_desligamento_id = (
+        select y2.acolhido_desligamento_id
+        from rec_acolhidos_entradas x2
+        inner join rec_acolhidos_desligamentos y2 on y2.acolhido_entrada_id = x2.acolhido_entrada_id
+        where x2.acolhido_id = x.acolhido_id
+        order by y2.data_desligamento desc, y2.acolhido_desligamento_id desc
+        limit 1
+    )
+) c on c.acolhido_id = a.acolhido_id';
+$whereSolicitacoes = 'a.solicitacao_vaga_id = (
+        select a2.solicitacao_vaga_id
+        from rec_solicitacoes_vagas a2
+        where a2.acolhido_id = a.acolhido_id
+          and a2.status_registro = 1
+        order by a2.data_cadastro desc, a2.solicitacao_vaga_id desc
+        limit 1
+    )
+    and a.status_vaga_id <> 4
+    and a.status_registro = 1
+    and a.executora_id = ' . $result[0]["executora_id"] . '
+    and (c.data_desligamento is null or a.data_cadastro > c.data_desligamento)';
+$sistema->innerJoin($camposSolicitacoes, $fromSolicitacoes, $innerJoinSolicitacoes, $whereSolicitacoes, '', '');
 $res_solicitacoes = $sistema->getResult();
 
 $vagasDisponiveis = $result[0]["executora_vagas"] - $res_solicitacoes[0]["total"];

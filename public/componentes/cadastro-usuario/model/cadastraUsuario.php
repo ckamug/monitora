@@ -18,6 +18,8 @@ else{
 $dados["usuario_nome"] = $_POST["txtNome"];
 $dados["usuario_cpf"] = $_POST["txtCpf"];
 $dados["usuario_email"] = $_POST["txtEmail"];
+$dados["tipo_registro_id"] = (isset($_POST["slcTipoRegistro"])) ? $_POST["slcTipoRegistro"] : 0;
+$dados["numero_registro"] = $_POST["txtNumeroRegistro"];
 $dados['usuario_senha'] = $senha;
 $dados['usuario_hash'] = $hash;
 $dados["usuario_cadastro_id"] = base64_decode($_SESSION["usr"]);

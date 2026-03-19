@@ -1,0 +1,2 @@
+data_hora;funcionalidade;arquivo;teste;status;duracao_ms;erro_locator;erro_locator_foco;screenshot;screenshot_focus;screenshot_elemento
+"2026-02-25T18:21:32.546Z";"cadastro-acolhido_08-edicao";"C:\wamp64\www\coed\tests-e2e\tests\cadastro-acolhido\08-edicao.spec.js";"smoke: abre modo edicao pela URL mascarada apos criar cadastro";"passed";"4252";"";"";"";"";""

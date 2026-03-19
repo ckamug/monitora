@@ -12,6 +12,13 @@
             </a>
         </li>
 
+        <li class="nav-item d-none" id="titEncaminhamentosOscs">
+            <a class="nav-link <?php echo $nav_group_collapse_encaminhamentos_oscs ?>" href="<?php echo URL ?>encaminhamentos-oscs">
+            <i class="bi bi-list-check"></i>
+            <span>Encaminhamentos &agrave;s OSCs</span>
+            </a>
+        </li>
+
         <li class="nav-item d-none" id="titCadastros">
             <a class="nav-link <?php echo $nav_group_collapse_cadastros ?>" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
             <i class="bi bi-menu-button-wide"></i><span>Cadastros</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -22,6 +29,11 @@
                     <i class="bi bi-circle"></i><span>Acolhidos</span>
                     </a>
                 </li>
+                <li class="d-none" id="mnuCadDesligamentos">
+                    <a href="<?php echo URL ?>lista-desligamentos" class="<?php echo $nav_item_desligamentos ?>">
+                    <i class="bi bi-circle"></i><span>Desligamentos</span>
+                    </a>
+                </li>
                 <li class="d-none" id="mnuCadCelebrante">
                     <a href="<?php echo URL ?>celebrante" class="<?php echo $nav_item_celebrante ?>">
                     <i class="bi bi-circle"></i><span>Celebrante</span>
@@ -29,7 +41,7 @@
                 </li>
                 <li class="d-none" id="mnuCadMunicipio">
                     <a href="<?php echo URL ?>municipio" class="<?php echo $nav_item_municipio ?>">
-                    <i class="bi bi-circle"></i><span>Município</span>
+                    <i class="bi bi-circle"></i><span>Porta de Entrada</span>
                     </a>
                 </li>
                 <li class="d-none" id="mnuCadExecutora">

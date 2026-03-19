@@ -66,6 +66,12 @@ if($result){
                 else if($resUsuario[0]["perfil_id"]==6){
                     echo 'area-restrita';
                 }
+                else if($resUsuario[0]["perfil_id"]==7){
+                    echo 'area-restrita';
+                }
+                else if($resUsuario[0]["perfil_id"]==8){
+                    echo 'prestacoes';
+                }
                 else{}
             }
             else if(count($resUsuario)>1){
