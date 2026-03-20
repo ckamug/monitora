@@ -253,7 +253,7 @@ function cadastraDesligamento(){
 	$.ajax({
 	  type: "POST",
       enctype: 'multipart/form-data',
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/desligamento/model/cadastraDesligamento.php",
+	  url: "/public/componentes/desligamento/model/cadastraDesligamento.php",
 	  data: data,
       dataType: "json",
       processData: false,

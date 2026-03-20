@@ -98,7 +98,7 @@ $(document).ready(function(){
 		$.ajax({
 		  type: "POST",
 		  enctype: 'multipart/form-data',
-		  url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-acolhido/model/upload.php",
+		  url: "/public/componentes/cadastro-acolhido/model/upload.php",
 		  data: data,
 		  processData: false,
 		  cache: false,
@@ -490,7 +490,7 @@ function listaArquivos(id){
 	$.ajax({
 		type: "POST",
 		dataType: 'JSON',
-		url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-acolhido/model/listaArquivos.php",
+		url: "/public/componentes/cadastro-acolhido/model/listaArquivos.php",
 		data: {'id':id},
 		success: function (retorno){
 
@@ -505,7 +505,7 @@ function listaArquivos(id){
 function listaSolicitacoesVagas(id){
 	$.ajax({
 		type: "POST",
-		url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-acolhido/model/carregaSolicitacoesVagas.php",
+		url: "/public/componentes/cadastro-acolhido/model/carregaSolicitacoesVagas.php",
 		data: {'id':id},
 		success: function (retorno){
 			$("#boxStatusVaga").html(retorno);
@@ -534,7 +534,7 @@ function consultaCpfAcolhido(){
 
 
 	$.ajax({
-		url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-acolhido/model/consultaCpf.php",
+		url: "/public/componentes/cadastro-acolhido/model/consultaCpf.php",
 		type: "POST",
 		dataType: "JSON",
 		//data: {'cpf':cpf},
@@ -926,7 +926,7 @@ function cadastraAcolhido(){
 	var form = $("#formAcolhido").serialize();
 	$.ajax({
 	  type: "POST",
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-acolhido/model/cadastraAcolhido.php",
+	  url: "/public/componentes/cadastro-acolhido/model/cadastraAcolhido.php",
 	  data: form,
 	  success: function (retorno) {
 		location.href = "cadastro-acolhido/" + retorno;
@@ -951,7 +951,7 @@ function editaAcolhido(id){
 	form += "&id="+id;
 	$.ajax({
 	  type: "POST",
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-acolhido/model/editaAcolhido.php",
+	  url: "/public/componentes/cadastro-acolhido/model/editaAcolhido.php",
 	  data: form,
 	  success: function (retorno) {
 		alert('Informações alteradas com sucesso');
@@ -1108,7 +1108,7 @@ function cadastraAcolhimento(){
 
 	$.ajax({
 	  type: "POST",
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-acolhido/model/cadastraAcolhimento.php",
+	  url: "/public/componentes/cadastro-acolhido/model/cadastraAcolhimento.php",
 	  data: {acolhido:acolhido,docPossui:docPossui,docNecessaria:docNecessaria,outroDocPossui:outroDocPossui,outroDocNecessaria:outroDocNecessaria,escolaridade:escolaridade,beneficios:beneficios,tipoBeneficios:tipoBeneficios,valorRecebido:valorRecebido,outroTipoBeneficio:outroTipoBeneficio},
 	  success: function (retorno) {
 		carregaAcolhimento(retorno);
@@ -1131,7 +1131,7 @@ function editaAcolhimento(id){
 
 	$.ajax({
 	  type: "POST",
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-acolhido/model/editaAcolhimento.php",
+	  url: "/public/componentes/cadastro-acolhido/model/editaAcolhimento.php",
 	  data: {id:id,acolhido:acolhido,docPossui:docPossui,docNecessaria:docNecessaria,outroDocPossui:outroDocPossui,outroDocNecessaria:outroDocNecessaria,escolaridade:escolaridade,beneficios:beneficios,tipoBeneficios:tipoBeneficios,valorRecebido:valorRecebido,outroTipoBeneficio:outroTipoBeneficio},
 	  success: function (retorno) {
 		carregaAcolhimento(retorno);
@@ -1160,7 +1160,7 @@ function consultaCep(){
 function carregaMunicipios(id){
 	$.ajax({
 	  type: "POST",
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-acolhido/model/carregaMunicipios.php",
+	  url: "/public/componentes/cadastro-acolhido/model/carregaMunicipios.php",
 	  data: {'id':id},
 	  success: function (retorno) {
 		$("#boxMunicipios").html(retorno);
@@ -1218,7 +1218,7 @@ function abreBox(box,acao){
 function carregaServicos(){
 	$.ajax({
 	  type: "POST",
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-acolhido/model/carregaServicos.php",
+	  url: "/public/componentes/cadastro-acolhido/model/carregaServicos.php",
 	  success: function (retorno) {
 		$("#boxServicos").html(retorno);
 		$("#boxGenero").addClass('d-none');
@@ -1247,7 +1247,7 @@ function solicitarVaga(){
 
 		$.ajax({
 			type: "POST",
-			url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-acolhido/model/solicitarVaga.php",
+			url: "/public/componentes/cadastro-acolhido/model/solicitarVaga.php",
 			data: {'acolhido':acolhido,'servico_id':servico,'genero_solicitado':genero},
 			success: function () {
 				alert('Vaga Solicitada');
@@ -1273,7 +1273,7 @@ function cadastraContatoReferencia(){
 
 		$.ajax({
 			type: "POST",
-			url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-acolhido/model/cadastraContatoReferencia.php",
+			url: "/public/componentes/cadastro-acolhido/model/cadastraContatoReferencia.php",
 			data: {'id':id,'nomeContato':nomeContato,'telefoneReferencia':telefoneReferencia,'parentesco':parentesco},
 			success: function (retorno) {
 				$("#txtNomeReferencia").val('');
@@ -1290,7 +1290,7 @@ function listaContatosReferencia(){
 	var id = getIdContatoReferenciaAtual();
 	$.ajax({
 		type: "POST",
-		url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-acolhido/model/listaContatosReferencia.php",
+		url: "/public/componentes/cadastro-acolhido/model/listaContatosReferencia.php",
 		data: {'id':id},
 		success: function (retorno) {
 			$("#boxContatosReferencia").html(retorno);
@@ -1301,7 +1301,7 @@ function listaContatosReferencia(){
 function excluirContatoReferencia(id){
 	$.ajax({
 	  type: "POST",
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-acolhido/model/excluiContatoReferencia.php",
+	  url: "/public/componentes/cadastro-acolhido/model/excluiContatoReferencia.php",
 	  data: {'id':id},
 	  success: function (retorno) {
 		listaContatosReferencia();

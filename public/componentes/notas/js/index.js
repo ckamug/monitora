@@ -87,7 +87,7 @@ $(document).ready(function(){
 		$.ajax({
 		  type: "POST",
 		  enctype: 'multipart/form-data',
-		  url: "https://portal.seds.sp.gov.br/coed/public/componentes/notas/model/upload.php",
+		  url: "/public/componentes/notas/model/upload.php",
 		  data: data,
 		  processData: false,
 		  cache: false,
@@ -110,7 +110,7 @@ function validaUsuario(){
 	var prestacao = $("#hidIdPrestacao").val();
 	$.ajax({
 		type: "POST",
-		url: "https://portal.seds.sp.gov.br/coed/public/componentes/notas/model/validaUsuario.php",
+		url: "/public/componentes/notas/model/validaUsuario.php",
 		data: {'prestacao':prestacao},
 		success: function (retorno) {
 			if(retorno==0){
@@ -188,7 +188,7 @@ function validaRubrica(){
 
 	$.ajax({
 		type: "POST",
-		url: "https://portal.seds.sp.gov.br/coed/public/componentes/notas/model/validaRubrica.php",
+		url: "/public/componentes/notas/model/validaRubrica.php",
 		data: {'prestacao':prestacao,'rubrica':rubrica,'valor':valor,'valorOriginal':valorOriginal},
 		success: function (retorno) {
 			if(retorno==1){
@@ -314,7 +314,7 @@ function listaNotasFiscais(){
 
 	$.ajax({
 		type: "POST",
-		url: "https://portal.seds.sp.gov.br/coed/public/componentes/notas/model/listaNotasFiscais.php",
+		url: "/public/componentes/notas/model/listaNotasFiscais.php",
 		data: {'prestacao':prestacao},
 		success: function (retorno) {
 		  $("#boxListaNotasFiscais").html(retorno);
@@ -332,7 +332,7 @@ function listaItensGlosa(id){
 
 	$.ajax({
 		type: "POST",
-		url: "https://portal.seds.sp.gov.br/coed/public/componentes/notas/model/listaItensGlosa.php",
+		url: "/public/componentes/notas/model/listaItensGlosa.php",
 		data: {'id':id},
 		success: function (retorno) {
 			if(retorno!=0){
@@ -372,7 +372,7 @@ function cadastraNotaFiscal(){
 		$.ajax({
 		type: "POST",
 		enctype: 'multipart/form-data',
-		url: "https://portal.seds.sp.gov.br/coed/public/componentes/notas/model/cadastraNf.php",
+		url: "/public/componentes/notas/model/cadastraNf.php",
 		data: data,
 		processData: false,
 		cache: false,
@@ -815,7 +815,7 @@ function editaNotaFiscal(tipo,id){
 		$.ajax({
 			enctype: 'multipart/form-data',
 			type: "POST",
-			url: "https://portal.seds.sp.gov.br/coed/public/componentes/notas/model/editaNotaFiscal.php",
+			url: "/public/componentes/notas/model/editaNotaFiscal.php",
 			data: data,
 			processData: false,
 			cache: false,
@@ -860,7 +860,7 @@ function registraApontamento(id){
 	else{
 		$.ajax({
 			type: "POST",
-			url: "https://portal.seds.sp.gov.br/coed/public/componentes/notas/model/cadastraApontamento.php",
+			url: "/public/componentes/notas/model/cadastraApontamento.php",
 			data: {'id':id,'apontamento':apontamento,'status':status},
 			success: function () {
 				detalhesNotaFiscal(id);
@@ -882,7 +882,7 @@ function registraJustificativa(nota_apontamento_id,id){
 	else{
 		$.ajax({
 			type: "POST",
-			url: "https://portal.seds.sp.gov.br/coed/public/componentes/notas/model/cadastraJustificativa.php",
+			url: "/public/componentes/notas/model/cadastraJustificativa.php",
 			data: {'nota_apontamento_id':nota_apontamento_id,'id':id,'justificativa':justificativa},
 			success: function () {
 				
@@ -901,7 +901,7 @@ function registraJustificativa(nota_apontamento_id,id){
 function listaApontamentos(id,status){
 	$.ajax({
 		type: "POST",
-		url: "https://portal.seds.sp.gov.br/coed/public/componentes/notas/model/listaApontamentosJustificativas.php",
+		url: "/public/componentes/notas/model/listaApontamentosJustificativas.php",
 		data: {'id':id,'status':status},
 		success: function (retorno) {
 		  //$("#boxApontamentos").html(retorno);
@@ -914,7 +914,7 @@ function listaApontamentos(id,status){
 function listaRessalvas(id,status){
 	$.ajax({
 		type: "POST",
-		url: "https://portal.seds.sp.gov.br/coed/public/componentes/notas/model/listaRessalvas.php",
+		url: "/public/componentes/notas/model/listaRessalvas.php",
 		data: {'id':id,'status':status},
 		success: function (retorno) {
 			$("#boxRessalva").removeClass('d-none');
@@ -954,7 +954,7 @@ function registraStatus(id){
 		
 			$.ajax({
 				type: "POST",
-				url: "https://portal.seds.sp.gov.br/coed/public/componentes/notas/model/registraStatus.php",
+				url: "/public/componentes/notas/model/registraStatus.php",
 				data: {'id':id,'status':status,'motivo':motivo,'valorGlosa':valorGlosa,'ressalva':ressalva},
 				success: function (retorno) {
 					atualizaCabecalho(id,status,valorGlosa);
@@ -972,7 +972,7 @@ function registraStatus(id){
 function excluirAnexo(prestacao,nota){
 	$.ajax({
 		type: "POST",
-		url: "https://portal.seds.sp.gov.br/coed/public/componentes/notas/model/excluirArquivo.php",
+		url: "/public/componentes/notas/model/excluirArquivo.php",
 		data: {'prestacao':prestacao , 'nota':nota},
 		success: function (retorno) {
 			if(retorno==0){
@@ -993,7 +993,7 @@ function excluirAnexo(prestacao,nota){
 					$.ajax({
 					  type: "POST",
 					  enctype: 'multipart/form-data',
-					  url: "https://portal.seds.sp.gov.br/coed/public/componentes/notas/model/upload.php",
+					  url: "/public/componentes/notas/model/upload.php",
 					  data: data,
 					  processData: false,
 					  cache: false,
@@ -1018,7 +1018,7 @@ function excluirAnexo(prestacao,nota){
 function carregaCategorias(id){
 	$.ajax({
 	  type: "POST",
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/notas/model/carregaCategorias.php",
+	  url: "/public/componentes/notas/model/carregaCategorias.php",
 	  data: {'id':id},
 	  success: function (retorno) {
 		$("#boxCategorias").html(retorno);
@@ -1029,7 +1029,7 @@ function carregaCategorias(id){
 function carregaSubcategorias(id,categoria){
 	$.ajax({
 	  type: "POST",
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/notas/model/carregaSubcategorias.php",
+	  url: "/public/componentes/notas/model/carregaSubcategorias.php",
 	  data: {'id':id , 'categoria_id':categoria},
 	  success: function (retorno) {
 		$("#boxSubcategorias").html(retorno);
@@ -1040,7 +1040,7 @@ function carregaSubcategorias(id,categoria){
 function carregaStatusNotas(id){
 	$.ajax({
 	  type: "POST",
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/notas/model/carregaStatusNotas.php",
+	  url: "/public/componentes/notas/model/carregaStatusNotas.php",
 	  data: {'id':id},
 	  success: function (retorno) {
 		$("#boxStatusNotas").html(retorno);
@@ -1070,7 +1070,7 @@ function atualizaCabecalho(id,retorno,valorGlosa){
 
 	$.ajax({
 		type: "POST",
-		url: "https://portal.seds.sp.gov.br/coed/public/componentes/notas/model/atualizaCabecalho.php",
+		url: "/public/componentes/notas/model/atualizaCabecalho.php",
 		data: {'id':id,'status':status,'categoria':categoria,'valor':valor,'valorGlosa':valorGlosa},
 		success: function (retorno) {
 			setTimeout('montaCabecalho("'+retorno+'")',500);
@@ -1183,7 +1183,7 @@ function registraProvisao(){
 	var id = $("#hidIdPrestacao").val();
 	$.ajax({
 		type: "POST",
-		url: "https://portal.seds.sp.gov.br/coed/public/componentes/notas/model/registraProvisao.php",
+		url: "/public/componentes/notas/model/registraProvisao.php",
 		data: {'id':id,'provisao':provisao},
 		success: function () {
 			montaCabecalho(id);
@@ -1211,7 +1211,7 @@ function registraApontamentoDocComp(id){
 
 		$.ajax({
 			type: "POST",
-			url: "https://portal.seds.sp.gov.br/coed/public/componentes/notas/model/cadastraApontamentoDocComp.php",
+			url: "/public/componentes/notas/model/cadastraApontamentoDocComp.php",
 			data: {'id':id,'apontamento':apontamento},
 			success: function () {
 				$("#txtMensagem").val('');
@@ -1226,7 +1226,7 @@ function listaApontamentosDocComp(){
 	var prestacao = $("#hidIdPrestacao").val();
 	$.ajax({
 		type: "POST",
-		url: "https://portal.seds.sp.gov.br/coed/public/componentes/notas/model/listaApontamentosDocComp.php",
+		url: "/public/componentes/notas/model/listaApontamentosDocComp.php",
 		data: {'prestacao':prestacao},
 		success: function (retorno) {
 		  $("#boxListaApontamentosDocComp").html(retorno);
@@ -1248,7 +1248,7 @@ function finalizaPrestacao(){
 	var prestacao = $("#hidIdPrestacao").val();
 	$.ajax({
 		type: "POST",
-		url: "https://portal.seds.sp.gov.br/coed/public/componentes/notas/model/finalizaPrestacao.php",
+		url: "/public/componentes/notas/model/finalizaPrestacao.php",
 		data: {'prestacao':prestacao},
 		success: function (retorno) {
 			if(retorno==0){
@@ -1263,7 +1263,7 @@ function disponibilizaPrestacao(){
 	var prestacao = $("#hidIdPrestacao").val();
 	$.ajax({
 		type: "POST",
-		url: "https://portal.seds.sp.gov.br/coed/public/componentes/notas/model/disponibilizaPrestacao.php",
+		url: "/public/componentes/notas/model/disponibilizaPrestacao.php",
 		data: {'prestacao':prestacao},
 		success: function (retorno) {
 			if(retorno==0){
@@ -1278,7 +1278,7 @@ function encerraPrestacao(){
 	var prestacao = $("#hidIdPrestacao").val();
 	$.ajax({
 		type: "POST",
-		url: "https://portal.seds.sp.gov.br/coed/public/componentes/notas/model/encerraPrestacao.php",
+		url: "/public/componentes/notas/model/encerraPrestacao.php",
 		data: {'prestacao':prestacao},
 		success: function (retorno) {
 			if(retorno==0){
@@ -1321,7 +1321,7 @@ function trataStatus(id){
 function excluirNotaFiscal(prestacao,nota){
 	$.ajax({
 		type: "POST",
-		url: "https://portal.seds.sp.gov.br/coed/public/componentes/notas/model/excluirNotaFiscal.php",
+		url: "/public/componentes/notas/model/excluirNotaFiscal.php",
 		data: {'prestacao':prestacao , 'nota':nota},
 		success: function () {
 			atualizaCabecalho(nota,5,0);
@@ -1335,7 +1335,7 @@ function gerarCsv(prestacao){
 	
 	$.ajax({
 		type: "POST",
-		url: "https://portal.seds.sp.gov.br/coed/public/componentes/notas/model/gerarExcel.php",
+		url: "/public/componentes/notas/model/gerarExcel.php",
 		data: {'prestacao':prestacao},
 		success: function (retorno) {
 			openCsv = window.open("https://portal.seds.sp.gov.br/coed/public/componentes/notas/model/planilhas/" + retorno,"CSV","width=10,height=10");
@@ -1355,7 +1355,7 @@ function liberaPrestacao(){
 	var prestacao = $("#hidIdPrestacao").val();
 	$.ajax({
 		type: "POST",
-		url: "https://portal.seds.sp.gov.br/coed/public/componentes/notas/model/liberaPrestacao.php",
+		url: "/public/componentes/notas/model/liberaPrestacao.php",
 		data: {'prestacao':prestacao},
 		success: function (retorno) {
 			if(retorno==0){
@@ -1386,7 +1386,7 @@ function marcaAnaliseCoed(id){
 
 	$.ajax({
 		type: "POST",
-		url: "https://portal.seds.sp.gov.br/coed/public/componentes/notas/model/marcaAnaliseCoed.php",
+		url: "/public/componentes/notas/model/marcaAnaliseCoed.php",
 		data: {'acao':acao,'id':id},
 		success: function () {
 			listaNotasFiscais();
@@ -1414,7 +1414,7 @@ function alteraRubricaPrevista(cabecalho){
 
 	$.ajax({
 		type: "POST",
-		url: "https://portal.seds.sp.gov.br/coed/public/componentes/notas/model/alteraRubricaPrevista.php",
+		url: "/public/componentes/notas/model/alteraRubricaPrevista.php",
 		data: {'cabecalho':cabecalho,'rh':rh,'custeio':custeio,'terceiros':terceiros},
 		success: function () {
 			montaCabecalho(prestacao);

@@ -86,7 +86,7 @@ function consultaCpf(){
 		var cpf = $("#txtCpf").val();
 
         $.ajax({
-            url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-usuario/model/consultaCpf.php",
+            url: "/public/componentes/cadastro-usuario/model/consultaCpf.php",
             type: "POST",
             data:  {'cpf':cpf},
             success: function(retorno){
@@ -136,7 +136,7 @@ function carregaUsuario(id){
 function carregaTiposRegistros(id){
 	$.ajax({
 	  type: "POST",
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-usuario/model/carregaTipoRegistro.php",
+	  url: "/public/componentes/cadastro-usuario/model/carregaTipoRegistro.php",
 	  data: {'id':id},
 	  success: function (retorno) {
 		$("#boxTiposRegistros").html(retorno);
@@ -148,7 +148,7 @@ function cadastraUsuario(){
 	var form = $("#formUsuario").serialize();
 	$.ajax({
 	  type: "POST",
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-usuario/model/cadastraUsuario.php",
+	  url: "/public/componentes/cadastro-usuario/model/cadastraUsuario.php",
 	  data: form,
 	  success: function (retorno) {
 		location.href = "/coed/cadastro-usuario/" + retorno;
@@ -161,7 +161,7 @@ function editaUsuario(id){
 	form += "&id="+id;
 	$.ajax({
 	  type: "POST",
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-usuario/model/editaUsuario.php",
+	  url: "/public/componentes/cadastro-usuario/model/editaUsuario.php",
 	  data: form,
 	  success: function (retorno) {
 		alert('Informações alteradas com sucesso');
@@ -173,7 +173,7 @@ function editaUsuario(id){
 function carregaPerfis(id){
 	$.ajax({
 	  type: "POST",
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-usuario/model/carregaPerfis.php",
+	  url: "/public/componentes/cadastro-usuario/model/carregaPerfis.php",
 	  data: {'id':id},
 	  success: function (retorno) {
 		$("#boxPerfis").html(retorno);
@@ -184,7 +184,7 @@ function carregaPerfis(id){
 function perfilVinculo(id,vinculo_id){
 	$.ajax({
 		type: "POST",
-		url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-usuario/model/carregaPerfilVinculo.php",
+		url: "/public/componentes/cadastro-usuario/model/carregaPerfilVinculo.php",
 		data: {'id':id, 'vinculo_id':vinculo_id},
 		success: function (retorno) {
 		  $("#boxVinculoPerfil").html(retorno);
@@ -207,7 +207,7 @@ function perfilVinculo(id,vinculo_id){
 function carregaCasas(id){
 	$.ajax({
 		type: "POST",
-		url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-usuario/model/carregaCasas.php",
+		url: "/public/componentes/cadastro-usuario/model/carregaCasas.php",
 		data: {'id':id},
 		success: function (retorno) {
 			if(retorno != 0){
@@ -227,7 +227,7 @@ function cadastraVinculo(){
 
 	$.ajax({ 
 		type: "POST",
-		url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-usuario/model/cadastraVinculo.php",
+		url: "/public/componentes/cadastro-usuario/model/cadastraVinculo.php",
 		data: {'id':id, 'perfil':perfil, 'subperfil':subperfil},
 		success: function (retorno) {
 			if(retorno==0){
@@ -246,7 +246,7 @@ function listaVinculos(){
 
 	$.ajax({
 		type: "POST",
-		url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-usuario/model/listaVinculos.php",
+		url: "/public/componentes/cadastro-usuario/model/listaVinculos.php",
 		data: {'id':id},
 		success: function (retorno) {
 		  $("#boxListaVinculos").html(retorno);
@@ -280,7 +280,7 @@ function desvincularUsuario(id){
 	
 	$.ajax({
 		type: "POST",
-		url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-usuario/model/desvincularUsuario.php",
+		url: "/public/componentes/cadastro-usuario/model/desvincularUsuario.php",
 		data:{id:id},
 		success: function(){
 			alert('Usuário desvinculado');

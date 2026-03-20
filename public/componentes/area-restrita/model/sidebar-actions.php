@@ -10,8 +10,7 @@ $nav_group_collapse_relatorios = 'collapsed';
 $nav_group_collapse_sair = 'collapsed';
 $nav_group_collapse_encaminhamentos_oscs = 'collapsed';
 
-$nav = explode('/',$_GET['view']);
-
+$nav = explode('/', getCurrentView());
 
 // TRATA A REQUISIÇÃO VIEW    
 switch($nav[0]){

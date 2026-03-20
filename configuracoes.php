@@ -9,15 +9,12 @@ DESENVOLVIDO POR CAIO EM 20/02/2014
 
 error_reporting(0);// E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED
 
-/* PROD */
-define("DIR",$_SERVER['DOCUMENT_ROOT']."/coed/");
-define("URL", "https://portal.seds.sp.gov.br/coed/");
-//define("DIR",$_SERVER['DOCUMENT_ROOT']."/");
-//define("URL", "http://".$_SERVER["HTTP_HOST"]."/");
+// Load environment variables
+require_once __DIR__ . '/loadenv.php';
 
-/* DEV */
-//define("DIR",$_SERVER['DOCUMENT_ROOT']."/coed/");
-//define("URL", "http://".$_SERVER["HTTP_HOST"]."/coed/");
+// Define DIR and URL from environment or defaults
+define("DIR", $_SERVER['DOCUMENT_ROOT']."/");
+define("URL", env('APP_URL', "http://".$_SERVER["HTTP_HOST"]."/"));
 
 // Define Timezone
 //date_default_timezone_set("America/Araguaina");

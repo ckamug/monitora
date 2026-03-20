@@ -10,7 +10,7 @@ final class requestViews
 	
 	public function loadComponent() // CARREGA O M�DULO DO SISTEMA INDICADO PELA $GET[lnk] 
 	{
-		$view = explode('/',$_GET["view"]);
+		$view = explode('/', getCurrentView());
 
 		$file = "public/componentes/" . $view[0] . "/index.php";
 		if(file_exists($file))

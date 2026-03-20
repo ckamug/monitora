@@ -51,7 +51,7 @@ $(document).ready(function(){
 function verificaLogin(){
 	$.ajax({
 	  type: "POST",
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/prestacoes/model/verificaLogin.php",
+	  url: "/public/componentes/prestacoes/model/verificaLogin.php",
 	  success: function (retorno) {
 		var perfil = parseInt($.trim(retorno),10);
 
@@ -125,7 +125,7 @@ function abrePrestacao(id){
 function registraAceite(id){
 	$.ajax({
 	  type: "POST",
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/prestacoes/model/registrarAceite.php",
+	  url: "/public/componentes/prestacoes/model/registrarAceite.php",
 	  data:{'id':id},
 	  success: function () {
 		abrePrestacao(id);
@@ -137,7 +137,7 @@ function carregaExecutoras(tipo){
 	console.log(tipo);
 	$.ajax({
 	  type: "POST",
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/prestacoes/model/carregaExecutoras.php",
+	  url: "/public/componentes/prestacoes/model/carregaExecutoras.php",
 	  data:{'tipo':tipo},
 	  success: function (retorno) {
 		$("#boxSlcExecutoras").html(retorno);
@@ -179,7 +179,7 @@ function cadastraPrestacao(){
 	var data = new FormData(form);
 	$.ajax({
 	  type: "POST",
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/prestacoes/model/cadastrarPrestacao.php",
+	  url: "/public/componentes/prestacoes/model/cadastrarPrestacao.php",
 	  data: data,
 	  processData: false,
       cache: false,
@@ -211,7 +211,7 @@ function cadastraPrestacao(){
 function carregaTiposPrestacao(){
 	$.ajax({
 	  type: "POST",
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/prestacoes/model/carregaTiposPrestacao.php",
+	  url: "/public/componentes/prestacoes/model/carregaTiposPrestacao.php",
 	  success: function (retorno) {
 		$("#boxSlcTiposPrestacao").html(retorno);
 		$('#select2-slcTiposPrestacao-container').parent().css('padding', '29px');
@@ -234,7 +234,7 @@ function zipDocsComp(mes){
 	setTimeout('$(".progress-bar").html("Gravando documentos...")',15000);
 	$.ajax({
 	  type: "POST",
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/prestacoes/model/geraZipDocComplementar.php",
+	  url: "/public/componentes/prestacoes/model/geraZipDocComplementar.php",
 	  data:{'mes':mes},
 	  success: function (retorno) {
 		if(retorno!=0){

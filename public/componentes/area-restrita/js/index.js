@@ -149,7 +149,7 @@ function controlaVaga(param , solicitacao_id){
 
 		$.ajax({
 			type: "POST",
-			url: "https://portal.seds.sp.gov.br/coed/public/componentes/area-restrita/model/alteraSolicitacaoVaga.php",
+			url: "/public/componentes/area-restrita/model/alteraSolicitacaoVaga.php",
 			data: {'solicitacao_id':solicitacao_id,'parametro':param,'justificativa':justificativa},
 			success: function (retorno) {
 				alert(retorno);
@@ -249,7 +249,7 @@ function direcionaUsuario(id){
 function carregaOscsExecutoras(){
 	$.ajax({
 	  type: "POST",
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/area-restrita/model/listaOscsPortasEntrada.php",
+	  url: "/public/componentes/area-restrita/model/listaOscsPortasEntrada.php",
 	  data: {},
 	  success: function (retorno) {
 		$("#boxRelacaoOscs").html(retorno);

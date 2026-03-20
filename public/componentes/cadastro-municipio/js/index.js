@@ -126,7 +126,7 @@ function cadastraMunicipio(){
 	var form = $("#formMunicipio").serialize();
 	$.ajax({
 	  type: "POST",
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-municipio/model/cadastraMunicipio.php",
+	  url: "/public/componentes/cadastro-municipio/model/cadastraMunicipio.php",
 	  data: form,
 	  success: function () {
 		//location.href='https://portal.seds.sp.gov.br/coed/cadastro-Municipio';
@@ -139,7 +139,7 @@ function editaMunicipio(id){
 	form += "&id="+id;
 	$.ajax({
 	  type: "POST",
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-municipio/model/editaMunicipio.php",
+	  url: "/public/componentes/cadastro-municipio/model/editaMunicipio.php",
 	  data: form,
 	  success: function (retorno) {
 		alert('Informações alteradas com sucesso');
@@ -152,7 +152,7 @@ function alteraStatus(status){
 	var id = $("#hidIdMunicipio").val();
 	$.ajax({
 	  type: "POST",
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-municipio/model/alteraStatus.php",
+	  url: "/public/componentes/cadastro-municipio/model/alteraStatus.php",
 	  data: {id:id,status:status},
 	  success: function () {
 		
@@ -180,7 +180,7 @@ function consultaCep(){
 function carregaMunicipios(id){
 	$.ajax({
 	  type: "POST",
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-municipio/model/carregaMunicipios.php",
+	  url: "/public/componentes/cadastro-municipio/model/carregaMunicipios.php",
 	  data: {'id':id},
 	  success: function (retorno) {
 		$("#boxMunicipios").html(retorno);

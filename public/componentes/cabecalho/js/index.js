@@ -85,7 +85,7 @@ function cadastraCabecalho(){
 	data.append('tipo',tipo);
 
 	$.ajax({
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/cabecalho/model/cadastrarCabecalho.php",
+	  url: "/public/componentes/cabecalho/model/cadastrarCabecalho.php",
 	  type: "POST",
 	  data: data,
 	  processData: false,
@@ -182,7 +182,7 @@ function cancelaCadCabecalho(){
 function carregaExecutoras(){
 	$.ajax({
 	  type: "POST",
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/cabecalho/model/carregaExecutoras.php",
+	  url: "/public/componentes/cabecalho/model/carregaExecutoras.php",
 	  success: function (retorno) {
 		$("#boxSlcExecutoras").html(retorno);
 		$('.form-select').select2({
@@ -199,7 +199,7 @@ function carregaExecutoras(){
 function carregaTiposRepasse(){
 	$.ajax({
 	  type: "POST",
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/cabecalho/model/carregaTiposRepasse.php",
+	  url: "/public/componentes/cabecalho/model/carregaTiposRepasse.php",
 	  success: function (retorno) {
 		$("#boxSlcTiposRepasse").html(retorno);
 	  }

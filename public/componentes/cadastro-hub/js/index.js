@@ -95,7 +95,7 @@ function cadastraAcolhido(){
 	var form = $("#formAcolhido").serialize();
 	$.ajax({
 	  type: "POST",
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-hub/model/cadastraInfoAcolhido.php",
+	  url: "/public/componentes/cadastro-hub/model/cadastraInfoAcolhido.php",
 	  data: form,
 	  success: function (retorno) {
 		location.href = "cadastro-hub/"+retorno;
@@ -108,7 +108,7 @@ function editaAcolhido(id){
 	form += "&id="+id;
 	$.ajax({
 	  type: "POST",
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-hub/model/editaInfoAcolhido.php",
+	  url: "/public/componentes/cadastro-hub/model/editaInfoAcolhido.php",
 	  data: form,
 	  success: function (retorno) {
 		alert('Informações alteradas com sucesso');

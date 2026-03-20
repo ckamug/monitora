@@ -573,7 +573,7 @@ function cadastraDadosSensiveis(){
 	$.ajax({
 	  type: "POST",
       enctype: 'multipart/form-data',
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/prontuario_acolhido/model/cadastraDadosSensiveis.php",
+	  url: "/public/componentes/prontuario_acolhido/model/cadastraDadosSensiveis.php",
 	  data: data,
       processData: false,
       cache: false,
@@ -609,7 +609,7 @@ function editaDadosSensiveis(id){
 	$.ajax({
 	  type: "POST",
       enctype: 'multipart/form-data',
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/prontuario_acolhido/model/editaDadosSensiveis.php",
+	  url: "/public/componentes/prontuario_acolhido/model/editaDadosSensiveis.php",
 	  data: data,
       processData: false,
       cache: false,
@@ -924,7 +924,7 @@ function cadastraDesligamento(){
 	$.ajax({
 	  type: "POST",
       enctype: 'multipart/form-data',
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/prontuario_acolhido/model/cadastraDesligamento.php",
+	  url: "/public/componentes/prontuario_acolhido/model/cadastraDesligamento.php",
 	  data: data,
       processData: false,
       cache: false,

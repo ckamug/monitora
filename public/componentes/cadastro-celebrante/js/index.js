@@ -107,7 +107,7 @@ function cadastraCelebrante(){
 	var form = $("#formCelebrante").serialize();
 	$.ajax({
 	  type: "POST",
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-celebrante/model/cadastraCelebrante.php",
+	  url: "/public/componentes/cadastro-celebrante/model/cadastraCelebrante.php",
 	  data: form,
 	  success: function () {
 		//location.href='https://portal.seds.sp.gov.br/coed/cadastro-celebrante';
@@ -120,7 +120,7 @@ function editaCelebrante(id){
 	form += "&id="+id;
 	$.ajax({
 	  type: "POST",
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-celebrante/model/editaCelebrante.php",
+	  url: "/public/componentes/cadastro-celebrante/model/editaCelebrante.php",
 	  data: form,
 	  success: function (retorno) {
 		alert('Informações alteradas com sucesso');
@@ -149,7 +149,7 @@ function consultaCep(){
 function carregaMunicipios(id){
 	$.ajax({
 	  type: "POST",
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-celebrante/model/carregaMunicipios.php",
+	  url: "/public/componentes/cadastro-celebrante/model/carregaMunicipios.php",
 	  data: {'id':id},
 	  success: function (retorno) {
 		$("#boxMunicipios").html(retorno);

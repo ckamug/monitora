@@ -156,7 +156,7 @@ function carregaHeader(){
   var result = url.split('/');
   
   $.ajax({
-    url: "https://portal.seds.sp.gov.br/coed/public/componentes/area-restrita/model/carregaHeader.php",
+    url: "/public/componentes/area-restrita/model/carregaHeader.php",
     dataType: 'JSON',
     type: "POST",
     success: function(data){

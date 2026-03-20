@@ -144,7 +144,7 @@ function cadastraExecutora(){
 	var form = $("#formExecutora").serialize();
 	$.ajax({
 	  type: "POST",
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-executora/model/cadastraExecutora.php",
+	  url: "/public/componentes/cadastro-executora/model/cadastraExecutora.php",
 	  data: form,
 	  success: function (retorno) {
 		carregaExecutora(retorno);
@@ -161,7 +161,7 @@ function cadastraResponsavelExecutora(){
 	
 	$.ajax({
 	  type: "POST",
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-executora/model/cadastraResponsavel.php",
+	  url: "/public/componentes/cadastro-executora/model/cadastraResponsavel.php",
 	  data: {'id':id , 'nome':nome , 'cpf':cpf , 'cargo':cargo},
 	  success: function () {
 		carregaCargos();
@@ -176,7 +176,7 @@ function cadastraCasaExecutora(){
 	
 	$.ajax({
 	  type: "POST",
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-executora/model/cadastraCasa.php",
+	  url: "/public/componentes/cadastro-executora/model/cadastraCasa.php",
 	  data: {'id':id},
 	  success: function () {
 		listaCasas(id);
@@ -189,7 +189,7 @@ function editaExecutora(id){
 	form += "&id="+id;
 	$.ajax({
 	  type: "POST",
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-executora/model/editaExecutora.php",
+	  url: "/public/componentes/cadastro-executora/model/editaExecutora.php",
 	  data: form,
 	  success: function () {
 		alert('Informações alteradas com sucesso');
@@ -218,7 +218,7 @@ function consultaCep(){
 function carregaMunicipios(id){
 	$.ajax({
 	  type: "POST",
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-executora/model/carregaMunicipios.php",
+	  url: "/public/componentes/cadastro-executora/model/carregaMunicipios.php",
 	  data: {'id':id},
 	  success: function (retorno) {
 		$("#boxMunicipios").html(retorno);
@@ -229,7 +229,7 @@ function carregaMunicipios(id){
 function carregaCargos(){
 	$.ajax({
 	  type: "POST",
-	  url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-executora/model/carregaCargos.php",
+	  url: "/public/componentes/cadastro-executora/model/carregaCargos.php",
 	  success: function (retorno) {
 		$("#boxCargos").html(retorno);
 	  }
@@ -254,7 +254,7 @@ function carregaRegioes(id){
 function listaResponsaveis(id){
 	$.ajax({
 		type: "POST",
-		url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-executora/model/listaResponsaveis.php",
+		url: "/public/componentes/cadastro-executora/model/listaResponsaveis.php",
 		data: {"id":id},
 		success: function (retorno) {
 		  $("#boxListaResponsaveis").html(retorno);
@@ -265,7 +265,7 @@ function listaResponsaveis(id){
 function listaCasas(id){
 	$.ajax({
 		type: "POST",
-		url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-executora/model/listaCasas.php",
+		url: "/public/componentes/cadastro-executora/model/listaCasas.php",
 		data: {"id":id},
 		success: function (retorno) {
 		  $("#boxListaCasas").html(retorno);
@@ -277,7 +277,7 @@ function excluiResponsavel(id){
 	var executora_id = $("#hidIdExecutora").val();
 	$.ajax({
 		type: "POST",
-		url: "https://portal.seds.sp.gov.br/coed/public/componentes/cadastro-executora/model/excluiResponsavel.php",
+		url: "/public/componentes/cadastro-executora/model/excluiResponsavel.php",
 		data: {"id":id},
 		success: function () {
 		  listaResponsaveis(executora_id);

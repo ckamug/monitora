@@ -5,18 +5,29 @@
  * 
 */
 
+require_once __DIR__ . '/../loadenv.php';
+
 class crud
 {
-    private $db_host = '10.22.0.106';
-    private $db_user = 'dbrecomeco';
-    private $db_pass = 'Rec0mec02022!';
-    private $db_name = 'recomeco';
-    private $db_port = '32771';
+    private $db_host;
+    private $db_user;
+    private $db_pass;
+    private $db_name;
+    private $db_port;
     public $Xform;
     private $result = array();
 	public $newID;
     public $rowsAffected;
 	public $ShowQuery;
+	
+	public function __construct()
+	{
+		$this->db_host = env('DB_HOST', 'localhost');
+		$this->db_user = env('DB_USER', 'root');
+		$this->db_pass = env('DB_PASS', '');
+		$this->db_name = env('DB_NAME', 'monitora');
+		$this->db_port = env('DB_PORT', '3306');
+	}
 	
 	public function setter($key, $value)
 	{
